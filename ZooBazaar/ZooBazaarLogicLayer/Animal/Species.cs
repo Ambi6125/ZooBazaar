@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EasyTools.MySqlDatabaseTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using ZooBazaarLogicLayer.Zones;
@@ -34,7 +36,7 @@ namespace ZooBazaarLogicLayer.Animals
         /// <summary>
         /// Creates species object from database data
         /// </summary>
-        public Species(int id, string name, string scientificName, Exhibit e, string unitSize, int quantity)
+        public Species(int? id, string name, string scientificName, Exhibit e, string unitSize, int quantity)
             :this(name, scientificName, e, unitSize, quantity)
         {
             this.id = id;
@@ -52,6 +54,18 @@ namespace ZooBazaarLogicLayer.Animals
         public bool Equals(Species? other)
         {
             return id == other?.id;
+        }
+        public IParameterValueCollection GetParameterArgs()
+        {
+            IParameterValueCollection args = new ParameterValueCollection();
+            args.Add("id", id);
+            args.Add("speciesName", Name);
+            args.Add("scientificName", ScientificName);
+            args.Add("exhibit", exhibit.Id);
+            args.Add("unitSize", unitSize);
+            args.Add("quantity", Quantity);
+
+            return args;
         }
     }
 }
