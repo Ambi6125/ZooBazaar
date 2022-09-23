@@ -52,6 +52,7 @@ namespace ZooBazaarLogicLayer.Animals
         {
             return id == other?.id;
         }
+
         public bool ChangeStatus(string status)
         {
             if (allowedStatuses.Contains(status))

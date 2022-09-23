@@ -1,10 +1,13 @@
-﻿using EasyTools.Validation;
+﻿using EasyTools.MySqlDatabaseTools;
+using EasyTools.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZooBazaarDataLayer.DALExhibit;
+using ZooBazaarDataLayer.DALSpecies;
+using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Zones;
 
 namespace ZooBazaarLogicLayer.Managers
@@ -16,6 +19,21 @@ namespace ZooBazaarLogicLayer.Managers
         public ExhibitManager(IDALExhibit source)
         {
             dataSource = source;
+        }
+
+        public IValidationResponse AddExhibit(Exhibit e)
+        {
+            return dataSource.AddEntry(e);
+        }
+
+        public IValidationResponse DeleteExhibit(Exhibit e)
+        {
+            return dataSource.DeleteEntry(e);
+        }
+
+        public IValidationResponse UpdateExhibit(Exhibit e)
+        {
+            return dataSource.UpdateEntry(e);
         }
 
         public Exhibit SearchById(int id)
@@ -34,6 +52,40 @@ namespace ZooBazaarLogicLayer.Managers
 
 
             return new Exhibit(exhibitId, name, zone, capacity, count);
+        }
+
+        public IReadOnlyCollection<Exhibit> GetByName(string name)
+        {
+            var queryResult = dataSource.GetByName(name);
+            List<Exhibit> finalResult = new List<Exhibit>();
+            foreach (var result in queryResult)
+            {
+                int? exhibitId = result.GetValueAs<int?>("id");
+                string resaultname = result.GetValueAs<string>("name");
+                string zone = result.GetValueAs<string>("zone");
+                int count = result.GetValueAs<int>("count");
+                int capacity = result.GetValueAs<int>("capacity");
+                Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, count, capacity);
+                finalResult.Add(exhibit);
+            }
+            return finalResult;
+        }
+
+        public IReadOnlyCollection<Exhibit> GetByZone(string zone)
+        {
+            var queryResult = dataSource.GetByName(zone);
+            List<Exhibit> finalResult = new List<Exhibit>();
+            foreach (var result in queryResult)
+            {
+                int? exhibitId = result.GetValueAs<int?>("id");
+                string name = result.GetValueAs<string>("name");
+                string resaultzone = result.GetValueAs<string>("zone");
+                int count = result.GetValueAs<int>("count");
+                int capacity = result.GetValueAs<int>("capacity");
+                Exhibit exhibit = new Exhibit(exhibitId, name, resaultzone, count, capacity);
+                finalResult.Add(exhibit);
+            }
+            return finalResult;
         }
     }
 }

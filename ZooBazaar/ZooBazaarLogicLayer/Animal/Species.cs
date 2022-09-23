@@ -55,6 +55,7 @@ namespace ZooBazaarLogicLayer.Animals
         {
             return id == other?.id;
         }
+
         public IParameterValueCollection GetParameterArgs()
         {
             IParameterValueCollection args = new ParameterValueCollection();

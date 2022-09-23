@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZooBazaarLogicLayer.Animals;
 
 namespace ZooBazaarLogicLayer.Zones
 {
@@ -36,6 +37,35 @@ namespace ZooBazaarLogicLayer.Zones
             : this(name, zone, capacity, count)
         {
             this.id = id;
+        }
+
+        public bool Equals(Exhibit? other)
+        {
+            return id == other?.id;
+        }
+
+        public void ChangeZone(string zone)
+        {
+            if (Zones.IsValid(zone))
+            {
+                Zone = zone;
+            }
+            else
+            {
+                throw new ArgumentException("Unknown  Zone");
+            }
+        }
+
+        public void ChangeCount(int count)
+        {
+            if(count > Capacity)
+            {
+                throw new ArgumentException("Over Capacity");
+            }
+            else
+            {
+                Count = count;
+            }
         }
 
         public override string ToString() => $"{Zone}-{Name}";

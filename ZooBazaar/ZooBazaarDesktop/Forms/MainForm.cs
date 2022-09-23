@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using ZooBazaarDesktop.Controls;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Managers;
+using ZooBazaarLogicLayer.Zones;
 
 namespace ZooBazaarDesktop.Forms
 {
     public partial class MainForm : Form
     {
-        
+        private Action? exhibitsearch;
         private readonly LoginForm origin;
         public MainForm(LoginForm origin)
         {
@@ -55,5 +56,83 @@ namespace ZooBazaarDesktop.Forms
             }
             
         }
+
+        private void CExhibitbtn_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            //CreateExhibit form = new CreateExhibit();
+            //form.Show();
+        }
+
+        private void Searchbtn_Click(object sender, EventArgs e)
+        {
+            exhibitsearch();
+        }
+
+        private void fillExhibitList(ICollection<Exhibit> e)
+        {
+            FLPExhibits.Controls.Clear();
+            foreach(Exhibit ex in e)
+            {
+                FLPExhibits.Controls.Add(new ExhibitDispalyBox(ex));
+            }
+        }
+
+        private void fillExhibitList(Exhibit e)
+        {
+            FLPExhibits.Controls.Clear();
+            FLPExhibits.Controls.Add(new ExhibitDispalyBox(e));
+        }
+
+        private void FilterMethod(object sender, EventArgs e)
+        {
+            switch (Searchtb.Text)
+            {
+                case "id":
+                    exhibitsearch = SearchById;
+                    break;
+                case "zone":
+                    exhibitsearch = SearchByZone;
+                    break;
+                case "name":
+                    exhibitsearch = SearchByName;
+                    break;
+                default:
+                    exhibitsearch = NoFilter;
+                    break;
+            }
+        }
+
+        #region Filters
+        private void SearchById()
+        {
+            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            Exhibit resault = manager.SearchById(Convert.ToInt32(Searchtb.Text));
+            fillExhibitList(resault);
+        }
+
+        private void SearchByZone()
+        {
+            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            var resault = manager.GetByZone(Searchtb.Text);
+
+            fillExhibitList(resault.ToList());
+        }
+
+        private void SearchByName()
+        {
+            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            var resault = manager.GetByName(Searchtb.Text);
+
+            fillExhibitList(resault.ToList());
+        }
+
+        private void NoFilter()
+        {
+            MessageBox.Show("No Filter Selected");
+        }
+        #endregion
+
+        //Dont forghet to add a Control for Exhibits
     }
 }
