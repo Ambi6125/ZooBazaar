@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZooBazaarDataLayer.DALAnimal;
 using ZooBazaarLogicLayer.Animals;
+using ZooBazaarDataLayer.DALSpecies;
 
 namespace ZooBazaarLogicLayer.Managers
 {
@@ -23,14 +24,16 @@ namespace ZooBazaarLogicLayer.Managers
         {
             var queryResult = dataSource.GetByName(name);
             List<Animal> finalResult = new List<Animal>();
+            SpeciesManager sm = new SpeciesManager(new DBSpecies());
             foreach(var result in queryResult)
             {
                 int? id = result.GetValueAs<int?>("id");
                 string resultname = result.GetValueAs<string>("animalName");
                 DateTime birth = result.GetValueAs<DateTime>("birthdate");
-                //TODO: Make species read from db to put in ctor
+                int speciesId = result.GetValueAs<int>("species");
+                Species s = sm.GetById(speciesId);
                 string status = result.GetValueAs<string>("status");
-                Animal animal = new Animal(id, resultname, birth, null, status);
+                Animal animal = new Animal(id, resultname, birth, s, status);
                 finalResult.Add(animal);
             }
             return finalResult;

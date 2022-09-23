@@ -9,7 +9,7 @@ using ZooBazaarLogicLayer.Zones;
 
 namespace ZooBazaarLogicLayer.Animals
 {
-    public class Species : IEquatable<Species>
+    public class Species : IEquatable<Species>, IDataProvider
     {
         private readonly int? id = null;
         private readonly string unitSize;

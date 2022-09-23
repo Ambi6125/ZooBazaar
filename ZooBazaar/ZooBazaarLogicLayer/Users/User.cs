@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyTools.RegexTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace ZooBazaarLogicLayer.Users
                     username = value;
             }
         }
+
+        public string Email { get; private set; }
 
         /// <summary>
         /// Create new user
@@ -54,6 +57,17 @@ namespace ZooBazaarLogicLayer.Users
         public bool PasswordIsCorrect(string password, HashAlgorithm hash)
         {
             return hashedPassword == hash(password, salt);
+        }
+
+        public bool ChangeMail(string mailAddress)
+        {
+            
+            if (RegexToolBox.IsEmail(mailAddress))
+            {
+                Email = mailAddress;
+                return true;
+            }
+            return false;
         }
     }
 }

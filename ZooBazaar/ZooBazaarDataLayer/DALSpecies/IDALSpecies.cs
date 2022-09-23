@@ -14,5 +14,6 @@ namespace ZooBazaarDataLayer.DALSpecies
         IValidationResponse DeleteEntry(IDataProvider species);
         IValidationResponse UpdateEntry(IDataProvider species);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name);
+        IReadOnlyParameterValueCollection? GetById(int id);
     }
 }

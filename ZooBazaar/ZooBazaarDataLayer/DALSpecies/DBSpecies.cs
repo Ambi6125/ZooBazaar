@@ -47,5 +47,13 @@ namespace ZooBazaarDataLayer.DALSpecies
 
             return communicator.Select(query);
         }
+
+        public IReadOnlyParameterValueCollection? GetById(int id)
+        {
+            MySqlCondition condition = new MySqlCondition("id", id, Strictness.MustMatchExactly);
+            SelectQuery q = new SelectQuery(table, "*", condition);
+
+            return communicator.Select(q).FirstOrDefault();
+        }
     }
 }
