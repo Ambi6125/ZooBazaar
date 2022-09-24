@@ -12,4 +12,10 @@
     <ProjectReference Include="..\ZooBazaarLogicLayer\ZooBazaarLogicLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="EasyTools">
+      <HintPath>..\Shared\EasyTools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

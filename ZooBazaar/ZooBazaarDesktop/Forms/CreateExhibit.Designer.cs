@@ -95,6 +95,7 @@
             this.CEbtn.TabIndex = 7;
             this.CEbtn.Text = "Create";
             this.CEbtn.UseVisualStyleBackColor = true;
+            this.CEbtn.Click += new System.EventHandler(this.CEbtn_Click);
             // 
             // CanBtn
             // 

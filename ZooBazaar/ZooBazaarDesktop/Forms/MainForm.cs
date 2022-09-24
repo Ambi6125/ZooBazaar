@@ -60,7 +60,7 @@ namespace ZooBazaarDesktop.Forms
         private void CExhibitbtn_Click(object sender, EventArgs e)
         {
             //this.Hide();
-            //CreateExhibit form = new CreateExhibit();
+            //CreateExhibit form = new CreateExhibit(MainForm form);
             //form.Show();
         }
 

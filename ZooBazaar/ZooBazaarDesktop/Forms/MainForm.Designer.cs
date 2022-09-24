@@ -155,7 +155,7 @@
             // 
             // Searchbtn
             // 
-            this.Searchbtn.Location = new System.Drawing.Point(588, 144);
+            this.Searchbtn.Location = new System.Drawing.Point(588, 185);
             this.Searchbtn.Name = "Searchbtn";
             this.Searchbtn.Size = new System.Drawing.Size(149, 48);
             this.Searchbtn.TabIndex = 5;
@@ -191,7 +191,7 @@
             // 
             // CExhibitbtn
             // 
-            this.CExhibitbtn.Location = new System.Drawing.Point(588, 221);
+            this.CExhibitbtn.Location = new System.Drawing.Point(588, 300);
             this.CExhibitbtn.Name = "CExhibitbtn";
             this.CExhibitbtn.Size = new System.Drawing.Size(149, 51);
             this.CExhibitbtn.TabIndex = 1;
