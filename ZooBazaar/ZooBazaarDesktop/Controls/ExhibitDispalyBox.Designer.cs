@@ -1,6 +1,6 @@
 ﻿namespace ZooBazaarDesktop.Controls
 {
-    partial class ExhibitDispalyBox
+    partial class ExhibitDisplayBox
     {
         /// <summary> 
         /// Required designer variable.

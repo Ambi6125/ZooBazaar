@@ -17,6 +17,7 @@ namespace ZooBazaarDesktop.Forms
     public partial class MainForm : Form
     {
         private Action? exhibitsearch;
+        private Action? speciesSearch;
         private readonly LoginForm origin;
         public MainForm(LoginForm origin)
         {
@@ -36,26 +37,57 @@ namespace ZooBazaarDesktop.Forms
             }
         }
 
+        #region Species tab UI
         private void OnSpeciesSearch(object sender, EventArgs e)
         {
-            SpeciesManager sm = new SpeciesManager(new ZooBazaarDataLayer.DALSpecies.DBSpecies());
-
-            IReadOnlyCollection<Species> allResults = sm.GetSpeciesByName(tbNameSearch.Text);
-            if(allResults.Count > 0)
+            if (string.IsNullOrWhiteSpace(tbSpeciesSearchInput.Text))
             {
-                flpDisplayResult.Controls.Clear();
-                foreach (Species s in allResults)
-                {
+                MessageBox.Show("Please input a search term.");
+                return;
+            }
 
-                    flpDisplayResult.Controls.Add(new SpeciesDisplayBox(s));
-                }
+            if(speciesSearch is not null)
+            {
+                speciesSearch();
             }
             else
             {
-                MessageBox.Show("No results found.");
+                NoSpeciesSearch();
             }
-            
         }
+
+        private void RefillSpeciesList(ICollection<Species> species)
+        {
+            flpSpecies.Controls.Clear();
+            foreach(Species s in species)
+            {
+                flpSpecies.Controls.Add(new SpeciesDisplayBox(s));
+            }
+        }
+        private void RefillSpeciesList(Species species)
+        {
+            flpSpecies.Controls.Clear();
+            flpSpecies.Controls.Add(new SpeciesDisplayBox(species));
+        }
+
+        private void OnSpeciesFilterMethodUpdated(object sender, EventArgs e)
+        {
+            switch (cbbSpeciesFilter.SelectedText)
+            {
+                case "ID":
+                    speciesSearch = SpeciesIdSearch;
+                    break;
+                case "Name":
+                    speciesSearch = SpeciesNameSearch;
+                    break;
+                default:
+                    speciesSearch = NoSpeciesSearch;
+                    break;
+            }
+        }
+        #endregion
+
+        #region Exhibit tab UI
 
         private void CExhibitbtn_Click(object sender, EventArgs e)
         {
@@ -69,19 +101,19 @@ namespace ZooBazaarDesktop.Forms
             exhibitsearch();
         }
 
-        private void fillExhibitList(ICollection<Exhibit> e)
+        private void FillExhibitList(ICollection<Exhibit> e)
         {
             FLPExhibits.Controls.Clear();
             foreach(Exhibit ex in e)
             {
-                FLPExhibits.Controls.Add(new ExhibitDispalyBox(ex));
+                FLPExhibits.Controls.Add(new ExhibitDisplayBox(ex));
             }
         }
 
         private void fillExhibitList(Exhibit e)
         {
             FLPExhibits.Controls.Clear();
-            FLPExhibits.Controls.Add(new ExhibitDispalyBox(e));
+            FLPExhibits.Controls.Add(new ExhibitDisplayBox(e));
         }
 
         private void FilterMethod(object sender, EventArgs e)
@@ -102,29 +134,30 @@ namespace ZooBazaarDesktop.Forms
                     break;
             }
         }
+        #endregion
 
-        #region Filters
+        #region Exhibit Filters
         private void SearchById()
         {
-            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            ExhibitManager manager = ExhibitManager.CreateForDatabase();
             Exhibit resault = manager.SearchById(Convert.ToInt32(Searchtb.Text));
             fillExhibitList(resault);
         }
 
         private void SearchByZone()
         {
-            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            ExhibitManager manager = ExhibitManager.CreateForDatabase();
             var resault = manager.GetByZone(Searchtb.Text);
 
-            fillExhibitList(resault.ToList());
+            FillExhibitList(resault.ToList());
         }
 
         private void SearchByName()
         {
-            ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+            ExhibitManager manager = ExhibitManager.CreateForDatabase();
             var resault = manager.GetByName(Searchtb.Text);
 
-            fillExhibitList(resault.ToList());
+            FillExhibitList(resault.ToList());
         }
 
         private void NoFilter()
@@ -133,6 +166,41 @@ namespace ZooBazaarDesktop.Forms
         }
         #endregion
 
-        //Dont forghet to add a Control for Exhibits
+        #region Species Filters
+
+        private void SpeciesIdSearch()
+        {
+            string inputValue = tbSpeciesSearchInput.Text;
+            int id;
+
+            if(!int.TryParse(inputValue, out id))
+            {
+                MessageBox.Show("Please enter a numeric id.", "ZooBazaar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            } //Check if input is numeric
+
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            var result = sm.GetById(id);
+            RefillSpeciesList(result);
+        }
+
+        private void SpeciesNameSearch()
+        {
+            string inputValue = tbSpeciesSearchInput.Text;
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            var result = sm.GetSpeciesByName(inputValue);
+            RefillSpeciesList(result.ToArray());
+        }
+
+        private void NoSpeciesSearch()
+        {
+            MessageBox.Show("Someting went wrong. Please select something to filter by.");
+        }
+        #endregion
+
+        #region Animal Filters
+        //TODO: Add animal searches in this area
+
+        #endregion
     }
 }

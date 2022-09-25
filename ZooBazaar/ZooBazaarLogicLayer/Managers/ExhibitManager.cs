@@ -16,9 +16,19 @@ namespace ZooBazaarLogicLayer.Managers
     {
         private readonly IDALExhibit dataSource;
 
-        public ExhibitManager(IDALExhibit source)
+        private ExhibitManager(IDALExhibit source)
         {
             dataSource = source;
+        }
+
+        public static ExhibitManager CreateForDatabase()
+        {
+            return new ExhibitManager(new DBExhibit());
+        }
+
+        public static ExhibitManager CreateForUnitTest()
+        {
+            throw new NotImplementedException();
         }
 
         public IValidationResponse AddExhibit(Exhibit e)

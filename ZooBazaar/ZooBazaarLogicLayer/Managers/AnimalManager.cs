@@ -14,17 +14,26 @@ namespace ZooBazaarLogicLayer.Managers
         private IDalAnimal dataSource;
 
 
-        public AnimalManager(IDalAnimal source)
+        private AnimalManager(IDalAnimal source)
         {
             dataSource = source;
         }
 
+        public static AnimalManager CreateForDatabase()
+        {
+            return new AnimalManager(new DBAnimal());
+        }
+
+        public static AnimalManager CreateForUnitTest()
+        {
+            throw new NotImplementedException();
+        }
 
         public IReadOnlyCollection<Animal> GetAnimalsByName(string name)
         {
             var queryResult = dataSource.GetByName(name);
             List<Animal> finalResult = new List<Animal>();
-            SpeciesManager sm = new SpeciesManager(new DBSpecies());
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
             foreach(var result in queryResult)
             {
                 int? id = result.GetValueAs<int?>("id");

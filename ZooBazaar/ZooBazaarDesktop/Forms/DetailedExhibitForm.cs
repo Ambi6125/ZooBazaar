@@ -15,7 +15,7 @@ namespace ZooBazaarDesktop.Forms
     public partial class DetailedExhibitForm : Form
     {
         private Exhibit ex;
-        private ExhibitManager manager = new ExhibitManager(new ZooBazaarDataLayer.DALExhibit.DBExhibit());
+        private ExhibitManager manager = ExhibitManager.CreateForDatabase();
         public DetailedExhibitForm(Exhibit exhibit)
         {
             InitializeComponent();

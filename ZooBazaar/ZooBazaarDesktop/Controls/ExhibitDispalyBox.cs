@@ -11,10 +11,10 @@ using ZooBazaarLogicLayer.Zones;
 
 namespace ZooBazaarDesktop.Controls
 {
-    public partial class ExhibitDispalyBox : UserControl
+    public partial class ExhibitDisplayBox : UserControl
     {
         private Exhibit sub;
-        public ExhibitDispalyBox(Exhibit e)
+        public ExhibitDisplayBox(Exhibit e)
         {
             InitializeComponent();
             sub = e;

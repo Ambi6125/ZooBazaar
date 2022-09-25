@@ -30,10 +30,14 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbbSpeciesFilter = new System.Windows.Forms.ComboBox();
+            this.tbSpeciesSearchInput = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbNameSearch = new System.Windows.Forms.TextBox();
-            this.flpDisplayResult = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flpSpecies = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grpbResultcontainer = new System.Windows.Forms.GroupBox();
             this.flpAnimals = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,6 +50,8 @@
             this.FLPExhibits = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.grpbResultcontainer.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -64,10 +70,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnSearch);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.tbNameSearch);
-            this.tabPage1.Controls.Add(this.flpDisplayResult);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -76,38 +80,84 @@
             this.tabPage1.Text = "Species";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbbSpeciesFilter);
+            this.groupBox2.Controls.Add(this.tbSpeciesSearchInput);
+            this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(669, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(189, 423);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Search";
+            // 
+            // cbbSpeciesFilter
+            // 
+            this.cbbSpeciesFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSpeciesFilter.FormattingEnabled = true;
+            this.cbbSpeciesFilter.Items.AddRange(new object[] {
+            "ID",
+            "Name"});
+            this.cbbSpeciesFilter.Location = new System.Drawing.Point(23, 211);
+            this.cbbSpeciesFilter.Name = "cbbSpeciesFilter";
+            this.cbbSpeciesFilter.Size = new System.Drawing.Size(151, 28);
+            this.cbbSpeciesFilter.TabIndex = 7;
+            this.cbbSpeciesFilter.SelectedIndexChanged += new System.EventHandler(this.OnSpeciesFilterMethodUpdated);
+            // 
+            // tbSpeciesSearchInput
+            // 
+            this.tbSpeciesSearchInput.Location = new System.Drawing.Point(23, 78);
+            this.tbSpeciesSearchInput.Name = "tbSpeciesSearchInput";
+            this.tbSpeciesSearchInput.Size = new System.Drawing.Size(125, 27);
+            this.tbSpeciesSearchInput.TabIndex = 6;
+            // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(634, 302);
+            this.btnSearch.Location = new System.Drawing.Point(32, 294);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(94, 29);
+            this.btnSearch.Size = new System.Drawing.Size(114, 44);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.OnSpeciesSearch);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 20);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Search for:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(631, 64);
+            this.label1.Location = new System.Drawing.Point(19, 160);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Species name:";
+            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Search by:";
             // 
-            // tbNameSearch
+            // groupBox1
             // 
-            this.tbNameSearch.Location = new System.Drawing.Point(634, 92);
-            this.tbNameSearch.Name = "tbNameSearch";
-            this.tbNameSearch.Size = new System.Drawing.Size(125, 27);
-            this.tbNameSearch.TabIndex = 1;
+            this.groupBox1.Controls.Add(this.flpSpecies);
+            this.groupBox1.Location = new System.Drawing.Point(14, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(646, 423);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Species";
             // 
-            // flpDisplayResult
+            // flpSpecies
             // 
-            this.flpDisplayResult.Location = new System.Drawing.Point(48, 44);
-            this.flpDisplayResult.Name = "flpDisplayResult";
-            this.flpDisplayResult.Size = new System.Drawing.Size(529, 369);
-            this.flpDisplayResult.TabIndex = 0;
+            this.flpSpecies.Location = new System.Drawing.Point(17, 24);
+            this.flpSpecies.Name = "flpSpecies";
+            this.flpSpecies.Size = new System.Drawing.Size(609, 382);
+            this.flpSpecies.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -218,7 +268,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.grpbResultcontainer.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -232,9 +284,7 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private Button btnSearch;
-        private Label label1;
-        private TextBox tbNameSearch;
-        private FlowLayoutPanel flpDisplayResult;
+        private FlowLayoutPanel flpSpecies;
         private TabPage tabPage2;
         private FlowLayoutPanel flpAnimals;
         private GroupBox grpbResultcontainer;
@@ -245,5 +295,11 @@
         private TextBox Searchtb;
         private Label label2;
         private ComboBox SearchCB;
+        private GroupBox groupBox2;
+        private TextBox tbSpeciesSearchInput;
+        private Label label3;
+        private Label label1;
+        private GroupBox groupBox1;
+        private ComboBox cbbSpeciesFilter;
     }
 }

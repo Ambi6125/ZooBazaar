@@ -16,9 +16,19 @@ namespace ZooBazaarLogicLayer.Managers
         private IDALSpecies dataSource;
 
 
-        public SpeciesManager(IDALSpecies source)
+        private SpeciesManager(IDALSpecies source)
         {
             dataSource = source;
+        }
+
+        public static SpeciesManager CreateForDatabase()
+        {
+            return new SpeciesManager(new ZooBazaarDataLayer.DALSpecies.DBSpecies());
+        }
+
+        public static SpeciesManager CreateForUnitTest()
+        {
+            throw new NotImplementedException();
         }
 
         //HACK: If you need to make crud in a manager, refer to this method.
@@ -31,7 +41,7 @@ namespace ZooBazaarLogicLayer.Managers
         {
             var queryResult = dataSource.GetByName(name);
             List<Species> finalResult = new List<Species>();
-            ExhibitManager em = new ExhibitManager(new DBExhibit());
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
             foreach (var result in queryResult)
             {
                 int? id = result.GetValueAs<int?>("id");
@@ -50,8 +60,8 @@ namespace ZooBazaarLogicLayer.Managers
         public Species GetById(int id)
         {
             var result = dataSource.GetById(id);
-            ExhibitManager em = new ExhibitManager(new DBExhibit());
-            if(result is null)
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
+            if (result is null)
             {
                 throw new ArgumentException("No species with this id exists");
             }
