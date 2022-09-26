@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnAdddSpecies = new System.Windows.Forms.Button();
+            this.lblResultCount = new System.Windows.Forms.Label();
             this.cbbSpeciesFilter = new System.Windows.Forms.ComboBox();
             this.tbSpeciesSearchInput = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -48,6 +50,8 @@
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
             this.FLPExhibits = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,6 +86,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDelete);
+            this.groupBox2.Controls.Add(this.btnSelect);
+            this.groupBox2.Controls.Add(this.btnAdddSpecies);
+            this.groupBox2.Controls.Add(this.lblResultCount);
             this.groupBox2.Controls.Add(this.cbbSpeciesFilter);
             this.groupBox2.Controls.Add(this.tbSpeciesSearchInput);
             this.groupBox2.Controls.Add(this.btnSearch);
@@ -94,6 +102,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
             // 
+            // btnAdddSpecies
+            // 
+            this.btnAdddSpecies.Location = new System.Drawing.Point(33, 271);
+            this.btnAdddSpecies.Name = "btnAdddSpecies";
+            this.btnAdddSpecies.Size = new System.Drawing.Size(129, 32);
+            this.btnAdddSpecies.TabIndex = 9;
+            this.btnAdddSpecies.Text = "New";
+            this.btnAdddSpecies.UseVisualStyleBackColor = true;
+            this.btnAdddSpecies.Click += new System.EventHandler(this.OnAddSpeciesButtonClicked);
+            // 
+            // lblResultCount
+            // 
+            this.lblResultCount.AutoSize = true;
+            this.lblResultCount.Location = new System.Drawing.Point(19, 225);
+            this.lblResultCount.Name = "lblResultCount";
+            this.lblResultCount.Size = new System.Drawing.Size(71, 20);
+            this.lblResultCount.TabIndex = 8;
+            this.lblResultCount.Text = "<results>";
+            // 
             // cbbSpeciesFilter
             // 
             this.cbbSpeciesFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -101,7 +128,7 @@
             this.cbbSpeciesFilter.Items.AddRange(new object[] {
             "ID",
             "Name"});
-            this.cbbSpeciesFilter.Location = new System.Drawing.Point(23, 211);
+            this.cbbSpeciesFilter.Location = new System.Drawing.Point(18, 156);
             this.cbbSpeciesFilter.Name = "cbbSpeciesFilter";
             this.cbbSpeciesFilter.Size = new System.Drawing.Size(151, 28);
             this.cbbSpeciesFilter.TabIndex = 7;
@@ -116,9 +143,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(32, 294);
+            this.btnSearch.Location = new System.Drawing.Point(59, 190);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(114, 44);
+            this.btnSearch.Size = new System.Drawing.Size(63, 32);
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -136,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 160);
+            this.label1.Location = new System.Drawing.Point(14, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 5;
@@ -256,6 +283,27 @@
             this.FLPExhibits.Size = new System.Drawing.Size(397, 373);
             this.FLPExhibits.TabIndex = 0;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(33, 318);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(129, 29);
+            this.btnSelect.TabIndex = 10;
+            this.btnSelect.Text = "Select";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.ToggleSpeciesSelectables);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(35, 365);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(127, 29);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.OnSpeciesDeleteClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -266,6 +314,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -301,5 +350,9 @@
         private Label label1;
         private GroupBox groupBox1;
         private ComboBox cbbSpeciesFilter;
+        private Label lblResultCount;
+        private Button btnAdddSpecies;
+        private Button btnDelete;
+        private Button btnSelect;
     }
 }

@@ -97,5 +97,10 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return finalResult;
         }
+
+        public IReadOnlyCollection<Exhibit> GetByFullName(string zone, string name)
+        {
+            return GetByZone(zone).Where(x => x.Name.Equals(name)).ToList();
+        }
     }
 }

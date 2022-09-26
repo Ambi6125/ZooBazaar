@@ -13,7 +13,6 @@ namespace ZooBazaarLogicLayer.Managers
     {
         private IDalAnimal dataSource;
 
-
         private AnimalManager(IDalAnimal source)
         {
             dataSource = source;

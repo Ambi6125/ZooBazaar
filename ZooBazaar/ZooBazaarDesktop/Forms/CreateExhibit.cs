@@ -19,7 +19,7 @@ namespace ZooBazaarDesktop.Forms
         public CreateExhibit(MainForm Origin)
         {
             InitializeComponent();
-            foreach(string s in Zones.AllowZones)
+            foreach(string s in Zones.AllowedZones)
             {
                 ZonecB.Items.Add(s);
             }

@@ -63,16 +63,72 @@ namespace ZooBazaarDesktop.Forms
             {
                 flpSpecies.Controls.Add(new SpeciesDisplayBox(s));
             }
+            DisplaySpeciesResultCount(species.Count);
         }
-        private void RefillSpeciesList(Species species)
+        private void RefillSpeciesList(Species? species)
         {
             flpSpecies.Controls.Clear();
-            flpSpecies.Controls.Add(new SpeciesDisplayBox(species));
+            if (species is not null)
+            {
+                flpSpecies.Controls.Add(new SpeciesDisplayBox(species));
+                DisplaySpeciesResultCount(1);
+            }
+            else
+            {
+                DisplaySpeciesResultCount(0);
+            }
+        }
+
+        private void OnAddSpeciesButtonClicked(object sender, EventArgs e)
+        {
+            new CreateSpeciesForm(this).Show();
+            Hide();
+        }
+
+        private void ToggleSpeciesSelectables(object sender, EventArgs e)
+        {
+            foreach(SpeciesDisplayBox db in flpSpecies.Controls)
+            {
+                db.ToggleSelectability();
+            }
+            if(btnDelete.Enabled)
+                btnDelete.Enabled = false;
+            else
+                btnDelete.Enabled = true;
+        }
+
+        private void OnSpeciesDeleteClick(object sender, EventArgs e)
+        {
+            IEnumerable<SpeciesDisplayBox> boxes = flpSpecies.Controls
+                .OfType<SpeciesDisplayBox>()
+                .Where((SpeciesDisplayBox x) => x.IsSelected);
+
+            if (!boxes.Any())
+            {
+                MessageBox.Show("No selection given.");
+                return;
+            }
+
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            foreach(SpeciesDisplayBox x in boxes)
+            {
+                var response = sm.DeleteSpecies(x.Topic);
+                if(response.Success == false)
+                {
+                    MessageBox.Show(response.Message);
+                }
+            }
+            MessageBox.Show("Deleted succesfully.");
+        }
+
+        private void DisplaySpeciesResultCount(int count)
+        {
+            lblResultCount.Text = $"{count} result(s) for \"{tbSpeciesSearchInput.Text}\".";
         }
 
         private void OnSpeciesFilterMethodUpdated(object sender, EventArgs e)
         {
-            switch (cbbSpeciesFilter.SelectedText)
+            switch (cbbSpeciesFilter.SelectedItem)
             {
                 case "ID":
                     speciesSearch = SpeciesIdSearch;
@@ -202,5 +258,16 @@ namespace ZooBazaarDesktop.Forms
         //TODO: Add animal searches in this area
 
         #endregion
+
+
+        /// <summary>
+        /// Runs whenever the form is loaded in.
+        /// </summary>
+        private void OnLoad(object sender, EventArgs e)
+        {
+            lblResultCount.Text = string.Empty;
+        }
+
+        
     }
 }

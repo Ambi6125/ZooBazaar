@@ -33,7 +33,7 @@ namespace ZooBazaarDataLayer.DALSpecies
 
         public IValidationResponse UpdateEntry(IDataProvider species)
         {
-            object idValue = species.GetParameterArgs().ElementAt(0);
+            int idValue = (int)species.GetParameterArgs().ElementAt(0).Value;
             MySqlCondition condition = new MySqlCondition("id", idValue, Strictness.MustMatchExactly);
             UpdateQuery query = new UpdateQuery(table, species, condition);
 
@@ -42,7 +42,8 @@ namespace ZooBazaarDataLayer.DALSpecies
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name)
         {
-            MySqlCondition condition = new MySqlCondition("speciesName", name, Strictness.MustBeSimilar);
+            MySqlCondition condition = new MySqlCondition("speciesName", "%" + name + "%", Strictness.MustBeSimilar);
+            string debug = condition.ToString();
             SelectQuery query = new SelectQuery(table, "*", condition);
 
             return communicator.Select(query);

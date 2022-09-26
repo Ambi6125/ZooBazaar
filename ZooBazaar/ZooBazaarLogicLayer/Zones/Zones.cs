@@ -41,6 +41,6 @@ namespace ZooBazaarLogicLayer.Zones
             return zones.Contains(sb.ToString());
         }
 
-        public static IReadOnlyList<string> AllowZones => zones.ToList();
+        public static IReadOnlyList<string> AllowedZones => zones.ToList();
     }
 }

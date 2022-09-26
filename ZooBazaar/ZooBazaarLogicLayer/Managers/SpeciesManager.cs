@@ -30,11 +30,21 @@ namespace ZooBazaarLogicLayer.Managers
         {
             throw new NotImplementedException();
         }
-
-        //HACK: If you need to make crud in a manager, refer to this method.
         public IValidationResponse AddSpecies(Species s)
         {
-            return dataSource.AddEntry(s);
+            var result = dataSource.AddEntry(s);
+            
+            return result;
+        }
+
+        public IValidationResponse UpdateSpecies(Species s)
+        {
+            return dataSource.UpdateEntry(s);
+        }
+
+        public IValidationResponse DeleteSpecies(Species s)
+        {
+            return dataSource.DeleteEntry(s);
         }
 
         public IReadOnlyCollection<Species> GetSpeciesByName(string name)
@@ -57,17 +67,17 @@ namespace ZooBazaarLogicLayer.Managers
             return finalResult;
         }
 
-        public Species GetById(int id)
+        public Species? GetById(int id)
         {
             var result = dataSource.GetById(id);
             ExhibitManager em = ExhibitManager.CreateForDatabase();
             if (result is null)
             {
-                throw new ArgumentException("No species with this id exists");
+                return null;
             }
             
             int? speciesId = result.GetValueAs<int?>("id");
-            string name = result.GetValueAs<string>("name");
+            string name = result.GetValueAs<string>("speciesName");
             string scientificName = result.GetValueAs<string>("scientificName");
             int exhibitId = result.GetValueAs<int>("exhibit");
             Zones.Exhibit exhibit = em.SearchById(exhibitId);

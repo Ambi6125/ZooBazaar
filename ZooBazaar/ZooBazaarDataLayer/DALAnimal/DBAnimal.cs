@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EasyTools.MySqlDatabaseTools;
 using EasyTools.MySqlDatabaseTools.Queries;
 using EasyTools.MySqlDatabaseTools.Tables;
 

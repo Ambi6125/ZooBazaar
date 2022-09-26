@@ -14,10 +14,37 @@ namespace ZooBazaarLogicLayer.Animals
         private readonly int? id = null;
         private readonly string unitSize;
         private Exhibit exhibit;
+        private string name;
+        private string scientificName;
 
-        public string Name { get; }
-        public string ScientificName { get; }
-        public int Quantity { get; }
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    name = value;
+                }
+            }
+        }
+        public string ScientificName
+        {
+            get => scientificName;
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    scientificName = value;
+                }
+            }
+        }
+        public int Quantity { get; private set; }
+        public string Diet { get; set; }
+        internal int Id => id.Value;
+        public Exhibit Exhibit => exhibit;
+
+        public bool IsSingleAnimal => unitSize.ToLower() == "single" ? true : false;
 
         /// <summary>
         /// Creates a new Species object, that is not yet registered
@@ -31,7 +58,6 @@ namespace ZooBazaarLogicLayer.Animals
             exhibit = e;
         }
 
-        internal int Id => id.Value;
 
         /// <summary>
         /// Creates species object from database data
@@ -54,6 +80,16 @@ namespace ZooBazaarLogicLayer.Animals
         public bool Equals(Species? other)
         {
             return id == other?.id;
+        }
+
+        public bool ChangeQuantity(int amount)
+        {
+            if (amount > 0)
+            {
+                Quantity = amount;
+                return true;
+            }
+            return false;
         }
 
         public IParameterValueCollection GetParameterArgs()
