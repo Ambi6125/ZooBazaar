@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.btnAdddSpecies = new System.Windows.Forms.Button();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.cbbSpeciesFilter = new System.Windows.Forms.ComboBox();
@@ -50,8 +52,6 @@
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
             this.FLPExhibits = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnSelect = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -101,6 +101,27 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(35, 365);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(127, 29);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.OnSpeciesDeleteClick);
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(33, 318);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(129, 29);
+            this.btnSelect.TabIndex = 10;
+            this.btnSelect.Text = "Select";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.ToggleSpeciesSelectables);
             // 
             // btnAdddSpecies
             // 
@@ -259,7 +280,12 @@
             // 
             // SearchCB
             // 
+            this.SearchCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SearchCB.FormattingEnabled = true;
+            this.SearchCB.Items.AddRange(new object[] {
+            "id",
+            "name",
+            "zone"});
             this.SearchCB.Location = new System.Drawing.Point(549, 90);
             this.SearchCB.Name = "SearchCB";
             this.SearchCB.Size = new System.Drawing.Size(106, 28);
@@ -282,27 +308,6 @@
             this.FLPExhibits.Name = "FLPExhibits";
             this.FLPExhibits.Size = new System.Drawing.Size(397, 373);
             this.FLPExhibits.TabIndex = 0;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(33, 318);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(129, 29);
-            this.btnSelect.TabIndex = 10;
-            this.btnSelect.Text = "Select";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.ToggleSpeciesSelectables);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(35, 365);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(127, 29);
-            this.btnDelete.TabIndex = 11;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.OnSpeciesDeleteClick);
             // 
             // MainForm
             // 

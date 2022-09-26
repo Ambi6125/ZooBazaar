@@ -147,9 +147,9 @@ namespace ZooBazaarDesktop.Forms
 
         private void CExhibitbtn_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //CreateExhibit form = new CreateExhibit(MainForm form);
-            //form.Show();
+            this.Hide();
+            CreateExhibit form = new CreateExhibit(this);
+            form.Show();
         }
 
         private void Searchbtn_Click(object sender, EventArgs e)
@@ -173,8 +173,8 @@ namespace ZooBazaarDesktop.Forms
         }
 
         private void FilterMethod(object sender, EventArgs e)
-        {
-            switch (Searchtb.Text)
+        {          
+            switch (SearchCB.SelectedItem.ToString())
             {
                 case "id":
                     exhibitsearch = SearchById;
