@@ -74,8 +74,8 @@ namespace ZooBazaarLogicLayer.Zones
         {
             IParameterValueCollection args = new ParameterValueCollection();
             args.Add("id", id);
-            args.Add("name", Name);
             args.Add("zone", Zone);
+            args.Add("name", Name);
             args.Add("capacity", Capacity);
             args.Add("count", Count);
 

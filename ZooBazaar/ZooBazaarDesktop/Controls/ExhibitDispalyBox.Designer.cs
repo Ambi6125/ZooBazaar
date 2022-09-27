@@ -61,14 +61,16 @@
             this.Detailbtn.UseVisualStyleBackColor = true;
             this.Detailbtn.Click += new System.EventHandler(this.Detailbtn_Click);
             // 
-            // ExhibitDispalyBox
+            // ExhibitDisplayBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.Detailbtn);
             this.Controls.Add(this.Zonelabel);
             this.Controls.Add(this.Namelabel);
-            this.Name = "ExhibitDispalyBox";
+            this.ForeColor = System.Drawing.Color.Black;
+            this.Name = "ExhibitDisplayBox";
             this.Size = new System.Drawing.Size(296, 175);
             this.Load += new System.EventHandler(this.ExhibitDispalyBox_Load);
             this.ResumeLayout(false);

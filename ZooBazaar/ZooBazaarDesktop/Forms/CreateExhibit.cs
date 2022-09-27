@@ -39,9 +39,18 @@ namespace ZooBazaarDesktop.Forms
             string zone = ZonecB.Text;
 
             Exhibit exhibit = new Exhibit(name, zone, num, 0);
-            manager.AddExhibit(exhibit);
-            mainForm.Show();
-            Close();
+            var result = manager.AddExhibit(exhibit);
+            if (result.Success)
+            {
+                MessageBox.Show("Succesfully created.");
+                mainForm.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show($"Something went wrong: {result.Message}");
+            }
+            
         }
     }
 }

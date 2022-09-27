@@ -44,7 +44,7 @@ namespace ZooBazaarDataLayer.DALAnimal
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name)
         {
-            MySqlCondition condition = new MySqlCondition("animalName", name, Strictness.MustBeSimilar);
+            MySqlCondition condition = new MySqlCondition("animalName", "%" + name + "%", Strictness.MustBeSimilar);
             SelectQuery query = new SelectQuery(table, "*", condition);
 
             return communicator.Select(query);

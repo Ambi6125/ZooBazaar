@@ -52,6 +52,7 @@
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
             this.FLPExhibits = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -59,6 +60,7 @@
             this.tabPage2.SuspendLayout();
             this.grpbResultcontainer.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -237,12 +239,12 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.Searchbtn);
             this.tabPage3.Controls.Add(this.Searchtb);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.SearchCB);
             this.tabPage3.Controls.Add(this.CExhibitbtn);
-            this.tabPage3.Controls.Add(this.FLPExhibits);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -304,10 +306,22 @@
             // 
             // FLPExhibits
             // 
-            this.FLPExhibits.Location = new System.Drawing.Point(21, 31);
+            this.FLPExhibits.AutoScroll = true;
+            this.FLPExhibits.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FLPExhibits.Location = new System.Drawing.Point(3, 23);
             this.FLPExhibits.Name = "FLPExhibits";
-            this.FLPExhibits.Size = new System.Drawing.Size(397, 373);
+            this.FLPExhibits.Size = new System.Drawing.Size(404, 356);
             this.FLPExhibits.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.FLPExhibits);
+            this.groupBox3.Location = new System.Drawing.Point(17, 29);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(410, 382);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Exhibits";
             // 
             // MainForm
             // 
@@ -329,6 +343,7 @@
             this.grpbResultcontainer.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -359,5 +374,6 @@
         private Button btnAdddSpecies;
         private Button btnDelete;
         private Button btnSelect;
+        private GroupBox groupBox3;
     }
 }

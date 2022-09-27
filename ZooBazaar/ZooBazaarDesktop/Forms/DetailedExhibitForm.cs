@@ -16,30 +16,52 @@ namespace ZooBazaarDesktop.Forms
     {
         private Exhibit ex;
         private ExhibitManager manager = ExhibitManager.CreateForDatabase();
-        public DetailedExhibitForm(Exhibit exhibit)
+        private readonly MainForm mainForm;
+        public DetailedExhibitForm(Exhibit exhibit, MainForm form)
         {
             InitializeComponent();
-            Namelbl.Text = exhibit.Name;
-            Zonelabel.Text = exhibit.Zone;
-            Capasitylabel.Text = exhibit.Capacity.ToString();
-            ANumlbl.Text = exhibit.Count.ToString();
             ex = exhibit;
+            mainForm = form;
         }
 
         private void Deltebutton_Click(object sender, EventArgs e)
         {
-            manager.DeleteExhibit(ex);
-            //A go back function to Mainpage needs to be added her
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete this",
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(dr == DialogResult.Yes)
+            {
+                var result = manager.DeleteExhibit(ex);
+                if (result.Success)
+                {
+                    MessageBox.Show(result.Message);
+                    mainForm.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong when deleting.");
+                }
+            }
         }
 
         private void Updatebutton_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            new UpdateExhibitForm(ex, this).Show();
         }
 
         private void Backbutton_Click(object sender, EventArgs e)
         {
-            //A go back function to Mainpage needs to be added her
+            mainForm.Show();
+            Close();
+        }
+
+        private void OnLoad(object sender, EventArgs e)
+        {
+            Namelbl.Text = ex.Name;
+            Zonelabel.Text = ex.Zone;
+            Capasitylabel.Text = ex.Capacity.ToString();
+            ANumlbl.Text = ex.Count.ToString();
         }
     }
 }

@@ -75,7 +75,7 @@ namespace ZooBazaarLogicLayer.Managers
                 string zone = result.GetValueAs<string>("zone");
                 int count = result.GetValueAs<int>("count");
                 int capacity = result.GetValueAs<int>("capacity");
-                Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, count, capacity);
+                Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, capacity, count);
                 finalResult.Add(exhibit);
             }
             return finalResult;
@@ -83,7 +83,7 @@ namespace ZooBazaarLogicLayer.Managers
 
         public IReadOnlyCollection<Exhibit> GetByZone(string zone)
         {
-            var queryResult = dataSource.GetByName(zone);
+            var queryResult = dataSource.GetByZone(zone);
             List<Exhibit> finalResult = new List<Exhibit>();
             foreach (var result in queryResult)
             {
@@ -92,7 +92,7 @@ namespace ZooBazaarLogicLayer.Managers
                 string resaultzone = result.GetValueAs<string>("zone");
                 int count = result.GetValueAs<int>("count");
                 int capacity = result.GetValueAs<int>("capacity");
-                Exhibit exhibit = new Exhibit(exhibitId, name, resaultzone, count, capacity);
+                Exhibit exhibit = new Exhibit(exhibitId, name, resaultzone, capacity, count);
                 finalResult.Add(exhibit);
             }
             return finalResult;

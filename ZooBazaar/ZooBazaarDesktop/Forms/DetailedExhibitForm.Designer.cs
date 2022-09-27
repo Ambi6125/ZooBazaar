@@ -165,6 +165,7 @@
             this.Controls.Add(this.Updatebutton);
             this.Name = "DetailedExhibitForm";
             this.Text = "DetailedExhibitForm";
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZooBazaarDesktop.Forms;
 using ZooBazaarLogicLayer.Zones;
 
 namespace ZooBazaarDesktop.Controls
@@ -28,7 +29,10 @@ namespace ZooBazaarDesktop.Controls
 
         private void Detailbtn_Click(object sender, EventArgs e)
         {
-
+            if(ParentForm is MainForm parent)
+            {
+                new DetailedExhibitForm(sub, parent).Show();
+            }
         }
     }
 }

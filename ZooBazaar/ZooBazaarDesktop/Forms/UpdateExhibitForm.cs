@@ -15,13 +15,15 @@ namespace ZooBazaarDesktop.Forms
     public partial class UpdateExhibitForm : Form
     {
         private Exhibit ex;
-        private ExhibitManager manager = ExhibitManager.CreateForDatabase();
-        public UpdateExhibitForm(Exhibit exhibit)
+        private readonly ExhibitManager manager = ExhibitManager.CreateForDatabase();
+        private readonly DetailedExhibitForm form;
+        public UpdateExhibitForm(Exhibit exhibit, DetailedExhibitForm origin)
         {
             InitializeComponent();
             NametextBox.Text = exhibit.Name;
             CapasityUpDown.Value = exhibit.Capacity;
             ex = exhibit;
+            form = origin;
         }
 
         private void Updatebutton_Click(object sender, EventArgs e)
@@ -29,14 +31,12 @@ namespace ZooBazaarDesktop.Forms
             ex.Name = NametextBox.Text;
             ex.Capacity = (int)CapasityUpDown.Value;
             manager.UpdateExhibit(ex);
-            DetailedExhibitForm form = new DetailedExhibitForm(ex);
             form.Show();
             this.Close();
         }
 
         private void Cancelbutton_Click(object sender, EventArgs e)
         {
-            DetailedExhibitForm form = new DetailedExhibitForm(ex);
             form.Show();
             this.Close();
         }
