@@ -24,6 +24,8 @@ namespace ZooBazaarDesktop.Controls
         private void OnLoad(object sender, EventArgs e)
         {
             lblName.Text = animal.Name;
+            lblSpecies.Text = animal.Species.Name;
+            lblAge.Text = animal.Age.ToString() + " year(s) old";
         }
 
         private void OnDetailsClick(object sender, EventArgs e)

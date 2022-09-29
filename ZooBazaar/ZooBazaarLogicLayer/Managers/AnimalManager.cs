@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ZooBazaarDataLayer.DALAnimal;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarDataLayer.DALSpecies;
+using EasyTools.Validation;
 
 namespace ZooBazaarLogicLayer.Managers
 {
@@ -28,6 +29,7 @@ namespace ZooBazaarLogicLayer.Managers
             throw new NotImplementedException();
         }
 
+        
         public IReadOnlyCollection<Animal> GetAnimalsByName(string name)
         {
             var queryResult = dataSource.GetByName(name);
@@ -45,6 +47,15 @@ namespace ZooBazaarLogicLayer.Managers
                 finalResult.Add(animal);
             }
             return finalResult;
+        }
+
+        public IValidationResponse UpdateAnimals(Animal a)
+        {
+            return dataSource.UpdateEntry(a);
+        }
+        public IValidationResponse CreateAnimal(Animal a)
+        {
+            return dataSource.AddEntry(a);
         }
     }
 }

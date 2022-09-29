@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZooBazaarLogicLayer.Managers;
 using ZooBazaarLogicLayer.Zones;
+using ZooBazaarLogicLayer.Animals;
 
 namespace ZooBazaarDesktop.Forms
 {
@@ -74,7 +75,9 @@ namespace ZooBazaarDesktop.Forms
             if(inputValidation.Success == false)
             {
                 MessageBox.Show(inputValidation.Message);
+                return;
             }
+           //TODO: Finish Create statement
         }
 
         private void OnLoad(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZooBazaarDataLayer.DALSpecies;
 using ZooBazaarDesktop.Controls;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Managers;
@@ -18,6 +19,7 @@ namespace ZooBazaarDesktop.Forms
     {
         private Action? exhibitsearch;
         private Action? speciesSearch;
+        private Action? animalsSearch;
         private readonly LoginForm origin;
         public MainForm(LoginForm origin)
         {
@@ -256,9 +258,84 @@ namespace ZooBazaarDesktop.Forms
 
         #region Animal Filters
         //TODO: Add animal searches in this area
+        //private void AnimalsIdSearch()
+        //{
+        //    string inputValue = tbAnimalSearchInput.Text;
+        //    int id;
 
+        //    if (!int.TryParse(inputValue, out id))
+        //    {
+        //        MessageBox.Show("Please enter a numeric id.", "ZooBazaar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return;
+        //    } //Check if input is numeric
+
+        //    AnimalManager am = AnimalManager.CreateForDatabase();
+        //    var result = am.GetById(id);
+        //    RefillSpeciesList(result);
+        //}
+        private void AnimalsNameSearch()
+        {
+            string inputValue = tbAnimalSearchInput.Text;
+            AnimalManager am = AnimalManager.CreateForDatabase();
+            var result = am.GetAnimalsByName(inputValue);
+            RefillAnimalList(result.ToArray());
+        }
+        private void NoAnimalsSearch()
+        {
+            MessageBox.Show("Someting went wrong. Please select something to filter by.");
+        }
         #endregion
 
+
+        #region Animals Tab UI
+
+        public void RefillAnimalList(ICollection<Animal> animals)
+        {
+            flpAnimals.Controls.Clear();
+            foreach (Animal a in animals)
+            {
+                flpAnimals.Controls.Add(new AnimalDisplayBox(a));
+            }
+        }
+        private void OnAnimalsFilterMethodUpdated(object sender, EventArgs e)
+        {
+            switch (cbbAnimalsFilter.SelectedItem)
+            {
+                //case "ID":
+                //    animalsSearch = AnimalsIdSearch;
+                //    break;
+                case "Name":
+                    animalsSearch = AnimalsNameSearch;
+                    break;
+                default:
+                    animalsSearch = NoAnimalsSearch;
+                    break;
+            }
+        }
+        private void OnAnimalSearchClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbAnimalSearchInput.Text))
+            {
+                MessageBox.Show("Please input a search term.");
+                return;
+            }
+
+            if (animalsSearch is not null)
+            {
+                animalsSearch();
+            }
+            else
+            {
+                NoAnimalsSearch();
+            }
+        }
+
+        private void OnNewAnimalClick(object sender, EventArgs e)
+        {
+            this.Hide();
+            new AnimalCreateForm(this).Show();
+        }
+        #endregion
 
         /// <summary>
         /// Runs whenever the form is loaded in.

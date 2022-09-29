@@ -30,36 +30,60 @@
         {
             this.lblName = new System.Windows.Forms.Label();
             this.btnDetails = new System.Windows.Forms.Button();
+            this.lblSpecies = new System.Windows.Forms.Label();
+            this.lblAge = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(11, 17);
+            this.lblName.Location = new System.Drawing.Point(10, 13);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(66, 20);
+            this.lblName.Size = new System.Drawing.Size(53, 15);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "<name>";
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(42, 68);
+            this.btnDetails.Location = new System.Drawing.Point(131, 100);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(94, 29);
+            this.btnDetails.Size = new System.Drawing.Size(82, 22);
             this.btnDetails.TabIndex = 1;
-            this.btnDetails.Text = "Edit";
+            this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.OnDetailsClick);
             // 
+            // lblSpecies
+            // 
+            this.lblSpecies.AutoSize = true;
+            this.lblSpecies.Location = new System.Drawing.Point(10, 50);
+            this.lblSpecies.Name = "lblSpecies";
+            this.lblSpecies.Size = new System.Drawing.Size(61, 15);
+            this.lblSpecies.TabIndex = 0;
+            this.lblSpecies.Text = "<species>";
+            // 
+            // lblAge
+            // 
+            this.lblAge.AutoSize = true;
+            this.lblAge.Location = new System.Drawing.Point(10, 35);
+            this.lblAge.Name = "lblAge";
+            this.lblAge.Size = new System.Drawing.Size(42, 15);
+            this.lblAge.TabIndex = 2;
+            this.lblAge.Text = "<age>";
+            // 
             // AnimalDisplayBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.Color.Goldenrod;
+            this.Controls.Add(this.lblAge);
+            this.Controls.Add(this.lblSpecies);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.lblName);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AnimalDisplayBox";
-            this.Size = new System.Drawing.Size(184, 118);
+            this.Size = new System.Drawing.Size(216, 124);
             this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -70,5 +94,7 @@
 
         private Label lblName;
         private Button btnDetails;
+        private Label lblSpecies;
+        private Label lblAge;
     }
 }

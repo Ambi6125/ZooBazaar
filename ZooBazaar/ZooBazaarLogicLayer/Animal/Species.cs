@@ -92,6 +92,16 @@ namespace ZooBazaarLogicLayer.Animals
             return false;
         }
 
+        public bool IncreaseQuantity(int amount)
+        {
+            if(Quantity + amount > 0)
+            {
+                Quantity += amount;
+                return true;
+            }
+            return false;
+        }
+
         public IParameterValueCollection GetParameterArgs()
         {
             IParameterValueCollection args = new ParameterValueCollection();
@@ -103,6 +113,11 @@ namespace ZooBazaarLogicLayer.Animals
             args.Add("quantity", Quantity);
 
             return args;
+        }
+
+        public override string ToString()
+        {
+            return Name; 
         }
     }
 }
