@@ -7,6 +7,7 @@ using ZooBazaarDataLayer.DALAnimal;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarDataLayer.DALSpecies;
 using EasyTools.Validation;
+using EasyTools.MySqlDatabaseTools;
 
 namespace ZooBazaarLogicLayer.Managers
 {
@@ -48,6 +49,24 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return finalResult;
         }
+        public IReadOnlyCollection<Animal> GetAnimalsBySpecies(IDataProvider species)
+        {
+            var queryResult = dataSource.GetAnimalsBySpecies(species);
+            List<Animal> finalResult = new List<Animal>();
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("animalName");
+                DateTime birth = result.GetValueAs<DateTime>("birthdate");
+                int speciesId = result.GetValueAs<int>("species");
+                Species s = sm.GetById(speciesId);
+                string status = result.GetValueAs<string>("status");
+                Animal animal = new Animal(id, resultname, birth, s, status);
+                finalResult.Add(animal);
+            }
+            return finalResult;
+        }
 
         public IValidationResponse UpdateAnimals(Animal a)
         {
@@ -56,6 +75,10 @@ namespace ZooBazaarLogicLayer.Managers
         public IValidationResponse CreateAnimal(Animal a)
         {
             return dataSource.AddEntry(a);
+        }
+        public IValidationResponse DeleteAnimal(Animal a)
+        {
+            return dataSource.DeleteEntry(a);
         }
     }
 }

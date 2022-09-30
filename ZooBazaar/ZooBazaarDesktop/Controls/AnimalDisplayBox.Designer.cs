@@ -32,6 +32,7 @@
             this.btnDetails = new System.Windows.Forms.Button();
             this.lblSpecies = new System.Windows.Forms.Label();
             this.lblAge = new System.Windows.Forms.Label();
+            this.cbAnimalSelect = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -72,11 +73,22 @@
             this.lblAge.TabIndex = 2;
             this.lblAge.Text = "<age>";
             // 
+            // cbAnimalSelect
+            // 
+            this.cbAnimalSelect.AutoSize = true;
+            this.cbAnimalSelect.Location = new System.Drawing.Point(196, 3);
+            this.cbAnimalSelect.Name = "cbAnimalSelect";
+            this.cbAnimalSelect.Size = new System.Drawing.Size(15, 14);
+            this.cbAnimalSelect.TabIndex = 3;
+            this.cbAnimalSelect.UseVisualStyleBackColor = true;
+            this.cbAnimalSelect.Visible = false;
+            // 
             // AnimalDisplayBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Goldenrod;
+            this.Controls.Add(this.cbAnimalSelect);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.lblSpecies);
             this.Controls.Add(this.btnDetails);
@@ -96,5 +108,6 @@
         private Button btnDetails;
         private Label lblSpecies;
         private Label lblAge;
+        private CheckBox cbAnimalSelect;
     }
 }

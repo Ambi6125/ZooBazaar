@@ -280,6 +280,16 @@ namespace ZooBazaarDesktop.Forms
             var result = am.GetAnimalsByName(inputValue);
             RefillAnimalList(result.ToArray());
         }
+        private void AnimalsSpeciesSearch()
+        {
+            string inputValue = tbAnimalSearchInput.Text;
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+           var speciesresult = sm.GetSpeciesByName(inputValue).FirstOrDefault();
+            
+            AnimalManager am = AnimalManager.CreateForDatabase();
+            var result = am.GetAnimalsBySpecies(speciesresult);
+            RefillAnimalList(result.ToArray());
+        }
         private void NoAnimalsSearch()
         {
             MessageBox.Show("Someting went wrong. Please select something to filter by.");
@@ -306,6 +316,9 @@ namespace ZooBazaarDesktop.Forms
                 //    break;
                 case "Name":
                     animalsSearch = AnimalsNameSearch;
+                    break;
+                case "Species":
+                    animalsSearch = AnimalsSpeciesSearch;
                     break;
                 default:
                     animalsSearch = NoAnimalsSearch;
@@ -344,7 +357,37 @@ namespace ZooBazaarDesktop.Forms
         {
             lblResultCount.Text = string.Empty;
         }
+        private void ToggleAnimalsSelectables(object sender, EventArgs e)
+        {
+            foreach (AnimalDisplayBox db in flpAnimals.Controls)
+            {
+                db.ToggleAnimalsSelectability();
+            }
+            if (btnDeleteAnimal.Enabled)
+                btnDeleteAnimal.Enabled = false;
+            else
+                btnDeleteAnimal.Enabled = true;
+        }
+        private void OnAnimalRemoveClick(object sender, EventArgs e)
+        {
+            
+            IEnumerable<AnimalDisplayBox> boxes = flpAnimals.Controls
+               .OfType<AnimalDisplayBox>()
+               .Where((AnimalDisplayBox x) => x.IsSelectedAnimal);
 
-        
+            if (!boxes.Any())
+            {
+                MessageBox.Show("No selection given.");
+                return;
+            }
+
+            AnimalManager am = AnimalManager.CreateForDatabase();
+            foreach (AnimalDisplayBox x in boxes)
+            {
+                this.Hide();
+                new AnimalDeleteForm(x.Topic,this).Show();
+            }
+            
+        }
     }
 }

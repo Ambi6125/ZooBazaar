@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EasyTools.MySqlDatabaseTools.Queries;
 using EasyTools.MySqlDatabaseTools.Tables;
+using System.Xml.Linq;
 
 namespace ZooBazaarDataLayer.DALAnimal
 {
@@ -28,9 +29,11 @@ namespace ZooBazaarDataLayer.DALAnimal
 
         public IValidationResponse DeleteEntry(IDataProvider animal)
         {
-            DeleteQuery query = new DeleteQuery(table, "id", animal);
+            object idValue = animal.GetParameterArgs().ElementAt(0);
+            MySqlCondition condition = new MySqlCondition("id", idValue, Strictness.MustMatchExactly);
+            UpdateQuery query = new UpdateQuery(table, animal, condition);
 
-            return communicator.Delete(query);
+            return communicator.Update(query);
         }
 
         public IValidationResponse UpdateEntry(IDataProvider animal)
@@ -45,6 +48,15 @@ namespace ZooBazaarDataLayer.DALAnimal
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name)
         {
             MySqlCondition condition = new MySqlCondition("animalName", "%" + name + "%", Strictness.MustBeSimilar);
+            SelectQuery query = new SelectQuery(table, "*", condition);
+
+            return communicator.Select(query);
+        }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAnimalsBySpecies(IDataProvider species)
+        {
+            int idValue = (int)species.GetParameterArgs().ElementAt(0).Value;
+            MySqlCondition condition = new MySqlCondition("species", "%" + idValue + "%", Strictness.MustMatchExactly);
             SelectQuery query = new SelectQuery(table, "*", condition);
 
             return communicator.Select(query);

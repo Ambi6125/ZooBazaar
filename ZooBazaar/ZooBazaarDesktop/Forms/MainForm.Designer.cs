@@ -44,6 +44,9 @@
             this.flpSpecies = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDeleteAnimal = new System.Windows.Forms.Button();
+            this.btnNewAnimal = new System.Windows.Forms.Button();
             this.cbbAnimalsFilter = new System.Windows.Forms.ComboBox();
             this.tbAnimalSearchInput = new System.Windows.Forms.TextBox();
             this.btnAnimalSearch = new System.Windows.Forms.Button();
@@ -59,7 +62,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
-            this.btnNewAnimal = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -245,6 +247,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnDeleteAnimal);
             this.groupBox4.Controls.Add(this.btnNewAnimal);
             this.groupBox4.Controls.Add(this.cbbAnimalsFilter);
             this.groupBox4.Controls.Add(this.tbAnimalSearchInput);
@@ -260,13 +264,46 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Search";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(30, 231);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 22);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Select";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ToggleAnimalsSelectables);
+            // 
+            // btnDeleteAnimal
+            // 
+            this.btnDeleteAnimal.Enabled = false;
+            this.btnDeleteAnimal.Location = new System.Drawing.Point(30, 258);
+            this.btnDeleteAnimal.Name = "btnDeleteAnimal";
+            this.btnDeleteAnimal.Size = new System.Drawing.Size(113, 24);
+            this.btnDeleteAnimal.TabIndex = 8;
+            this.btnDeleteAnimal.Text = "Remove";
+            this.btnDeleteAnimal.UseVisualStyleBackColor = true;
+            this.btnDeleteAnimal.Click += new System.EventHandler(this.OnAnimalRemoveClick);
+            // 
+            // btnNewAnimal
+            // 
+            this.btnNewAnimal.Location = new System.Drawing.Point(30, 202);
+            this.btnNewAnimal.Name = "btnNewAnimal";
+            this.btnNewAnimal.Size = new System.Drawing.Size(113, 24);
+            this.btnNewAnimal.TabIndex = 8;
+            this.btnNewAnimal.Text = "New ";
+            this.btnNewAnimal.UseVisualStyleBackColor = true;
+            this.btnNewAnimal.Click += new System.EventHandler(this.OnNewAnimalClick);
+            // 
             // cbbAnimalsFilter
             // 
             this.cbbAnimalsFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbAnimalsFilter.FormattingEnabled = true;
             this.cbbAnimalsFilter.Items.AddRange(new object[] {
             "ID",
-            "Name"});
+            "Name",
+            "Species"});
             this.cbbAnimalsFilter.Location = new System.Drawing.Point(16, 117);
             this.cbbAnimalsFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbAnimalsFilter.Name = "cbbAnimalsFilter";
@@ -425,16 +462,6 @@
             this.CExhibitbtn.UseVisualStyleBackColor = true;
             this.CExhibitbtn.Click += new System.EventHandler(this.CExhibitbtn_Click);
             // 
-            // btnNewAnimal
-            // 
-            this.btnNewAnimal.Location = new System.Drawing.Point(30, 202);
-            this.btnNewAnimal.Name = "btnNewAnimal";
-            this.btnNewAnimal.Size = new System.Drawing.Size(113, 24);
-            this.btnNewAnimal.TabIndex = 8;
-            this.btnNewAnimal.Text = "New ";
-            this.btnNewAnimal.UseVisualStyleBackColor = true;
-            this.btnNewAnimal.Click += new System.EventHandler(this.OnNewAnimalClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -497,5 +524,7 @@
         private Label label5;
         private Label label6;
         private Button btnNewAnimal;
+        private Button btnDeleteAnimal;
+        private Button button1;
     }
 }

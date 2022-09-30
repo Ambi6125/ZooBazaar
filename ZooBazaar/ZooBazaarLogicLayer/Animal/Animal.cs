@@ -11,7 +11,7 @@ namespace ZooBazaarLogicLayer.Animals
     public class Animal : IEquatable<Animal>, IDataProvider
     {
         #region internals
-        internal static string[] allowedStatuses = { "In zoo", "Deceased", "Transferred", "Released" };
+        internal static readonly string[] allowedStatuses = { "In zoo", "Deceased", "Transferred", "Released" };
         #endregion
 
 
@@ -22,7 +22,7 @@ namespace ZooBazaarLogicLayer.Animals
         public string Name { get; set; }
         public Species Species { get; set; }
 
-
+        public string[] AvailableStatuses => allowedStatuses.Except(new string[] { this.Status }).ToArray();
 
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);

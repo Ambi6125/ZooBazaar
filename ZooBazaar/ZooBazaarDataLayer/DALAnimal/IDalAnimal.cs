@@ -14,5 +14,6 @@ namespace ZooBazaarDataLayer.DALAnimal
         IValidationResponse DeleteEntry(IDataProvider animal);
         IValidationResponse UpdateEntry(IDataProvider animal);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name);
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAnimalsBySpecies(IDataProvider species);
     }
 }

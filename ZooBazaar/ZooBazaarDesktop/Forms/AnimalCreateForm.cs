@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using ZooBazaarLogicLayer.Animals;
@@ -66,12 +67,14 @@ namespace ZooBazaarDesktop.Forms
 
         private void OnLoad(object sender, EventArgs e)
         {
+            
             SpeciesManager sm = SpeciesManager.CreateForDatabase();
             var result = sm.GetSpeciesByName(string.Empty);
             foreach (Species species in result)
             {
                 cbbAnimalSpeciesCreate.Items.Add(species);
             }
+            
         }
         private void OnClosed(object sender, FormClosedEventArgs e)
         {

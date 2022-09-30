@@ -41,7 +41,7 @@ namespace ZooBazaarLogicLayer.Animals
         }
         public int Quantity { get; private set; }
         public string Diet { get; set; }
-        internal int Id => id.Value;
+        public int Id => id.Value;
         public Exhibit Exhibit => exhibit;
 
         public bool IsSingleAnimal => unitSize.ToLower() == "single" ? true : false;
