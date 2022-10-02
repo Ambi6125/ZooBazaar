@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarDesktop.Forms;
 using ZooBazaarDataLayer.DALSpecies;
+using ZooBazaarDesktop.Colours;
 
 namespace ZooBazaarDesktop.Controls
 {
@@ -36,16 +37,16 @@ namespace ZooBazaarDesktop.Controls
             switch (animal.Status.ToLower())
             {
                 case "in zoo":
-                    this.BackColor = Color.LightGreen;
+                    this.BackColor = ZooBazaarColors.StatusColors.InZoo;
                     break;
                 case "deceased":
-                    this.BackColor = Color.Gainsboro;
+                    this.BackColor = ZooBazaarColors.StatusColors.Deceased;
                     break;
                 case "transferred":
-                    this.BackColor = Color.LightBlue;
+                    this.BackColor = ZooBazaarColors.StatusColors.Transferred;
                     break;
                 case "released":
-                    this.BackColor= Color.LightYellow;
+                    this.BackColor= ZooBazaarColors.StatusColors.Released;
                     break;
             }
         }

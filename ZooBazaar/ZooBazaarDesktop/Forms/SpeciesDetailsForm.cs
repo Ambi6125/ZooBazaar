@@ -35,7 +35,7 @@ namespace ZooBazaarDesktop.Forms
             tbScientificName.Text = subject.ScientificName;
             tbAmount.Text = subject.Quantity.ToString();
             cbbZones.Text = subject.Exhibit.Zone;
-            //TODO: Allow the editing of which exhibit in the specified zone the animal is in
+            cbbExhibitName.Text = subject.Exhibit.Name;
             if (subject.IsSingleAnimal)
             {
                 tbUnitSize.Text = "Yes";

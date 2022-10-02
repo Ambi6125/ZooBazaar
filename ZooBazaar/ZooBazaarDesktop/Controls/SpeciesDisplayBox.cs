@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarDesktop.Forms;
+using ZooBazaarDesktop.Colours;
 
 namespace ZooBazaarDesktop.Controls
 {
@@ -62,19 +63,19 @@ namespace ZooBazaarDesktop.Controls
             switch (species.Exhibit.Zone.ToLower())
             {
                 case "jungle":
-                    result = Color.Green;
+                    result = ZooBazaarColors.ZoneColors.Jungle;
                     break;
                 case "arctic":
-                    result = Color.Aqua;
+                    result = ZooBazaarColors.ZoneColors.Arctic;
                     break;
                 case "taiga":
-                    result = Color.Bisque;
+                    result = ZooBazaarColors.ZoneColors.Taiga;
                     break;
                 case "desert":
-                    result = Color.LightGoldenrodYellow;
+                    result = ZooBazaarColors.ZoneColors.Desert;
                     break;
                 case "savannah":
-                    result = Color.FromArgb(255, 121, 0);
+                    result = ZooBazaarColors.ZoneColors.Savannah;
                     break;
                     
             }
