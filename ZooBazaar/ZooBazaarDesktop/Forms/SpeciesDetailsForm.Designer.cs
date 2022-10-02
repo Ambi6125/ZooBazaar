@@ -108,6 +108,7 @@
             this.cbbZones.Name = "cbbZones";
             this.cbbZones.Size = new System.Drawing.Size(151, 28);
             this.cbbZones.TabIndex = 3;
+            this.cbbZones.SelectedIndexChanged += new System.EventHandler(this.OnZoneSelectionChanged);
             // 
             // cbbExhibitName
             // 

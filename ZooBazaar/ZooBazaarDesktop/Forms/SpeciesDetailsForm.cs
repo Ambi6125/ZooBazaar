@@ -61,11 +61,14 @@ namespace ZooBazaarDesktop.Forms
         private void OnUpdateClick(object sender, EventArgs e)
         {
             SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
             DialogResult dr = DialogResult.None; //The value of this is checked later
             do
             {
                 subject.Name = tbSpeciesName.Text;
                 subject.ScientificName = tbScientificName.Text;
+                Exhibit exhibit = em.GetByFullName(cbbZones.Text, cbbExhibitName.Text).First();
+                subject.ChangeExhibit(exhibit);
                 var response = sm.UpdateSpecies(subject);
                 if (response.Success)
                 {
@@ -81,6 +84,16 @@ namespace ZooBazaarDesktop.Forms
             if(dr == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void OnZoneSelectionChanged(object sender, EventArgs e)
+        {
+            cbbExhibitName.Items.Clear();
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
+            foreach (var exhibit in em.GetByZone(cbbZones.Text))
+            {
+                cbbExhibitName.Items.Add(exhibit.Name);
             }
         }
     }

@@ -77,10 +77,22 @@ namespace ZooBazaarDesktop.Forms
                 MessageBox.Show(inputValidation.Message);
                 return;
             }
-            MessageBox.Show("Succesfully created.");
-            mainForm.Show();
-            Close();
-            //TODO: Finish Create statement
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
+            Exhibit exhibit = em.GetByFullName(cbbZone.Text, cbbExhibitName.Text).First();
+
+            Species newSpecies = new Species(tbName.Text, tbScientificName.Text, exhibit, UnitSizeSelected, 0);
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            var response = sm.AddSpecies(newSpecies);
+            if (response.Success)
+            {
+                MessageBox.Show("Succesfully added!");
+                mainForm.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Please try again.");
+            }
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -105,7 +117,7 @@ namespace ZooBazaarDesktop.Forms
             }
             catch (MySql.Data.MySqlClient.MySqlException)
             {
-                MessageBox.Show("Connection error.");
+                MessageBox.Show("Please reconnect to your VPN and try again.");
             }
         }
     }

@@ -214,6 +214,7 @@
             // 
             // flpSpecies
             // 
+            this.flpSpecies.AutoScroll = true;
             this.flpSpecies.Location = new System.Drawing.Point(17, 24);
             this.flpSpecies.Name = "flpSpecies";
             this.flpSpecies.Size = new System.Drawing.Size(609, 381);

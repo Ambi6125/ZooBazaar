@@ -107,6 +107,8 @@
             // 
             this.cbbExhibitName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbExhibitName.FormattingEnabled = true;
+            this.cbbExhibitName.Items.AddRange(new object[] {
+            "Select a zone in the box above"});
             this.cbbExhibitName.Location = new System.Drawing.Point(94, 172);
             this.cbbExhibitName.Name = "cbbExhibitName";
             this.cbbExhibitName.Size = new System.Drawing.Size(151, 28);
