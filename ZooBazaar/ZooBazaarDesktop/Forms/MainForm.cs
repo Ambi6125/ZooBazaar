@@ -284,7 +284,7 @@ namespace ZooBazaarDesktop.Forms
         {
             string inputValue = tbAnimalSearchInput.Text;
             SpeciesManager sm = SpeciesManager.CreateForDatabase();
-           var speciesresult = sm.GetSpeciesByName(inputValue).FirstOrDefault();
+            var speciesresult = sm.GetSpeciesByName(inputValue).FirstOrDefault();
             
             AnimalManager am = AnimalManager.CreateForDatabase();
             var result = am.GetAnimalsBySpecies(speciesresult);

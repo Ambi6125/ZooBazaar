@@ -56,7 +56,7 @@ namespace ZooBazaarDataLayer.DALAnimal
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAnimalsBySpecies(IDataProvider species)
         {
             int idValue = (int)species.GetParameterArgs().ElementAt(0).Value;
-            MySqlCondition condition = new MySqlCondition("species", "%" + idValue + "%", Strictness.MustMatchExactly);
+            MySqlCondition condition = new MySqlCondition("species", idValue, Strictness.MustMatchExactly);
             SelectQuery query = new SelectQuery(table, "*", condition);
 
             return communicator.Select(query);

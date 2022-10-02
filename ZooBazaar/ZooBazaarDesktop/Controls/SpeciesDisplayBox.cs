@@ -22,6 +22,8 @@ namespace ZooBazaarDesktop.Controls
         {
             InitializeComponent();
             species = s;
+            Color background = AdjustColor();
+            this.panel1.BackColor = background;
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -54,6 +56,30 @@ namespace ZooBazaarDesktop.Controls
             }
         }
 
+        private Color AdjustColor()
+        {
+            Color result = Color.WhiteSmoke;
+            switch (species.Exhibit.Zone.ToLower())
+            {
+                case "jungle":
+                    result = Color.Green;
+                    break;
+                case "arctic":
+                    result = Color.Aqua;
+                    break;
+                case "taiga":
+                    result = Color.Bisque;
+                    break;
+                case "desert":
+                    result = Color.LightGoldenrodYellow;
+                    break;
+                case "savannah":
+                    result = Color.FromArgb(255, 121, 0);
+                    break;
+                    
+            }
+            return result;
+        }
         internal bool IsSelected => cbSelect.Visible && cbSelect.Checked;
     }
 }

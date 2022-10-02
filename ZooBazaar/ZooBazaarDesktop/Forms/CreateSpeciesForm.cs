@@ -77,7 +77,10 @@ namespace ZooBazaarDesktop.Forms
                 MessageBox.Show(inputValidation.Message);
                 return;
             }
-           //TODO: Finish Create statement
+            MessageBox.Show("Succesfully created.");
+            mainForm.Show();
+            Close();
+            //TODO: Finish Create statement
         }
 
         private void OnLoad(object sender, EventArgs e)

@@ -26,7 +26,11 @@ namespace ZooBazaarDesktop.Forms
             tbName.Text = subject.Name;
             tbSpecies.Text = subject.Species.Name;
             dtpAnimalUpdate.Value = Convert.ToDateTime(subject.BirthDay);
-            tbZooStatus.Text = subject.Status;
+            cbbStatus.Text = subject.Status;
+            foreach(string s in subject.AvailableStatuses)
+            {
+                cbbStatus.Items.Add(s);
+            }
         }
 
         private void lblName_Click(object sender, EventArgs e)
@@ -42,7 +46,7 @@ namespace ZooBazaarDesktop.Forms
             {
                 subject.Name = tbName.Text;
                 subject.ChangeBirthDay(dtpAnimalUpdate.Value.Date);
-                subject.ChangeStatus(tbZooStatus.Text);
+                subject.ChangeStatus(cbbStatus.Text);
                 var response = am.UpdateAnimals(subject);
                 if (response.Success)
                 {

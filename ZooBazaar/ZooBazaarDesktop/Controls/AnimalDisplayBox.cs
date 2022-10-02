@@ -28,6 +28,26 @@ namespace ZooBazaarDesktop.Controls
             lblName.Text = animal.Name;
             lblSpecies.Text = animal.Species.Name;
             lblAge.Text = animal.Age.ToString() + " year(s) old";
+            AdjustBackground();
+        }
+
+        private void AdjustBackground()
+        {
+            switch (animal.Status.ToLower())
+            {
+                case "in zoo":
+                    this.BackColor = Color.LightGreen;
+                    break;
+                case "deceased":
+                    this.BackColor = Color.Gainsboro;
+                    break;
+                case "transferred":
+                    this.BackColor = Color.LightBlue;
+                    break;
+                case "released":
+                    this.BackColor= Color.LightYellow;
+                    break;
+            }
         }
 
         private void OnDetailsClick(object sender, EventArgs e)

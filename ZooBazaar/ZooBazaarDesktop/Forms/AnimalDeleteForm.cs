@@ -11,6 +11,8 @@ using System.Xml.Linq;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Managers;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using static System.Console;
+
 
 namespace ZooBazaarDesktop.Forms
 {

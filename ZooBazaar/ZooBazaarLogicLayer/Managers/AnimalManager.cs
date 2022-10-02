@@ -80,5 +80,16 @@ namespace ZooBazaarLogicLayer.Managers
         {
             return dataSource.DeleteEntry(a);
         }
+
+        public IValidationResponse ChangeAnimalStatus(Animal a, string status)
+        {
+            bool changeResult = a.ChangeStatus(status);
+            if(changeResult == false)
+            {
+                return new ValidationResponse(false, "Not a valid status.");
+            }
+
+            return dataSource.UpdateEntry(a);
+        }
     }
 }

@@ -37,25 +37,27 @@
             // 
             this.cbbAnimalStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbAnimalStatus.FormattingEnabled = true;
-            this.cbbAnimalStatus.Location = new System.Drawing.Point(119, 58);
+            this.cbbAnimalStatus.Location = new System.Drawing.Point(136, 77);
+            this.cbbAnimalStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbAnimalStatus.Name = "cbbAnimalStatus";
-            this.cbbAnimalStatus.Size = new System.Drawing.Size(121, 23);
+            this.cbbAnimalStatus.Size = new System.Drawing.Size(138, 28);
             this.cbbAnimalStatus.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 29);
+            this.label1.Location = new System.Drawing.Point(99, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 15);
+            this.label1.Size = new System.Drawing.Size(249, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Choose Reason for removing animal";
             // 
             // btnAnimalRemove
             // 
-            this.btnAnimalRemove.Location = new System.Drawing.Point(155, 119);
+            this.btnAnimalRemove.Location = new System.Drawing.Point(166, 167);
+            this.btnAnimalRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAnimalRemove.Name = "btnAnimalRemove";
-            this.btnAnimalRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnAnimalRemove.Size = new System.Drawing.Size(86, 31);
             this.btnAnimalRemove.TabIndex = 2;
             this.btnAnimalRemove.Text = "Remove";
             this.btnAnimalRemove.UseVisualStyleBackColor = true;
@@ -63,12 +65,13 @@
             // 
             // AnimalDeleteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 221);
+            this.ClientSize = new System.Drawing.Size(433, 232);
             this.Controls.Add(this.btnAnimalRemove);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbbAnimalStatus);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AnimalDeleteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AnimalDeleteForm";
