@@ -86,5 +86,17 @@ namespace ZooBazaarLogicLayer.Managers
 
             return new Species(speciesId, name, scientificName, exhibit, unitSize, quantity);
         }
+
+        public IReadOnlyCollection<Species> GetSpeciesByZone(string zone)
+        {
+            List<Species> resultlist = new List<Species>();
+            ExhibitManager em = ExhibitManager.CreateForDatabase();
+            var zonesResult = em.GetByZone(zone);
+            foreach(Zones.Exhibit w in zonesResult)
+            {
+
+            }
+            throw new NotImplementedException();
+        }
     }
 }

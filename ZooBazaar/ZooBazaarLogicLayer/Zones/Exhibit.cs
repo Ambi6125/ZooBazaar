@@ -8,7 +8,7 @@ using ZooBazaarLogicLayer.Animals;
 
 namespace ZooBazaarLogicLayer.Zones
 {
-    public class Exhibit : IDataProvider
+    public class Exhibit : IEquatable<Exhibit>, IDataProvider
     {
         private readonly int? id = null;
 
