@@ -296,7 +296,6 @@ namespace ZooBazaarDesktop.Forms
         }
         #endregion
 
-
         #region Animals Tab UI
 
         public void RefillAnimalList(ICollection<Animal> animals)
