@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ZooBazaarLogicLayer.PasswordHandling;
 
-namespace ZooBazaarLogicLayer.Users
+namespace ZooBazaarLogicLayer.People
 {
     //TODO: Extend this class after client meeting.
-    public abstract class User
+    public abstract class Account
     {
         private readonly int? id;
         private readonly string salt;
@@ -21,8 +21,10 @@ namespace ZooBazaarLogicLayer.Users
             get => username;
             set
             {
-                if(value.Length > 0)
+                if (value.Length > 0)
                     username = value;
+                else
+                    throw new ArgumentException("Cannot be empty.");
             }
         }
 
@@ -31,7 +33,7 @@ namespace ZooBazaarLogicLayer.Users
         /// <summary>
         /// Create new user
         /// </summary>
-        public User(string username, string password, HashAlgorithm hash)
+        public Account(string username, string password, HashAlgorithm hash)
         {
             salt = Generate.NewString(69);
             hashedPassword = hash(password, salt);
@@ -41,7 +43,7 @@ namespace ZooBazaarLogicLayer.Users
         /// <summary>
         /// Read user data
         /// </summary>
-        public User(int? id, string username, string salt, string password)
+        public Account(int? id, string username, string salt, string password)
         {
             this.id = id;
             this.salt = salt;
