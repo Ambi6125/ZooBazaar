@@ -62,6 +62,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnLoadAllAccounts = new System.Windows.Forms.Button();
+            this.btnNewAccount = new System.Windows.Forms.Button();
+            this.grpbSearch = new System.Windows.Forms.GroupBox();
+            this.btnAccountSearch = new System.Windows.Forms.Button();
+            this.cbbAccountSearchFilter = new System.Windows.Forms.ComboBox();
+            this.lblSearchBy = new System.Windows.Forms.Label();
+            this.tbSearchAccountInput = new System.Windows.Forms.TextBox();
+            this.lblSearchFor = new System.Windows.Forms.Label();
+            this.grpbAccounts = new System.Windows.Forms.GroupBox();
+            this.flpAccounts = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,6 +82,9 @@
             this.grpbResultcontainer.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.grpbSearch.SuspendLayout();
+            this.grpbAccounts.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -78,6 +92,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(55, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -435,6 +450,121 @@
             this.CExhibitbtn.UseVisualStyleBackColor = true;
             this.CExhibitbtn.Click += new System.EventHandler(this.CExhibitbtn_Click);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnLoadAllAccounts);
+            this.tabPage4.Controls.Add(this.btnNewAccount);
+            this.tabPage4.Controls.Add(this.grpbSearch);
+            this.tabPage4.Controls.Add(this.grpbAccounts);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(864, 435);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Accounts";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadAllAccounts
+            // 
+            this.btnLoadAllAccounts.Location = new System.Drawing.Point(691, 249);
+            this.btnLoadAllAccounts.Name = "btnLoadAllAccounts";
+            this.btnLoadAllAccounts.Size = new System.Drawing.Size(94, 29);
+            this.btnLoadAllAccounts.TabIndex = 3;
+            this.btnLoadAllAccounts.Text = "Load all";
+            this.btnLoadAllAccounts.UseVisualStyleBackColor = true;
+            this.btnLoadAllAccounts.Click += new System.EventHandler(this.OnLoadAll);
+            // 
+            // btnNewAccount
+            // 
+            this.btnNewAccount.Location = new System.Drawing.Point(690, 290);
+            this.btnNewAccount.Name = "btnNewAccount";
+            this.btnNewAccount.Size = new System.Drawing.Size(94, 29);
+            this.btnNewAccount.TabIndex = 2;
+            this.btnNewAccount.Text = "New";
+            this.btnNewAccount.UseVisualStyleBackColor = true;
+            this.btnNewAccount.Click += new System.EventHandler(this.OnNewAccountClick);
+            // 
+            // grpbSearch
+            // 
+            this.grpbSearch.Controls.Add(this.btnAccountSearch);
+            this.grpbSearch.Controls.Add(this.cbbAccountSearchFilter);
+            this.grpbSearch.Controls.Add(this.lblSearchBy);
+            this.grpbSearch.Controls.Add(this.tbSearchAccountInput);
+            this.grpbSearch.Controls.Add(this.lblSearchFor);
+            this.grpbSearch.Location = new System.Drawing.Point(617, 18);
+            this.grpbSearch.Name = "grpbSearch";
+            this.grpbSearch.Size = new System.Drawing.Size(241, 209);
+            this.grpbSearch.TabIndex = 1;
+            this.grpbSearch.TabStop = false;
+            this.grpbSearch.Text = "Search";
+            // 
+            // btnAccountSearch
+            // 
+            this.btnAccountSearch.Location = new System.Drawing.Point(73, 165);
+            this.btnAccountSearch.Name = "btnAccountSearch";
+            this.btnAccountSearch.Size = new System.Drawing.Size(94, 29);
+            this.btnAccountSearch.TabIndex = 4;
+            this.btnAccountSearch.Text = "Search";
+            this.btnAccountSearch.UseVisualStyleBackColor = true;
+            this.btnAccountSearch.Click += new System.EventHandler(this.OnAccountSearchClick);
+            // 
+            // cbbAccountSearchFilter
+            // 
+            this.cbbAccountSearchFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbAccountSearchFilter.FormattingEnabled = true;
+            this.cbbAccountSearchFilter.Items.AddRange(new object[] {
+            "Username",
+            "E-mail address"});
+            this.cbbAccountSearchFilter.Location = new System.Drawing.Point(12, 123);
+            this.cbbAccountSearchFilter.Name = "cbbAccountSearchFilter";
+            this.cbbAccountSearchFilter.Size = new System.Drawing.Size(223, 28);
+            this.cbbAccountSearchFilter.TabIndex = 3;
+            this.cbbAccountSearchFilter.SelectedIndexChanged += new System.EventHandler(this.AccountFilterChanged);
+            // 
+            // lblSearchBy
+            // 
+            this.lblSearchBy.AutoSize = true;
+            this.lblSearchBy.Location = new System.Drawing.Point(13, 94);
+            this.lblSearchBy.Name = "lblSearchBy";
+            this.lblSearchBy.Size = new System.Drawing.Size(73, 20);
+            this.lblSearchBy.TabIndex = 2;
+            this.lblSearchBy.Text = "Search by";
+            // 
+            // tbSearchAccountInput
+            // 
+            this.tbSearchAccountInput.Location = new System.Drawing.Point(12, 58);
+            this.tbSearchAccountInput.Name = "tbSearchAccountInput";
+            this.tbSearchAccountInput.Size = new System.Drawing.Size(223, 27);
+            this.tbSearchAccountInput.TabIndex = 1;
+            // 
+            // lblSearchFor
+            // 
+            this.lblSearchFor.AutoSize = true;
+            this.lblSearchFor.Location = new System.Drawing.Point(7, 33);
+            this.lblSearchFor.Name = "lblSearchFor";
+            this.lblSearchFor.Size = new System.Drawing.Size(79, 20);
+            this.lblSearchFor.TabIndex = 0;
+            this.lblSearchFor.Text = "Search for:";
+            // 
+            // grpbAccounts
+            // 
+            this.grpbAccounts.Controls.Add(this.flpAccounts);
+            this.grpbAccounts.Location = new System.Drawing.Point(8, 7);
+            this.grpbAccounts.Name = "grpbAccounts";
+            this.grpbAccounts.Size = new System.Drawing.Size(603, 417);
+            this.grpbAccounts.TabIndex = 0;
+            this.grpbAccounts.TabStop = false;
+            this.grpbAccounts.Text = "Accounts";
+            // 
+            // flpAccounts
+            // 
+            this.flpAccounts.AutoScroll = true;
+            this.flpAccounts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpAccounts.Location = new System.Drawing.Point(3, 23);
+            this.flpAccounts.Name = "flpAccounts";
+            this.flpAccounts.Size = new System.Drawing.Size(597, 391);
+            this.flpAccounts.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -458,6 +588,10 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.grpbSearch.ResumeLayout(false);
+            this.grpbSearch.PerformLayout();
+            this.grpbAccounts.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -498,5 +632,16 @@
         private Button btnNewAnimal;
         private Button btnDeleteAnimal;
         private Button button1;
+        private TabPage tabPage4;
+        private GroupBox grpbSearch;
+        private Button btnAccountSearch;
+        private ComboBox cbbAccountSearchFilter;
+        private Label lblSearchBy;
+        private TextBox tbSearchAccountInput;
+        private Label lblSearchFor;
+        private GroupBox grpbAccounts;
+        private FlowLayoutPanel flpAccounts;
+        private Button btnNewAccount;
+        private Button btnLoadAllAccounts;
     }
 }

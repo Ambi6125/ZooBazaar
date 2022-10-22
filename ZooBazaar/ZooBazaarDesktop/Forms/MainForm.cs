@@ -12,6 +12,7 @@ using ZooBazaarDesktop.Controls;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Managers;
 using ZooBazaarLogicLayer.Zones;
+using ZooBazaarLogicLayer.People;
 
 namespace ZooBazaarDesktop.Forms
 {
@@ -20,6 +21,7 @@ namespace ZooBazaarDesktop.Forms
         private Action? exhibitsearch;
         private Action? speciesSearch;
         private Action? animalsSearch;
+        private Action? accountSearch;
         private readonly LoginForm origin;
         public MainForm(LoginForm origin)
         {
@@ -32,6 +34,7 @@ namespace ZooBazaarDesktop.Forms
             if(e.CloseReason == CloseReason.UserClosing)
             {
                 origin.Show();
+                UILogic.SessionSimulator.LoggedAccount = null;
             }
             else
             {
@@ -296,6 +299,45 @@ namespace ZooBazaarDesktop.Forms
         }
         #endregion
 
+        #region Account Filters
+        private void NoAccountFilterApplied()
+        {
+            MessageBox.Show("Please select an option to filter accounts by");
+        }
+
+        private void SearchAccountsByUsername()
+        {
+            flpAccounts.Controls.Clear();
+            AccountManager acm = AccountManager.CreateForDatabase();
+            foreach(Account account in acm.GetByUsername(tbSearchAccountInput.Text))
+            {
+                AccountDisplayBox box = new AccountDisplayBox(account);
+                flpAccounts.Controls.Add(box);
+            }
+        }
+
+        private void SearchAccountsByEmail()
+        {
+            flpAccounts.Controls.Clear();
+            AccountManager acm = AccountManager.CreateForDatabase();
+            try
+            {
+                Account? a = acm.GetByEmail(tbSearchAccountInput.Text);
+                if(a is null)
+                {
+                    MessageBox.Show("No account is tied to this email.", "No results");
+                    return;
+                }
+                AccountDisplayBox box = new AccountDisplayBox(a);
+                flpAccounts.Controls.Add(box);
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
         #region Animals Tab UI
 
         public void RefillAnimalList(ICollection<Animal> animals)
@@ -355,6 +397,7 @@ namespace ZooBazaarDesktop.Forms
         private void OnLoad(object sender, EventArgs e)
         {
             lblResultCount.Text = string.Empty;
+            Text = $"ZooBazaar - {UILogic.SessionSimulator.LoggedAccount?.Username}";
         }
         private void ToggleAnimalsSelectables(object sender, EventArgs e)
         {
@@ -388,5 +431,52 @@ namespace ZooBazaarDesktop.Forms
             }
             
         }
+
+
+        #region Accounts tab UI
+        private void AccountFilterChanged(object sender, EventArgs e)
+        {
+            if(cbbAccountSearchFilter.Text == "Username")
+            {
+                accountSearch = SearchAccountsByUsername;
+            }
+            else if(cbbAccountSearchFilter.Text == "E-mail address")
+            {
+                accountSearch = SearchAccountsByEmail;
+            }
+            else
+            {
+                accountSearch = NoAccountFilterApplied;
+            }
+        }
+        private void OnNewAccountClick(object sender, EventArgs e)
+        {
+            NewAccountForm form = new NewAccountForm(this);
+            Hide();
+            form.Show();
+        }
+
+        private void OnAccountSearchClick(object sender, EventArgs e)
+        {
+            accountSearch?.Invoke();
+        }
+
+        private void OnLoadAll(object sender, EventArgs e)
+        {
+            DialogResult userResponse = MessageBox.Show("This might take a long time.\nContinue?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (userResponse == DialogResult.Yes)
+            {
+                flpAccounts.Controls.Clear();
+                AccountManager manager = AccountManager.CreateForDatabase();
+                foreach (var result in manager.GetAll())
+                {
+                    AccountDisplayBox box = new AccountDisplayBox(result);
+                    flpAccounts.Controls.Add(box);
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -5,16 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZooBazaarLogicLayer.PasswordHandling;
+using EasyTools.RegexTools;
+using System.Text.RegularExpressions;
+using EasyTools.MySqlDatabaseTools;
 
 namespace ZooBazaarLogicLayer.People
 {
-    //TODO: Extend this class after client meeting.
-    public abstract class Account
+    public enum AccountType { Default = 0, Admin = 1 }
+    
+    public class Account : IDataProvider
     {
         private readonly int? id;
         private readonly string salt;
         private string hashedPassword;
         private string username;
+        private string email;
+        
 
         public string Username
         {
@@ -28,26 +34,33 @@ namespace ZooBazaarLogicLayer.People
             }
         }
 
-        public string Email { get; private set; }
+        public string Email => email;
+
+        public AccountType AccountType { get; private set; }
 
         /// <summary>
         /// Create new user
         /// </summary>
-        public Account(string username, string password, HashAlgorithm hash)
+        public Account(string username, string password, HashAlgorithm hash, string email, AccountType accountType = AccountType.Default)
         {
-            salt = Generate.NewString(69);
+            salt = Generate.NewString(60);
             hashedPassword = hash(password, salt);
             this.username = username;
+            this.email = email;
+            AccountType = accountType;
         }
 
         /// <summary>
         /// Read user data
         /// </summary>
-        public Account(int? id, string username, string salt, string password)
+        public Account(int? id, string username, string salt, string password, string email, AccountType accountType)
         {
             this.id = id;
             this.salt = salt;
             hashedPassword = password;
+            this.username = username;
+            this.email = email;
+            AccountType = accountType;
         }
 
 
@@ -66,10 +79,28 @@ namespace ZooBazaarLogicLayer.People
             
             if (RegexToolBox.IsEmail(mailAddress))
             {
-                Email = mailAddress;
+                email = mailAddress;
                 return true;
             }
             return false;
+        }
+
+        public void ChangeType(AccountType type)
+        {
+            AccountType = type;
+        }
+
+        public IParameterValueCollection GetParameterArgs()
+        {
+            ParameterValueCollection pvc = new ParameterValueCollection();
+            pvc.Add("id", id);
+            pvc.Add("username", username);
+            pvc.Add("email", email);
+            pvc.Add("salt", salt);
+            pvc.Add("hashedPassword", hashedPassword);
+            pvc.Add("accountType", AccountType);
+
+            return pvc;
         }
     }
 }

@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace ZooBazaarLogicLayer.PasswordHandling
 {
     public delegate string HashAlgorithm (string pw, string salt);
+    public static class PasswordHelper
+    {
+        public static HashAlgorithm DefaultHash => Encrypt.AsHash512;
+    }
     internal static class Encrypt
     {
         internal static string AsHash512(string password, string salt)
@@ -32,11 +36,17 @@ namespace ZooBazaarLogicLayer.PasswordHandling
     {
         public static string NewString(int length)
         {
-            StringBuilder sb = new StringBuilder(String.Empty);
+            char[] availableChars = "ABCDDEFGHIJKLMNOPQRSTUVWXYZabcdexfghijklmnopqrstuvwxyz!@#$%^&*()-=_+[]{}/;:<>~`".ToCharArray();
+            int sizeLimit = availableChars.Length;
+            StringBuilder sb = new StringBuilder();
             Random rng = new Random();
-            for (int i = 0; i < length; i++)
+
+            //Pick a random character for the array and append it to the result.
+            //Do this until the length is met
+            for (int i = 0; i < length; i++) 
             {
-                sb.Append(Convert.ToChar(rng.Next(0, 25) + 65));
+                int random = rng.Next(0, sizeLimit);
+                sb.Append(availableChars[random]);
             }
             return sb.ToString();
         }
