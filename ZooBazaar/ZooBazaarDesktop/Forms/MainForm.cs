@@ -22,7 +22,10 @@ namespace ZooBazaarDesktop.Forms
         private Action? speciesSearch;
         private Action? animalsSearch;
         private Action? accountSearch;
+        private Action? contractSearch;
         private readonly LoginForm origin;
+        private bool trigger = false;
+        
         public MainForm(LoginForm origin)
         {
             InitializeComponent();
@@ -338,6 +341,48 @@ namespace ZooBazaarDesktop.Forms
         }
         #endregion
 
+        #region Contract Filters
+
+        private void NoContractFilterApplied()
+        {
+            MessageBox.Show("Please select an option to filter contracts by");
+        }
+
+        private void SearchContractsByName()
+        {
+            flpContracts.Controls.Clear();
+            ContractManager cm = ContractManager.CreateForDatabase();
+            foreach (Contract contract in cm.GetByEmployeeName(tbSearchAccountInput.Text))
+            {
+                ContractDisplayBox box = new ContractDisplayBox(contract, SearchConbtn.Text);
+                flpContracts.Controls.Add(box);
+            }
+        }
+
+        private void SearchContractsByStatus()
+        {
+            flpContracts.Controls.Clear();
+            ContractManager cm = ContractManager.CreateForDatabase();
+            bool status = false;
+            if (chbActiveStatus.Checked)
+            {
+                trigger = true;
+                status = true;
+            }
+            else if(chbNonActiveStatus.Checked)
+            {
+                trigger = true;
+                status = false;
+            }
+            foreach (Contract contract in cm.GetByStatus(status))
+            {
+                ContractDisplayBox box = new ContractDisplayBox(contract);
+                flpContracts.Controls.Add(box);
+            }
+        }
+
+        #endregion
+
         #region Animals Tab UI
 
         public void RefillAnimalList(ICollection<Animal> animals)
@@ -478,5 +523,49 @@ namespace ZooBazaarDesktop.Forms
 
         #endregion
 
+        #region Contracts tab UI
+        private void FilterConcb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FilterConcb.Text == "FirstName")
+            {
+                contractSearch = SearchContractsByName;
+            }
+            else if (trigger)
+            {
+                contractSearch = SearchContractsByStatus;
+                trigger = false;
+            }
+            else
+            {
+                contractSearch = NoContractFilterApplied;
+            }
+        }
+
+        private void SearchConbtn_Click(object sender, EventArgs e)
+        {
+            contractSearch?.Invoke();
+        }
+
+        private void NewContractbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContractsLoadbtn_Click(object sender, EventArgs e)
+        {
+            DialogResult userResponse = MessageBox.Show("This might take a long time.\nContinue?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (userResponse == DialogResult.Yes)
+            {
+                flpContracts.Controls.Clear();
+                ContractManager manager = ContractManager.CreateForDatabase();
+                foreach (var result in manager.GetAll())
+                {
+                    ContractDisplayBox box = new ContractDisplayBox(result);
+                    flpContracts.Controls.Add(box);
+                }
+            }
+        }
+
+        #endregion
     }
 }

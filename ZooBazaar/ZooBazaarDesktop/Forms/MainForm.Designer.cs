@@ -73,6 +73,20 @@
             this.lblSearchFor = new System.Windows.Forms.Label();
             this.grpbAccounts = new System.Windows.Forms.GroupBox();
             this.flpAccounts = new System.Windows.Forms.FlowLayoutPanel();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ContractsLoadbtn = new System.Windows.Forms.Button();
+            this.NewContractbtn = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chbActiveStatus = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.SearchConbtn = new System.Windows.Forms.Button();
+            this.FilterConcb = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SearchContbx = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBoxContracts = new System.Windows.Forms.GroupBox();
+            this.flpContracts = new System.Windows.Forms.FlowLayoutPanel();
+            this.chbNonActiveStatus = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,6 +99,9 @@
             this.tabPage4.SuspendLayout();
             this.grpbSearch.SuspendLayout();
             this.grpbAccounts.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBoxContracts.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -93,6 +110,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(55, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -565,6 +583,151 @@
             this.flpAccounts.Size = new System.Drawing.Size(597, 391);
             this.flpAccounts.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.ContractsLoadbtn);
+            this.tabPage5.Controls.Add(this.NewContractbtn);
+            this.tabPage5.Controls.Add(this.groupBox5);
+            this.tabPage5.Controls.Add(this.groupBoxContracts);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(864, 435);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Contracts";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ContractsLoadbtn
+            // 
+            this.ContractsLoadbtn.Location = new System.Drawing.Point(672, 336);
+            this.ContractsLoadbtn.Name = "ContractsLoadbtn";
+            this.ContractsLoadbtn.Size = new System.Drawing.Size(94, 29);
+            this.ContractsLoadbtn.TabIndex = 5;
+            this.ContractsLoadbtn.Text = "Load all";
+            this.ContractsLoadbtn.UseVisualStyleBackColor = true;
+            this.ContractsLoadbtn.Click += new System.EventHandler(this.ContractsLoadbtn_Click);
+            // 
+            // NewContractbtn
+            // 
+            this.NewContractbtn.Location = new System.Drawing.Point(671, 377);
+            this.NewContractbtn.Name = "NewContractbtn";
+            this.NewContractbtn.Size = new System.Drawing.Size(94, 29);
+            this.NewContractbtn.TabIndex = 4;
+            this.NewContractbtn.Text = "New";
+            this.NewContractbtn.UseVisualStyleBackColor = true;
+            this.NewContractbtn.Click += new System.EventHandler(this.NewContractbtn_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.chbNonActiveStatus);
+            this.groupBox5.Controls.Add(this.chbActiveStatus);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.SearchConbtn);
+            this.groupBox5.Controls.Add(this.FilterConcb);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.SearchContbx);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Location = new System.Drawing.Point(598, 32);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(260, 270);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Search";
+            // 
+            // chbActiveStatus
+            // 
+            this.chbActiveStatus.AutoSize = true;
+            this.chbActiveStatus.Location = new System.Drawing.Point(71, 178);
+            this.chbActiveStatus.Name = "chbActiveStatus";
+            this.chbActiveStatus.Size = new System.Drawing.Size(72, 24);
+            this.chbActiveStatus.TabIndex = 6;
+            this.chbActiveStatus.Text = "Active";
+            this.chbActiveStatus.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 178);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 20);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Status:";
+            // 
+            // SearchConbtn
+            // 
+            this.SearchConbtn.Location = new System.Drawing.Point(73, 215);
+            this.SearchConbtn.Name = "SearchConbtn";
+            this.SearchConbtn.Size = new System.Drawing.Size(94, 29);
+            this.SearchConbtn.TabIndex = 4;
+            this.SearchConbtn.Text = "Search";
+            this.SearchConbtn.UseVisualStyleBackColor = true;
+            this.SearchConbtn.Click += new System.EventHandler(this.SearchConbtn_Click);
+            // 
+            // FilterConcb
+            // 
+            this.FilterConcb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FilterConcb.FormattingEnabled = true;
+            this.FilterConcb.Items.AddRange(new object[] {
+            "FirstName",
+            "Status"});
+            this.FilterConcb.Location = new System.Drawing.Point(12, 123);
+            this.FilterConcb.Name = "FilterConcb";
+            this.FilterConcb.Size = new System.Drawing.Size(223, 28);
+            this.FilterConcb.TabIndex = 3;
+            this.FilterConcb.SelectedIndexChanged += new System.EventHandler(this.FilterConcb_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 94);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Search by";
+            // 
+            // SearchContbx
+            // 
+            this.SearchContbx.Location = new System.Drawing.Point(12, 58);
+            this.SearchContbx.Name = "SearchContbx";
+            this.SearchContbx.Size = new System.Drawing.Size(223, 27);
+            this.SearchContbx.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Search for:";
+            // 
+            // groupBoxContracts
+            // 
+            this.groupBoxContracts.Controls.Add(this.flpContracts);
+            this.groupBoxContracts.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxContracts.Name = "groupBoxContracts";
+            this.groupBoxContracts.Size = new System.Drawing.Size(570, 423);
+            this.groupBoxContracts.TabIndex = 0;
+            this.groupBoxContracts.TabStop = false;
+            this.groupBoxContracts.Text = "Contracts";
+            // 
+            // flpContracts
+            // 
+            this.flpContracts.Location = new System.Drawing.Point(6, 26);
+            this.flpContracts.Name = "flpContracts";
+            this.flpContracts.Size = new System.Drawing.Size(558, 391);
+            this.flpContracts.TabIndex = 0;
+            // 
+            // chbNonActiveStatus
+            // 
+            this.chbNonActiveStatus.AutoSize = true;
+            this.chbNonActiveStatus.Location = new System.Drawing.Point(149, 178);
+            this.chbNonActiveStatus.Name = "chbNonActiveStatus";
+            this.chbNonActiveStatus.Size = new System.Drawing.Size(104, 24);
+            this.chbNonActiveStatus.TabIndex = 7;
+            this.chbNonActiveStatus.Text = "Non Active";
+            this.chbNonActiveStatus.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -592,6 +755,10 @@
             this.grpbSearch.ResumeLayout(false);
             this.grpbSearch.PerformLayout();
             this.grpbAccounts.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBoxContracts.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -643,5 +810,19 @@
         private FlowLayoutPanel flpAccounts;
         private Button btnNewAccount;
         private Button btnLoadAllAccounts;
+        private TabPage tabPage5;
+        private GroupBox groupBoxContracts;
+        private FlowLayoutPanel flpContracts;
+        private Button ContractsLoadbtn;
+        private Button NewContractbtn;
+        private GroupBox groupBox5;
+        private Button SearchConbtn;
+        private ComboBox FilterConcb;
+        private Label label4;
+        private TextBox SearchContbx;
+        private Label label7;
+        private CheckBox chbActiveStatus;
+        private Label label8;
+        private CheckBox chbNonActiveStatus;
     }
 }
