@@ -23,6 +23,7 @@ namespace ZooBazaarDesktop.Forms
         private Action? animalsSearch;
         private Action? accountSearch;
         private Action? contractSearch;
+        private Action? employeeSearch;
         private readonly LoginForm origin;
         private bool trigger = false;
         
@@ -376,11 +377,30 @@ namespace ZooBazaarDesktop.Forms
             }
             foreach (Contract contract in cm.GetByStatus(status))
             {
+
                 ContractDisplayBox box = new ContractDisplayBox(contract);
                 flpContracts.Controls.Add(box);
             }
         }
 
+        #endregion
+
+        #region Employee Filters
+        private void NoEmployeeFilterApplied()
+        {
+            MessageBox.Show("Please select an option to filter contracts by");
+        }
+
+        private void SearchEmployeesByName()
+        {
+            flpEmployees.Controls.Clear();
+            EmployeeManager em = EmployeeManager.CreateForDatabase();
+            foreach (Employee employee in em.GetEmployeesByName(txtboxSearchEmployee.Text))
+            {
+                EmployeeDisplayBox box = new EmployeeDisplayBox(employee);
+                flpEmployees.Controls.Add(box);
+            }
+        }
         #endregion
 
         #region Animals Tab UI
@@ -560,12 +580,43 @@ namespace ZooBazaarDesktop.Forms
                 ContractManager manager = ContractManager.CreateForDatabase();
                 foreach (var result in manager.GetAll())
                 {
+                    
                     ContractDisplayBox box = new ContractDisplayBox(result);
                     flpContracts.Controls.Add(box);
                 }
             }
         }
 
+        #endregion
+
+        #region Employee tab UI
+      
+
+        private void OnEmployeeSearchClick(object sender, EventArgs e)
+        {
+            employeeSearch?.Invoke();
+        }
+
+        private void OnEmployeeFilterChanged(object sender, EventArgs e)
+        {
+            if (cbEmployeeSearchFilter.Text == "Name")
+            {
+                employeeSearch = SearchEmployeesByName;
+            }
+            //else if (cbEmployeeSearchFilter.Text == "E-mail address")
+            //{
+            //    employeeSearch = ;
+            //}
+            else
+            {
+                employeeSearch = NoEmployeeFilterApplied;
+            }
+        }
+
+        private void OnCreateEmployeeClick(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }
