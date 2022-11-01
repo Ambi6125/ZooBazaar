@@ -9,7 +9,7 @@ using ZooBazaarLogicLayer.Animals;
 
 namespace ZooBazaarLogicLayer.People
 {
-    public class Employee
+    public class Employee : IDataProvider
     {
         private readonly int? _id;
         private string name;

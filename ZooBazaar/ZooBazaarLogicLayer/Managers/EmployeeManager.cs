@@ -31,15 +31,15 @@ namespace ZooBazaarLogicLayer.Managers
 
         public IValidationResponse UpdateEmployees(Employee e)
         {
-            return null; //dataSource.UpdateEntry(e);
+            return dataSource.UpdateEntry(e);
         }
         public IValidationResponse CreateAnimal(Employee e)
         {
-            return null;// dataSource.AddEntry(e);
+            return dataSource.AddEntry(e);
         }
         public IValidationResponse DeleteAnimal(Employee e)
         {
-            return null;// dataSource.DeleteEntry(e);
+            return dataSource.DeleteEntry(e);
         }
 
         public IReadOnlyCollection<Employee> GetEmployeesByName(string name)
