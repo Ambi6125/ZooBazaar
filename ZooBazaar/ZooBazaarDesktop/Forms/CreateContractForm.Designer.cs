@@ -41,6 +41,9 @@
             this.Createbtn = new System.Windows.Forms.Button();
             this.checkBoxEnd = new System.Windows.Forms.CheckBox();
             this.Cancelbutton = new System.Windows.Forms.Button();
+            this.LvEmployees = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // dTPStart
@@ -96,6 +99,7 @@
             // 
             // cbHours
             // 
+            this.cbHours.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHours.FormattingEnabled = true;
             this.cbHours.Items.AddRange(new object[] {
             "Zero Based - 0 hours",
@@ -105,6 +109,7 @@
             this.cbHours.Name = "cbHours";
             this.cbHours.Size = new System.Drawing.Size(182, 28);
             this.cbHours.TabIndex = 6;
+            this.cbHours.SelectedIndexChanged += new System.EventHandler(this.OnHoursChanged);
             // 
             // chbNonActiveStatus
             // 
@@ -165,11 +170,34 @@
             this.Cancelbutton.UseVisualStyleBackColor = true;
             this.Cancelbutton.Click += new System.EventHandler(this.Cancelbutton_Click);
             // 
+            // LvEmployees
+            // 
+            this.LvEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.LvEmployees.Location = new System.Drawing.Point(560, 101);
+            this.LvEmployees.Name = "LvEmployees";
+            this.LvEmployees.Size = new System.Drawing.Size(355, 276);
+            this.LvEmployees.TabIndex = 14;
+            this.LvEmployees.UseCompatibleStateImageBehavior = false;
+            this.LvEmployees.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Employee Name";
+            this.columnHeader1.Width = 160;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Email";
+            this.columnHeader2.Width = 160;
+            // 
             // CreateContractForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 487);
+            this.ClientSize = new System.Drawing.Size(997, 487);
+            this.Controls.Add(this.LvEmployees);
             this.Controls.Add(this.Cancelbutton);
             this.Controls.Add(this.checkBoxEnd);
             this.Controls.Add(this.Createbtn);
@@ -185,6 +213,7 @@
             this.Controls.Add(this.dTPStart);
             this.Name = "CreateContractForm";
             this.Text = "CreateContractForm";
+            this.Load += new System.EventHandler(this.CreateContractForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,5 +234,8 @@
         private Button Createbtn;
         private CheckBox checkBoxEnd;
         private Button Cancelbutton;
+        private ListView LvEmployees;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
     }
 }

@@ -17,6 +17,8 @@ namespace ZooBazaarDesktop.Forms
     {
         private MainForm mainForm;
         private ContractManager manager = ContractManager.CreateForDatabase();
+        private EmployeeManager empmanager = EmployeeManager.CreateForDatabase();
+        private ContractType type;
         public CreateContractForm(MainForm Origin)
         {
             InitializeComponent();
@@ -25,24 +27,6 @@ namespace ZooBazaarDesktop.Forms
 
         private void Createbtn_Click(object sender, EventArgs e)
         {
-            ContractType type;
-            if (cbHours.Text == "Zero Based - 0 hours")
-            {
-               type = ContractType.ZeroBased;
-            }
-            else if(cbHours.Text == "Part Time - 32 hours")
-            {
-                type = ContractType.PartTime;
-            }
-            else if(cbHours.Text == "Full Time - 40 hours")
-            {
-                type = ContractType.FullTime;
-            }
-            else //this needs to change
-            {
-                type = ContractType.ZeroBased;
-            }
-
             DateTime start = dTPStart.Value;
             DateTime? end;
 
@@ -84,6 +68,39 @@ namespace ZooBazaarDesktop.Forms
         {
             mainForm.Show();
             Close();
+        }
+
+        private void ReFillListView(IEnumerable<Employee> employees)
+        {
+            LvEmployees.Items.Clear();
+            foreach (Employee employee in employees)
+            {
+                ListViewItem item = new ListViewItem(employee.Name);
+                item.SubItems.Add(employee.Email);
+                LvEmployees.Items.Add(item);
+            }
+        }
+
+        private void OnHoursChanged(object sender, EventArgs e)
+        {            
+            if (cbHours.Text == "Zero Based - 0 hours")
+            {
+                type = ContractType.ZeroBased;
+            }
+            else if (cbHours.Text == "Part Time - 32 hours")
+            {
+                type = ContractType.PartTime;
+            }
+            else if (cbHours.Text == "Full Time - 40 hours")
+            {
+                type = ContractType.FullTime;
+            }
+        }
+
+        private void CreateContractForm_Load(object sender, EventArgs e)
+        {
+            cbHours.SelectedIndex = 0;
+            ReFillListView(empmanager.GetByStatus());
         }
     }
 }

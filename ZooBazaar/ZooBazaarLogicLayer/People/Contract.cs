@@ -20,6 +20,8 @@ namespace ZooBazaarLogicLayer.People
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
+        public string Name { get; }
+
         public Contract(DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
         {
             this.startDate = startDate;
@@ -29,13 +31,14 @@ namespace ZooBazaarLogicLayer.People
         }
 
 
-        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
+        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive, string name)
         {
             this.id = id;
             this.startDate = startDate;
             this.endDate = endDate;
             ContractType = contractType;
             IsActive = isActive;
+            Name = name;
         }
 
         public void ChangeType(ContractType type)

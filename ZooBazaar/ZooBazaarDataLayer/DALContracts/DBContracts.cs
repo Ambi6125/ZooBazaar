@@ -35,14 +35,15 @@ namespace ZooBazaarDataLayer.DALContracts
         {
             MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_contracts.employeeId");            
             MySqlCondition condition = new MySqlCondition("firstName", name, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(join, "*", condition);
+            SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.employeeName", condition);
             return _communicator.Select(q);
         }
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByStatus(bool active)
-        {            
+        {
+            MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_contracts.employeeId");
             MySqlCondition condition = new MySqlCondition("isActive", active, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(zb_contracts, "*", condition);
+            SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.employeeName", condition);
             return _communicator.Select(q);
         }
     }

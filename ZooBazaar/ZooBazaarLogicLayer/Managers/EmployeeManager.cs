@@ -61,5 +61,11 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return finalResult;
         }
+
+        //TODO: Dear Luc Amogus, Inner join with a contracts table to get employees with inactive contracts
+        public IReadOnlyCollection<Employee> GetByStatus()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

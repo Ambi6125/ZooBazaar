@@ -377,8 +377,8 @@ namespace ZooBazaarDesktop.Forms
             }
             foreach (Contract contract in cm.GetByStatus(status))
             {
-                //ContractDisplayBox box = new ContractDisplayBox(contract);  //Needs name of Employee to be added in the paarameter
-                //flpContracts.Controls.Add(box);
+                ContractDisplayBox box = new ContractDisplayBox(contract, );  //Needs name of Employee to be added in the paarameter
+                flpContracts.Controls.Add(box);
             }
         }
 
@@ -581,8 +581,8 @@ namespace ZooBazaarDesktop.Forms
                 ContractManager manager = ContractManager.CreateForDatabase();
                 foreach (var result in manager.GetAll())
                 {
-                    //ContractDisplayBox box = new ContractDisplayBox(result); //Needs name of Employee to be added in the paarameter
-                    //flpContracts.Controls.Add(box);
+                    ContractDisplayBox box = new ContractDisplayBox(result); //Needs name of Employee to be added in the paarameter
+                    flpContracts.Controls.Add(box);
                 }
             }
         }

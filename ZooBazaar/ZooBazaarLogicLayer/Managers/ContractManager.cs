@@ -47,13 +47,14 @@ namespace ZooBazaarLogicLayer.Managers
             foreach (var contractData in result)
             {
                 int id = contractData.GetValueAs<int>("id");
+                string resultname = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 bool isActive = contractData.GetValueAs<bool>("isActive");
                 int hours = contractData.GetValueAs<int>("contarctHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, isActive);
+                Contract c = new Contract(id, startDate, endDate, type, isActive, resultname);
                 contracts.Add(c);
             }
             return contracts;
@@ -66,13 +67,14 @@ namespace ZooBazaarLogicLayer.Managers
             foreach (var contractData in result)
             {
                 int id = contractData.GetValueAs<int>("id");
+                string name = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 bool isActive = contractData.GetValueAs<bool>("isActive");
                 int hours = contractData.GetValueAs<int>("contarctHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, isActive);
+                Contract c = new Contract(id, startDate, endDate, type, isActive, name);
                 contracts.Add(c);
             }
             return contracts;

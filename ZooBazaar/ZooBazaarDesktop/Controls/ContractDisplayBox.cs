@@ -8,22 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZooBazaarLogicLayer.People;
+using ZooBazaarDesktop.Colours;
 
 namespace ZooBazaarDesktop.Controls
 {
     public partial class ContractDisplayBox : UserControl
     {
         private readonly Contract subject;
-        private string name;
-        public ContractDisplayBox(Contract c, string name)
+        public ContractDisplayBox(Contract c)
         {
             InitializeComponent();
             subject = c;
-            this.name = name;
         }
 
         private void ContractDisplayBox_Load(object sender, EventArgs e)
         {
+            switch (subject.ContractType)
+            {
+                case ContractType.PartTime:
+                    this.BackColor = ZooBazaarColors.ContractColors.PartTime;
+                    break;
+                case ContractType.FullTime:
+                    this.BackColor = ZooBazaarColors.ContractColors.FullTime;
+                    break;
+                case ContractType.ZeroBased:
+                    this.BackColor = ZooBazaarColors.ContractColors.ZeroTime;
+                    break;
+            }
+
             if (subject.IsActive)
             {
                 isActivelabel.Text = "Active";
@@ -42,7 +54,7 @@ namespace ZooBazaarDesktop.Controls
                 Datelabel.Text = $"{subject.StartDate} - {subject.EndDate}";
             }
 
-            EmpNamelabel.Text = name;
+            EmpNamelabel.Text = subject.Name;
         }
     }
 }

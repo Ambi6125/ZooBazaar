@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using ZooBazaarLogicLayer.Animals;
+using ZooBazaarLogicLayer.Exceptions;
 
 namespace ZooBazaarLogicLayer.People
 {
@@ -31,6 +32,8 @@ namespace ZooBazaarLogicLayer.People
                     throw new ArgumentException("Cannot be empty.");
             }
         }
+
+        public string Email => email;
 
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);
@@ -80,8 +83,14 @@ namespace ZooBazaarLogicLayer.People
         {
             get
             {
-                //Should check whether the current contract is active.
-                throw new NotImplementedException();
+                if (contracts.Any())
+                {
+                    return CurrentContract.IsActive;
+                }
+                else
+                {
+                    throw new NoContractsException();
+                }
             }
         }
     }

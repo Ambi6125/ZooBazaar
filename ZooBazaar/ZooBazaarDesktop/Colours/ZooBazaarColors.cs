@@ -26,6 +26,13 @@ namespace ZooBazaarDesktop.Colours
             public static Color Transferred => Color.LightBlue;
             public static Color Released => Color.LightYellow;
         }
+
+        internal class ContractColors
+        {
+            public static Color PartTime => Color.Cyan;
+            public static Color FullTime => Color.LightGreen;
+            public static Color ZeroTime => Color.Goldenrod;
+        }
         #endregion
     }
 }
