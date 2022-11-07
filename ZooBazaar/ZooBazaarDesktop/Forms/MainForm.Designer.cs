@@ -88,6 +88,7 @@
             this.groupBoxContracts = new System.Windows.Forms.GroupBox();
             this.flpContracts = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnCreateEmployee = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnEmployeeSearch = new System.Windows.Forms.Button();
             this.cbEmployeeSearchFilter = new System.Windows.Forms.ComboBox();
@@ -96,7 +97,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCreateEmployee = new System.Windows.Forms.Button();
+            this.btnGetAllEmp = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -797,6 +798,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.btnGetAllEmp);
             this.tabPage6.Controls.Add(this.btnCreateEmployee);
             this.tabPage6.Controls.Add(this.groupBox7);
             this.tabPage6.Controls.Add(this.groupBox6);
@@ -806,6 +808,17 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Employees";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateEmployee
+            // 
+            this.btnCreateEmployee.Location = new System.Drawing.Point(579, 279);
+            this.btnCreateEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCreateEmployee.Name = "btnCreateEmployee";
+            this.btnCreateEmployee.Size = new System.Drawing.Size(82, 22);
+            this.btnCreateEmployee.TabIndex = 5;
+            this.btnCreateEmployee.Text = "New";
+            this.btnCreateEmployee.UseVisualStyleBackColor = true;
+            this.btnCreateEmployee.Click += new System.EventHandler(this.OnCreateEmployeeClick);
             // 
             // groupBox7
             // 
@@ -891,16 +904,16 @@
             this.flpEmployees.Size = new System.Drawing.Size(479, 243);
             this.flpEmployees.TabIndex = 0;
             // 
-            // btnCreateEmployee
+            // btnGetAllEmp
             // 
-            this.btnCreateEmployee.Location = new System.Drawing.Point(579, 279);
-            this.btnCreateEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnCreateEmployee.Name = "btnCreateEmployee";
-            this.btnCreateEmployee.Size = new System.Drawing.Size(82, 22);
-            this.btnCreateEmployee.TabIndex = 5;
-            this.btnCreateEmployee.Text = "New";
-            this.btnCreateEmployee.UseVisualStyleBackColor = true;
-            this.btnCreateEmployee.Click += new System.EventHandler(this.OnCreateEmployeeClick);
+            this.btnGetAllEmp.Location = new System.Drawing.Point(579, 253);
+            this.btnGetAllEmp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGetAllEmp.Name = "btnGetAllEmp";
+            this.btnGetAllEmp.Size = new System.Drawing.Size(82, 22);
+            this.btnGetAllEmp.TabIndex = 6;
+            this.btnGetAllEmp.Text = "Get All";
+            this.btnGetAllEmp.UseVisualStyleBackColor = true;
+            this.btnGetAllEmp.Click += new System.EventHandler(this.GeAllEmpClick);
             // 
             // MainForm
             // 
@@ -1013,5 +1026,6 @@
         private TextBox txtboxSearchEmployee;
         private Label label10;
         private Button btnCreateEmployee;
+        private Button btnGetAllEmp;
     }
 }

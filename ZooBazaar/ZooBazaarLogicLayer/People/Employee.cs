@@ -32,7 +32,8 @@ namespace ZooBazaarLogicLayer.People
                     throw new ArgumentException("Cannot be empty.");
             }
         }
-
+        public string Address => address;
+        public string PhoneNumber => phoneNumber;
         public string Email => email;
 
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
@@ -78,7 +79,29 @@ namespace ZooBazaarLogicLayer.People
         /// </summary>
         public Contract? CurrentContract => contracts.Last().IsActive ? contracts.Last() : null;
 
-        
+        public void ChangeAddress(string a)
+        {
+            
+            address = a;
+        }
+        public void ChangePhoneNumber(string p)
+        {
+            
+            phoneNumber = p;
+        }
+        public void ChangeEmail(string e)
+        {
+            
+            email = e;
+        }
+        public void ChangeBirthDay(DateTime t)
+        {
+            if (DateTime.Today < t)
+            {
+                throw new ArgumentException("Impossible birthday.");
+            }
+            birthDate = t;
+        }
         public bool IsActive
         {
             get

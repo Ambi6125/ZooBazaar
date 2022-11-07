@@ -39,6 +39,7 @@
             this.txtbUpdateEmployeeEmail = new System.Windows.Forms.TextBox();
             this.btnEmployeeUpdate = new System.Windows.Forms.Button();
             this.dtpUpdateEmployeeBirthDate = new System.Windows.Forms.DateTimePicker();
+            this.btnAssignAccount = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -90,28 +91,28 @@
             // 
             this.txtbUpdateEmployeeName.Location = new System.Drawing.Point(141, 69);
             this.txtbUpdateEmployeeName.Name = "txtbUpdateEmployeeName";
-            this.txtbUpdateEmployeeName.Size = new System.Drawing.Size(100, 23);
+            this.txtbUpdateEmployeeName.Size = new System.Drawing.Size(204, 23);
             this.txtbUpdateEmployeeName.TabIndex = 1;
             // 
             // txtbUpdateEmployeeAddress
             // 
             this.txtbUpdateEmployeeAddress.Location = new System.Drawing.Point(141, 100);
             this.txtbUpdateEmployeeAddress.Name = "txtbUpdateEmployeeAddress";
-            this.txtbUpdateEmployeeAddress.Size = new System.Drawing.Size(100, 23);
+            this.txtbUpdateEmployeeAddress.Size = new System.Drawing.Size(204, 23);
             this.txtbUpdateEmployeeAddress.TabIndex = 1;
             // 
             // txtbUpdateEmployeePhoneNumber
             // 
             this.txtbUpdateEmployeePhoneNumber.Location = new System.Drawing.Point(141, 131);
             this.txtbUpdateEmployeePhoneNumber.Name = "txtbUpdateEmployeePhoneNumber";
-            this.txtbUpdateEmployeePhoneNumber.Size = new System.Drawing.Size(100, 23);
+            this.txtbUpdateEmployeePhoneNumber.Size = new System.Drawing.Size(138, 23);
             this.txtbUpdateEmployeePhoneNumber.TabIndex = 1;
             // 
             // txtbUpdateEmployeeEmail
             // 
             this.txtbUpdateEmployeeEmail.Location = new System.Drawing.Point(141, 163);
             this.txtbUpdateEmployeeEmail.Name = "txtbUpdateEmployeeEmail";
-            this.txtbUpdateEmployeeEmail.Size = new System.Drawing.Size(100, 23);
+            this.txtbUpdateEmployeeEmail.Size = new System.Drawing.Size(204, 23);
             this.txtbUpdateEmployeeEmail.TabIndex = 1;
             // 
             // btnEmployeeUpdate
@@ -131,11 +132,21 @@
             this.dtpUpdateEmployeeBirthDate.Size = new System.Drawing.Size(200, 23);
             this.dtpUpdateEmployeeBirthDate.TabIndex = 3;
             // 
+            // btnAssignAccount
+            // 
+            this.btnAssignAccount.Location = new System.Drawing.Point(163, 240);
+            this.btnAssignAccount.Name = "btnAssignAccount";
+            this.btnAssignAccount.Size = new System.Drawing.Size(116, 23);
+            this.btnAssignAccount.TabIndex = 4;
+            this.btnAssignAccount.Text = "Assign Account";
+            this.btnAssignAccount.UseVisualStyleBackColor = true;
+            // 
             // EmployeeDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 326);
+            this.Controls.Add(this.btnAssignAccount);
             this.Controls.Add(this.dtpUpdateEmployeeBirthDate);
             this.Controls.Add(this.btnEmployeeUpdate);
             this.Controls.Add(this.txtbUpdateEmployeeEmail);
@@ -149,6 +160,8 @@
             this.Controls.Add(this.label2);
             this.Name = "EmployeeDetailsForm";
             this.Text = "EmployeeDetails";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +179,6 @@
         private TextBox txtbUpdateEmployeeEmail;
         private Button btnEmployeeUpdate;
         private DateTimePicker dtpUpdateEmployeeBirthDate;
+        private Button btnAssignAccount;
     }
 }

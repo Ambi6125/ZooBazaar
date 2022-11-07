@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using ZooBazaarDataLayer.DALAnimal;
+using ZooBazaarDataLayer.DALContracts;
 
 namespace ZooBazaarDataLayer.DALEmployee
 {
@@ -47,6 +49,33 @@ namespace ZooBazaarDataLayer.DALEmployee
             UpdateQuery query = new UpdateQuery(table,  employee, condition);
 
             return communicator.Update(query);
+        }
+
+       
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithNoContracts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithInactiveContracts(bool isActive)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts()
+        {
+            MySqlTable join = table.Join(Join.Inner, "zb_contract", "zb_contracts.id = zb_employeecontracts.employeeId");
+            SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.employeeName");
+            return communicator.Select(q);
+        }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployees()
+        {
+            
+            SelectQuery query = new SelectQuery(table, "*");
+
+            return communicator.Select(query);
         }
     }
 }

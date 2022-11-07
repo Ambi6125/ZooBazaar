@@ -355,8 +355,9 @@ namespace ZooBazaarDesktop.Forms
             ContractManager cm = ContractManager.CreateForDatabase();
             foreach (Contract contract in cm.GetByEmployeeName(tbSearchAccountInput.Text))
             {
-                ContractDisplayBox box = new ContractDisplayBox(contract, SearchConbtn.Text);
-                flpContracts.Controls.Add(box);
+                //TODO: Remove Comment
+                //ContractDisplayBox box = new ContractDisplayBox(contract, SearchConbtn.Text);
+                //flpContracts.Controls.Add(box);
             }
         }
 
@@ -377,7 +378,7 @@ namespace ZooBazaarDesktop.Forms
             }
             foreach (Contract contract in cm.GetByStatus(status))
             {
-                ContractDisplayBox box = new ContractDisplayBox(contract, );  //Needs name of Employee to be added in the paarameter
+                ContractDisplayBox box = new ContractDisplayBox(contract );  //Needs name of Employee to be added in the paarameter
                 flpContracts.Controls.Add(box);
             }
         }
@@ -615,8 +616,24 @@ namespace ZooBazaarDesktop.Forms
 
         private void OnCreateEmployeeClick(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new CreateEmployeeForm(this).Show();
         }
         #endregion
+
+        private void GeAllEmpClick(object sender, EventArgs e)
+        {
+            DialogResult userResponse = MessageBox.Show("This might take a long time.\nContinue?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (userResponse == DialogResult.Yes)
+            {
+                flpEmployees.Controls.Clear();
+                EmployeeManager manager = EmployeeManager.CreateForDatabase();
+                foreach (var result in manager.GetAll())
+                {
+                    EmployeeDisplayBox box = new EmployeeDisplayBox(result);
+                    flpEmployees.Controls.Add(box);
+                }
+            }
+        }
     }
 }

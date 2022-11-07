@@ -100,7 +100,7 @@ namespace ZooBazaarDesktop.Forms
         private void CreateContractForm_Load(object sender, EventArgs e)
         {
             cbHours.SelectedIndex = 0;
-            ReFillListView(empmanager.GetByStatus());
+            ReFillListView(empmanager.GetEmployeesWithNoContracts());
         }
     }
 }

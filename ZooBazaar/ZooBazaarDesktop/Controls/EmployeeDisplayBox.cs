@@ -33,7 +33,12 @@ namespace ZooBazaarDesktop.Controls
 
         private void btnDetailsClick(object sender, EventArgs e)
         {
-            new EmployeeDetailsForm(employee).Show();
+            new EmployeeDetailsForm(employee, (MainForm)ParentForm).Show();
+        }
+
+        private void OnViewContractsClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

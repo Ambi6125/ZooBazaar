@@ -31,6 +31,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblAge = new System.Windows.Forms.Label();
             this.btnDetails = new System.Windows.Forms.Button();
+            this.btnViewContracts = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -61,11 +62,22 @@
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetailsClick);
             // 
+            // btnViewContracts
+            // 
+            this.btnViewContracts.Location = new System.Drawing.Point(57, 98);
+            this.btnViewContracts.Name = "btnViewContracts";
+            this.btnViewContracts.Size = new System.Drawing.Size(75, 23);
+            this.btnViewContracts.TabIndex = 3;
+            this.btnViewContracts.Text = "Contracts";
+            this.btnViewContracts.UseVisualStyleBackColor = true;
+            this.btnViewContracts.Click += new System.EventHandler(this.OnViewContractsClick);
+            // 
             // EmployeeDisplayBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Goldenrod;
+            this.Controls.Add(this.btnViewContracts);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.lblName);
@@ -82,5 +94,6 @@
         private Label lblName;
         private Label lblAge;
         private Button btnDetails;
+        private Button btnViewContracts;
     }
 }

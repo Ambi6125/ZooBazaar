@@ -33,11 +33,11 @@ namespace ZooBazaarLogicLayer.Managers
         {
             return dataSource.UpdateEntry(e);
         }
-        public IValidationResponse CreateAnimal(Employee e)
+        public IValidationResponse CreateEmployee(Employee e)
         {
             return dataSource.AddEntry(e);
         }
-        public IValidationResponse DeleteAnimal(Employee e)
+        public IValidationResponse DeleteEmployee(Employee e)
         {
             return dataSource.DeleteEntry(e);
         }
@@ -63,9 +63,61 @@ namespace ZooBazaarLogicLayer.Managers
         }
 
         //TODO: Dear Luc Amogus, Inner join with a contracts table to get employees with inactive contracts
-        public IReadOnlyCollection<Employee> GetByStatus()
+        public IReadOnlyCollection<Employee> GetEmployeesWithNoContracts()
         {
-            throw new NotImplementedException();
+            var queryResult = dataSource.GetEmployeesWithNoContracts();
+            List<Employee> finalResult = new List<Employee>();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
         }
+        public IReadOnlyCollection<Employee> GetEmployeesWithInactiveContracts(bool isActive)
+        {
+            var queryResult = dataSource.GetEmployeesWithInactiveContracts(isActive);
+            List<Employee> finalResult = new List<Employee>();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
+        }
+
+        public IReadOnlyCollection<Employee> GetAll()
+        {
+            var queryResult = dataSource.GetAllEmployees();
+            List<Employee> finalResult = new List<Employee>();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
+        }
+
     }
 }

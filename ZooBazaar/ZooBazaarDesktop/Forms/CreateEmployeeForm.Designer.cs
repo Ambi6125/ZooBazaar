@@ -149,6 +149,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CreateEmployeeForm";
             this.Text = "CreateEmployee";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
