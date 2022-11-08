@@ -88,6 +88,7 @@
             this.groupBoxContracts = new System.Windows.Forms.GroupBox();
             this.flpContracts = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnGetAllEmp = new System.Windows.Forms.Button();
             this.btnCreateEmployee = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnEmployeeSearch = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnGetAllEmp = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -809,6 +809,17 @@
             this.tabPage6.Text = "Employees";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // btnGetAllEmp
+            // 
+            this.btnGetAllEmp.Location = new System.Drawing.Point(579, 253);
+            this.btnGetAllEmp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGetAllEmp.Name = "btnGetAllEmp";
+            this.btnGetAllEmp.Size = new System.Drawing.Size(82, 22);
+            this.btnGetAllEmp.TabIndex = 6;
+            this.btnGetAllEmp.Text = "Get All";
+            this.btnGetAllEmp.UseVisualStyleBackColor = true;
+            this.btnGetAllEmp.Click += new System.EventHandler(this.GeAllEmpClick);
+            // 
             // btnCreateEmployee
             // 
             this.btnCreateEmployee.Location = new System.Drawing.Point(579, 279);
@@ -899,21 +910,11 @@
             // 
             // flpEmployees
             // 
+            this.flpEmployees.AutoScroll = true;
             this.flpEmployees.Location = new System.Drawing.Point(8, 27);
             this.flpEmployees.Name = "flpEmployees";
             this.flpEmployees.Size = new System.Drawing.Size(479, 243);
             this.flpEmployees.TabIndex = 0;
-            // 
-            // btnGetAllEmp
-            // 
-            this.btnGetAllEmp.Location = new System.Drawing.Point(579, 253);
-            this.btnGetAllEmp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGetAllEmp.Name = "btnGetAllEmp";
-            this.btnGetAllEmp.Size = new System.Drawing.Size(82, 22);
-            this.btnGetAllEmp.TabIndex = 6;
-            this.btnGetAllEmp.Text = "Get All";
-            this.btnGetAllEmp.UseVisualStyleBackColor = true;
-            this.btnGetAllEmp.Click += new System.EventHandler(this.GeAllEmpClick);
             // 
             // MainForm
             // 
