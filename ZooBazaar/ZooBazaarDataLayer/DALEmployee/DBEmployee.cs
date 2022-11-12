@@ -55,18 +55,36 @@ namespace ZooBazaarDataLayer.DALEmployee
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithNoContracts()
         {
-            throw new NotImplementedException();
-        }
+            
+            MySqlCondition condition = new MySqlCondition("hasContract", false, Strictness.MustMatchExactly);
+            SelectQuery q = new SelectQuery(table, "zb_employees.*", condition);
+            return communicator.Select(q);
 
+        }
+        public IValidationResponse UpdateContractStatus(IDataProvider employee)
+        {
+            object idValue = employee.GetParameterArgs().ElementAt(0);
+            MySqlCondition condition = new MySqlCondition("id", idValue, Strictness.MustMatchExactly);
+            UpdateQuery query = new UpdateQuery(table, employee, condition);
+
+            return communicator.Update(query);
+        }
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithInactiveContracts(bool isActive)
         {
-            throw new NotImplementedException();
+           
+            MySqlTable join = table.Join(Join.Inner, "zb_employeecontracts", "zb_employees.id = zb_employeecontracts.employeeId");
+            MySqlTable join2 = join.Join(Join.Inner, "zb_contracts","zb_employeecontracts.contractId = zb_contracts.id");
+            MySqlCondition condition = new MySqlCondition("isActive", isActive, Strictness.MustMatchExactly);
+            SelectQuery q = new SelectQuery(join2, "zb_employees.*", condition);
+            return communicator.Select(q);
         }
 
-        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts()
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts(int? id)
         {
-            MySqlTable join = table.Join(Join.Inner, "zb_contract", "zb_contracts.id = zb_employeecontracts.employeeId");
-            SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.employeeName");
+            MySqlTable jointable = new MySqlTable("zb_contracts");
+            MySqlTable join = jointable.Join(Join.Inner, "zb_employeecontracts", "zb_contracts.id = zb_employeecontracts.contractId");
+            MySqlCondition condition = new MySqlCondition("employeeId", id, Strictness.MustMatchExactly);
+            SelectQuery q = new SelectQuery(join, "zb_contracts.*",condition);
             return communicator.Select(q);
         }
 
@@ -77,5 +95,7 @@ namespace ZooBazaarDataLayer.DALEmployee
 
             return communicator.Select(query);
         }
+
+        
     }
 }

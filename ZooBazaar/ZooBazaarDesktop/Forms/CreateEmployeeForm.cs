@@ -28,7 +28,7 @@ namespace ZooBazaarDesktop.Forms
             do
             {
                 EmployeeManager em =  EmployeeManager.CreateForDatabase();
-                Employee employee = new Employee(txtCreateEmployeeName.Text,txtCreateEmployeeAddress.Text,txtCreateEmployeePhoneNumber.Text, txtCreateEmployeeEmail.Text, dtpCreateEmployeeBirthDate.Value.Date);
+                Employee employee = new Employee(txtCreateEmployeeName.Text,txtCreateEmployeeAddress.Text,txtCreateEmployeePhoneNumber.Text, txtCreateEmployeeEmail.Text, dtpCreateEmployeeBirthDate.Value.Date,false);
                 var response = em.CreateEmployee(employee);
                 if (response.Success)
                 {

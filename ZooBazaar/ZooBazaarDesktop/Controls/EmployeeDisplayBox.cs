@@ -38,7 +38,7 @@ namespace ZooBazaarDesktop.Controls
 
         private void OnViewContractsClick(object sender, EventArgs e)
         {
-
+            new EmployeeContracts(employee, (MainForm)ParentForm).Show();
         }
     }
 }
