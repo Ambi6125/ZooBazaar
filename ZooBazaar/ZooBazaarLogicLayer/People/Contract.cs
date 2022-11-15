@@ -17,10 +17,12 @@ namespace ZooBazaarLogicLayer.People
 
         public ContractType ContractType { get; private set; }
         public bool IsActive { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime StartDate => startDate;
+        public DateTime? EndDate => endDate;
 
-        public string Name { get; }
+        public string EmployeeName { get; }
+
+        public int ID => id.Value;
 
         public Contract(DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
         {
@@ -30,7 +32,6 @@ namespace ZooBazaarLogicLayer.People
             IsActive = isActive;
         }
 
-
         public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive, string name)
         {
             this.id = id;
@@ -38,7 +39,16 @@ namespace ZooBazaarLogicLayer.People
             this.endDate = endDate;
             ContractType = contractType;
             IsActive = isActive;
-            Name = name;
+            EmployeeName = name;
+        }
+
+        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
+        {
+            this.id = id;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            ContractType = contractType;
+            IsActive = isActive;
         }
 
         public void ChangeType(ContractType type)
@@ -48,16 +58,12 @@ namespace ZooBazaarLogicLayer.People
 
         public IParameterValueCollection GetParameterArgs()
         {
-            ContractType type = ContractType.FullTime;
-
-            int hours = (int)type;
-
             ParameterValueCollection pvc = new ParameterValueCollection();
             pvc.Add("id", id);
             pvc.Add("startDate", startDate);
             pvc.Add("endDate", endDate);
             pvc.Add("isActive", IsActive);
-            pvc.Add("contractHours", hours);
+            pvc.Add("contractHours", (int)ContractType);
 
             return pvc;
         }

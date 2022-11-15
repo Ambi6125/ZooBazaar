@@ -71,7 +71,7 @@
             this.Controls.Add(this.isActivelabel);
             this.Controls.Add(this.EmpNamelabel);
             this.Name = "ContractDisplayBox";
-            this.Size = new System.Drawing.Size(331, 177);
+            this.Size = new System.Drawing.Size(387, 177);
             this.Load += new System.EventHandler(this.ContractDisplayBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -47,14 +47,14 @@ namespace ZooBazaarDesktop.Controls
 
             if(subject.EndDate == null)
             {
-                Datelabel.Text = $"{subject.StartDate} - ???";
+                Datelabel.Text = $"{subject.StartDate.ToString("dd/MM/yy")} - ???";
             }
             else
             {
-                Datelabel.Text = $"{subject.StartDate} - {subject.EndDate}";
+                Datelabel.Text = $"{subject.StartDate.ToString("dd/MM/yy")} - {subject.EndDate.Value.ToString("dd/MM/yy")}";
             }
 
-            EmpNamelabel.Text = subject.Name;
+            EmpNamelabel.Text = subject.EmployeeName;
         }
     }
 }

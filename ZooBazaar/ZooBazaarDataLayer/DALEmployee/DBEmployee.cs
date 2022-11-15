@@ -52,7 +52,7 @@ namespace ZooBazaarDataLayer.DALEmployee
         }
 
        
-
+        //TODO: Make it with left join, result need to give employees without contracts
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithNoContracts()
         {
             
@@ -61,14 +61,16 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Select(q);
 
         }
-        public IValidationResponse UpdateContractStatus(IDataProvider employee)
-        {
-            object idValue = employee.GetParameterArgs().ElementAt(0);
-            MySqlCondition condition = new MySqlCondition("id", idValue, Strictness.MustMatchExactly);
-            UpdateQuery query = new UpdateQuery(table, employee, condition);
 
-            return communicator.Update(query);
-        }
+        //public IValidationResponse UpdateContractStatus(IDataProvider employee)
+        //{
+        //    object idValue = employee.GetParameterArgs().ElementAt(0);
+        //    MySqlCondition condition = new MySqlCondition("id", idValue, Strictness.MustMatchExactly);
+        //    UpdateQuery query = new UpdateQuery(table, employee, condition);
+
+        //    return communicator.Update(query);
+        //}
+
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithInactiveContracts(bool isActive)
         {
            

@@ -25,7 +25,6 @@ namespace ZooBazaarDesktop.Forms
         private Action? contractSearch;
         private Action? employeeSearch;
         private readonly LoginForm origin;
-        private bool trigger = false;
         
         public MainForm(LoginForm origin)
         {
@@ -355,10 +354,36 @@ namespace ZooBazaarDesktop.Forms
             ContractManager cm = ContractManager.CreateForDatabase();
             foreach (Contract contract in cm.GetByEmployeeName(tbSearchAccountInput.Text))
             {
-                //TODO: Remove Comment
-                //ContractDisplayBox box = new ContractDisplayBox(contract, SearchConbtn.Text);
-                //flpContracts.Controls.Add(box);
+                ContractDisplayBox box = new ContractDisplayBox(contract);
+                flpContracts.Controls.Add(box);
             }
+        }
+
+        private void SearchContractsBytype()
+        {
+            flpContracts.Controls.Clear();
+            ContractManager cm = ContractManager.CreateForDatabase();
+
+            int hours =0;
+            if (cbContractType.Text == "ZeroBased")
+            {
+                hours = ((int)ContractType.ZeroBased);
+            }
+            else if(cbContractType.Text == "Part-Time")
+            {
+                hours = ((int)ContractType.PartTime);
+            }
+            else if(cbContractType.Text == "Full-Time")
+            {
+                hours = ((int)ContractType.FullTime);
+            }
+
+            foreach(Contract contract in cm.GetByType(hours))
+            {
+                ContractDisplayBox box = new ContractDisplayBox(contract);
+                flpContracts.Controls.Add(box);
+            }
+
         }
 
         private void SearchContractsByStatus()
@@ -368,17 +393,15 @@ namespace ZooBazaarDesktop.Forms
             bool status = false;
             if (chbActiveStatus.Checked)
             {
-                trigger = true;
                 status = true;
             }
             else if(chbNonActiveStatus.Checked)
             {
-                trigger = true;
                 status = false;
             }
             foreach (Contract contract in cm.GetByStatus(status))
             {
-                ContractDisplayBox box = new ContractDisplayBox(contract );  //Needs name of Employee to be added in the paarameter
+                ContractDisplayBox box = new ContractDisplayBox(contract );
                 flpContracts.Controls.Add(box);
             }
         }
@@ -550,10 +573,13 @@ namespace ZooBazaarDesktop.Forms
             {
                 contractSearch = SearchContractsByName;
             }
-            else if (trigger)
+            else if (FilterConcb.Text == "Type")
+            {
+                contractSearch = SearchContractsBytype;
+            }
+            else if (FilterConcb.Text == "Status")
             {
                 contractSearch = SearchContractsByStatus;
-                trigger = false;
             }
             else
             {
@@ -582,7 +608,7 @@ namespace ZooBazaarDesktop.Forms
                 ContractManager manager = ContractManager.CreateForDatabase();
                 foreach (var result in manager.GetAll())
                 {
-                    ContractDisplayBox box = new ContractDisplayBox(result); //Needs name of Employee to be added in the paarameter
+                    ContractDisplayBox box = new ContractDisplayBox(result);
                     flpContracts.Controls.Add(box);
                 }
             }

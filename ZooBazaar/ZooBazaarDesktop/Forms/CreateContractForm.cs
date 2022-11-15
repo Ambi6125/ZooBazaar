@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZooBazaarLogicLayer;
 using ZooBazaarLogicLayer.Managers;
 using ZooBazaarLogicLayer.People;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ZooBazaarDesktop.Forms
 {
@@ -23,13 +25,13 @@ namespace ZooBazaarDesktop.Forms
         {
             InitializeComponent();
             mainForm = Origin;
+            FillList(empmanager.GetEmployeesWithNoContracts().ToArray());
         }
 
         private void Createbtn_Click(object sender, EventArgs e)
-        {
+        {            
             DateTime start = dTPStart.Value;
             DateTime? end;
-
             if (checkBoxEnd.Checked)
             {
                 end = null;
@@ -37,21 +39,21 @@ namespace ZooBazaarDesktop.Forms
             else
             {
                 end = dTPEnd.Value;
-            }            
-
-            bool active = false;
-
-            if (chbActiveStatus.Checked)
-            {
-                active = true;
             }
-            else if (chbNonActiveStatus.Checked)
-            {
-                active = false;
-            }
-
+            bool active = true;
+            //bool active = start.Date == DateTime.Now.Date;
             Contract contract = new Contract(start, end, type, active);
-            var result = manager.CreateContract(contract);
+
+            int num = employeelistbox.SelectedIndex;
+            var emp = empmanager.GetEmployeesWithNoContracts();
+            //Contract oldcontract = emp.ElementAt(num).CurrentContract;
+            //if (oldcontract != null)
+            //{
+            //    oldcontract.IsActive = false;
+            //    manager.UpdateContract(oldcontract);
+            //}
+            manager.CreateContract(contract);
+            var result = manager.AssignContract(emp.ElementAt(num));
             if (result.Success)
             {
                 MessageBox.Show("Succesfully created.");
@@ -70,37 +72,34 @@ namespace ZooBazaarDesktop.Forms
             Close();
         }
 
-        private void ReFillListView(IEnumerable<Employee> employees)
-        {
-            LvEmployees.Items.Clear();
-            foreach (Employee employee in employees)
-            {
-                ListViewItem item = new ListViewItem(employee.Name);
-                item.SubItems.Add(employee.Email);
-                LvEmployees.Items.Add(item);
-            }
-        }
-
         private void OnHoursChanged(object sender, EventArgs e)
-        {            
-            if (cbHours.Text == "Zero Based - 0 hours")
+        {
+            switch (cbHours.SelectedIndex)
             {
-                type = ContractType.ZeroBased;
-            }
-            else if (cbHours.Text == "Part Time - 32 hours")
-            {
-                type = ContractType.PartTime;
-            }
-            else if (cbHours.Text == "Full Time - 40 hours")
-            {
-                type = ContractType.FullTime;
+                case 0:
+                    type = ContractType.ZeroBased;
+                    break;
+                case 1:
+                    type = ContractType.PartTime;
+                    break;
+                case 2:
+                    type = ContractType.FullTime;
+                    break;
             }
         }
 
         private void CreateContractForm_Load(object sender, EventArgs e)
         {
             cbHours.SelectedIndex = 0;
-            ReFillListView(empmanager.GetEmployeesWithNoContracts());
+        }
+
+        private void FillList(ICollection<Employee> employees)
+        {
+            foreach (Employee e in employees)
+            {
+                string name = $"{e.Name} - {e.Email}";
+                employeelistbox.Items.Add(name);
+            }           
         }
     }
 }

@@ -35,15 +35,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbHours = new System.Windows.Forms.ComboBox();
-            this.chbNonActiveStatus = new System.Windows.Forms.CheckBox();
-            this.chbActiveStatus = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.Createbtn = new System.Windows.Forms.Button();
             this.checkBoxEnd = new System.Windows.Forms.CheckBox();
             this.Cancelbutton = new System.Windows.Forms.Button();
-            this.LvEmployees = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.employeelistbox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // dTPStart
@@ -111,38 +106,9 @@
             this.cbHours.TabIndex = 6;
             this.cbHours.SelectedIndexChanged += new System.EventHandler(this.OnHoursChanged);
             // 
-            // chbNonActiveStatus
-            // 
-            this.chbNonActiveStatus.AutoSize = true;
-            this.chbNonActiveStatus.Location = new System.Drawing.Point(221, 326);
-            this.chbNonActiveStatus.Name = "chbNonActiveStatus";
-            this.chbNonActiveStatus.Size = new System.Drawing.Size(104, 24);
-            this.chbNonActiveStatus.TabIndex = 10;
-            this.chbNonActiveStatus.Text = "Non Active";
-            this.chbNonActiveStatus.UseVisualStyleBackColor = true;
-            // 
-            // chbActiveStatus
-            // 
-            this.chbActiveStatus.AutoSize = true;
-            this.chbActiveStatus.Location = new System.Drawing.Point(125, 326);
-            this.chbActiveStatus.Name = "chbActiveStatus";
-            this.chbActiveStatus.Size = new System.Drawing.Size(72, 24);
-            this.chbActiveStatus.TabIndex = 9;
-            this.chbActiveStatus.Text = "Active";
-            this.chbActiveStatus.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 330);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 20);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Status:";
-            // 
             // Createbtn
             // 
-            this.Createbtn.Location = new System.Drawing.Point(84, 406);
+            this.Createbtn.Location = new System.Drawing.Point(71, 360);
             this.Createbtn.Name = "Createbtn";
             this.Createbtn.Size = new System.Drawing.Size(113, 52);
             this.Createbtn.TabIndex = 11;
@@ -162,7 +128,7 @@
             // 
             // Cancelbutton
             // 
-            this.Cancelbutton.Location = new System.Drawing.Point(284, 406);
+            this.Cancelbutton.Location = new System.Drawing.Point(271, 360);
             this.Cancelbutton.Name = "Cancelbutton";
             this.Cancelbutton.Size = new System.Drawing.Size(118, 52);
             this.Cancelbutton.TabIndex = 13;
@@ -170,40 +136,24 @@
             this.Cancelbutton.UseVisualStyleBackColor = true;
             this.Cancelbutton.Click += new System.EventHandler(this.Cancelbutton_Click);
             // 
-            // LvEmployees
+            // employeelistbox
             // 
-            this.LvEmployees.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.LvEmployees.Location = new System.Drawing.Point(560, 101);
-            this.LvEmployees.Name = "LvEmployees";
-            this.LvEmployees.Size = new System.Drawing.Size(355, 276);
-            this.LvEmployees.TabIndex = 14;
-            this.LvEmployees.UseCompatibleStateImageBehavior = false;
-            this.LvEmployees.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Employee Name";
-            this.columnHeader1.Width = 160;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Email";
-            this.columnHeader2.Width = 160;
+            this.employeelistbox.FormattingEnabled = true;
+            this.employeelistbox.ItemHeight = 20;
+            this.employeelistbox.Location = new System.Drawing.Point(565, 64);
+            this.employeelistbox.Name = "employeelistbox";
+            this.employeelistbox.Size = new System.Drawing.Size(350, 364);
+            this.employeelistbox.TabIndex = 14;
             // 
             // CreateContractForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 487);
-            this.Controls.Add(this.LvEmployees);
+            this.Controls.Add(this.employeelistbox);
             this.Controls.Add(this.Cancelbutton);
             this.Controls.Add(this.checkBoxEnd);
             this.Controls.Add(this.Createbtn);
-            this.Controls.Add(this.chbNonActiveStatus);
-            this.Controls.Add(this.chbActiveStatus);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.cbHours);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -228,14 +178,9 @@
         private Label label3;
         private Label label4;
         private ComboBox cbHours;
-        private CheckBox chbNonActiveStatus;
-        private CheckBox chbActiveStatus;
-        private Label label8;
         private Button Createbtn;
         private CheckBox checkBoxEnd;
         private Button Cancelbutton;
-        private ListView LvEmployees;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
+        private ListBox employeelistbox;
     }
 }
