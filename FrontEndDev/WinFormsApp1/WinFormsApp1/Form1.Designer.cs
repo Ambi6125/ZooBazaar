@@ -82,7 +82,7 @@
             this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton4.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.iconButton4.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar.Bug;
             this.iconButton4.IconColor = System.Drawing.Color.Gainsboro;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,10 +91,11 @@
             this.iconButton4.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.iconButton4.Size = new System.Drawing.Size(220, 60);
             this.iconButton4.TabIndex = 5;
-            this.iconButton4.Text = "Dashboard";
+            this.iconButton4.Text = "Species";
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = true;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
             // iconButton3
             // 
@@ -103,7 +104,7 @@
             this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton3.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.iconButton3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Exchange;
             this.iconButton3.IconColor = System.Drawing.Color.Gainsboro;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -112,10 +113,11 @@
             this.iconButton3.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.iconButton3.Size = new System.Drawing.Size(220, 60);
             this.iconButton3.TabIndex = 4;
-            this.iconButton3.Text = "Dashboard";
+            this.iconButton3.Text = "Exhibits";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = true;
+            this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // iconButton2
             // 
@@ -124,7 +126,7 @@
             this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton2.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.iconButton2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Cow;
             this.iconButton2.IconColor = System.Drawing.Color.Gainsboro;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,10 +135,11 @@
             this.iconButton2.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.iconButton2.Size = new System.Drawing.Size(220, 60);
             this.iconButton2.TabIndex = 3;
-            this.iconButton2.Text = "Dashboard";
+            this.iconButton2.Text = "Animals";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // employeeBtn
             // 
@@ -221,6 +224,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Image = global::WinFormsApp1.Properties.Resources.icons8_bell_96;
             this.pictureBox3.Location = new System.Drawing.Point(672, 31);
             this.pictureBox3.Name = "pictureBox3";
@@ -232,7 +236,7 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(70)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.iconPictureBox1);
@@ -264,7 +268,7 @@
             // 
             // iconPictureBox1
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(70)))));
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
             this.iconPictureBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.User;
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;

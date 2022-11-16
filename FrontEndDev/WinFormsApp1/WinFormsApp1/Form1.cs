@@ -54,6 +54,8 @@ namespace WinFormsApp1
                 //Current Child Form Icon
                 iconCurrentChildForm.IconChar = currentBtn.IconChar;
                 iconCurrentChildForm.IconColor = color;
+                lblTitleChildForm.Text = currentBtn.Text;
+
             }
         }
         private void DisableButton()
@@ -141,6 +143,24 @@ namespace WinFormsApp1
                 FormBorderStyle = FormBorderStyle.None;
             else
                 FormBorderStyle = FormBorderStyle.Sizable;
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+
         }
     }
 }

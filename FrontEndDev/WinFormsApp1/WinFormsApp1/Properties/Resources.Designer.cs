@@ -134,10 +134,50 @@ namespace WinFormsApp1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1148136785_612x612 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1148136785-612x612", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1148136785_612x6121 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1148136785-612x6121", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1148136785_612x6122 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1148136785-612x6122", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pict__window_buttons_mac_os_x_buttons_and_segmented_controls_vector_stencils_library_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("pict--window-buttons-mac-os-x-buttons-and-segmented-controls-vector-stencils-libr" +
                         "ary-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sub_glow_blur_wallpaper_preview {
+            get {
+                object obj = ResourceManager.GetObject("sub-glow-blur-wallpaper-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
