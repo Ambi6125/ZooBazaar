@@ -2,6 +2,7 @@
 using EasyTools.MySqlDatabaseTools.Queries;
 using EasyTools.MySqlDatabaseTools.Tables;
 using EasyTools.Validation;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,15 +52,54 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Update(query);
         }
 
-       
+
         //TODO: Make it with left join, result need to give employees without contracts
+        public MySqlConnection GetConnection()
+        {
+            MySqlConnection conn =
+                new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi468695;Database=dbi468695;Pwd=MorbinTime;SslMode=none;");
+            return conn;
+
+        }
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithNoContracts()
         {
-            
-            MySqlCondition condition = new MySqlCondition("hasContract", false, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(table, "zb_employees.*", condition);
-            return communicator.Select(q);
+            //MySqlTable join = table.Join(Join.Left, "zb_employeecontracts", "zb_employees.id = zb_employeecontracts.employeeId");
+            //MySqlCondition condition = new MySqlCondition("zb_employeecontracts.contractId", null, Strictness.MustMatchExactly);
+            //SelectQuery q = new SelectQuery(join, "zb_employees.*", condition);
+            List<ParameterValueCollection> list = new List<ParameterValueCollection>();
+            string command = "SELECT * FROM zb_employees LEFT JOIN zb_employeecontracts ON zb_employeecontracts.employeeId = zb_employees.id WHERE zb_employeecontracts.contractId IS NULL";
+            MySqlConnection conn = GetConnection();
+            MySqlCommand read = new MySqlCommand(command, conn);
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = read.ExecuteReader();
+                while (reader.Read())
+                {
+                    ParameterValueCollection parameterValueCollection = new ParameterValueCollection();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        ParameterValuePair paramValue = new ParameterValuePair(reader.GetName(i), reader.GetValue(i));
+                        parameterValueCollection.Add(paramValue);
+                    }
 
+                    list.Add(parameterValueCollection);
+                }
+                reader.Close();
+            }
+            //TODO: work on proper exhceptions
+            catch(MySqlException)
+            {
+                return null;
+            }
+            finally
+            {
+                if (conn.State != 0)
+                {
+                    conn.Close();
+                }
+            }
+            return list;
         }
 
         //public IValidationResponse UpdateContractStatus(IDataProvider employee)

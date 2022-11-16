@@ -44,7 +44,7 @@ namespace ZooBazaarLogicLayer.People
         /// <summary>
         /// NEW employee
         /// </summary>
-        public Employee(string name, string address, string phone,string email, DateTime birthDate, bool hasContract)
+        public Employee(string name, string address, string phone,string email, DateTime birthDate)
         {
             this.name = name;
             this.address = address;
@@ -57,8 +57,8 @@ namespace ZooBazaarLogicLayer.People
         /// <summary>
         /// EXISTING employee
         /// </summary>
-        public Employee(int? id,string name, string address, string phone, string email, DateTime birthDate, bool hasContract)
-            :this(name,address,phone,email, birthDate, hasContract)
+        public Employee(int? id,string name, string address, string phone, string email, DateTime birthDate)
+            :this(name,address,phone,email, birthDate)
         {
             this._id = id;
         }

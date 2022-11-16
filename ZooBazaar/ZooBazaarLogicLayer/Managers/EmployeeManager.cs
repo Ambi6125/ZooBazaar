@@ -55,9 +55,9 @@ namespace ZooBazaarLogicLayer.Managers
                 string phoneNumber = result.GetValueAs<string>("phoneNumber");
                 string email = result.GetValueAs<string>("email");
                 DateTime birth = result.GetValueAs<DateTime>("birthDate");
-                bool hasContract = result.GetValueAs<bool>("hasContract");
+                //bool hasContract = result.GetValueAs<bool>("hasContract");
                 
-                Employee employee = new Employee(id, resultname, address, phoneNumber,email, birth,hasContract);
+                Employee employee = new Employee(id, resultname, address, phoneNumber,email, birth);
                 finalResult.Add(employee);
             }
             return finalResult;
@@ -80,9 +80,9 @@ namespace ZooBazaarLogicLayer.Managers
                 string phoneNumber = result.GetValueAs<string>("phoneNumber");
                 string email = result.GetValueAs<string>("email");
                 DateTime birth = result.GetValueAs<DateTime>("birthDate");
-                bool hasContract = result.GetValueAs<bool>("hasContract");
+                //bool hasContract = result.GetValueAs<bool>("hasContract");
 
-                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth, hasContract);
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
                 finalResult.Add(employee);
             }
             return finalResult;
@@ -99,9 +99,9 @@ namespace ZooBazaarLogicLayer.Managers
                 string phoneNumber = result.GetValueAs<string>("phoneNumber");
                 string email = result.GetValueAs<string>("email");
                 DateTime birth = result.GetValueAs<DateTime>("birthDate");
-                bool hasContract = result.GetValueAs<bool>("hasContract");
+                //bool hasContract = result.GetValueAs<bool>("hasContract");
 
-                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth, hasContract);
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
                 finalResult.Add(employee);
             }
             return finalResult;
@@ -119,9 +119,9 @@ namespace ZooBazaarLogicLayer.Managers
                 string phoneNumber = result.GetValueAs<string>("phoneNumber");
                 string email = result.GetValueAs<string>("email");
                 DateTime birth = result.GetValueAs<DateTime>("birthDate");
-                bool hasContract = result.GetValueAs<bool>("hasContract");
+                //bool hasContract = result.GetValueAs<bool>("hasContract");
 
-                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth, hasContract);
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
                 finalResult.Add(employee);
             }
             return finalResult;
