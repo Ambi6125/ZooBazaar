@@ -18,7 +18,6 @@ namespace ZooBazaarLogicLayer.People
         private string phoneNumber;
         private string email;
         private DateTime birthDate;
-        private bool hasContract;
         //TODO: Implement Contracts for Employees
         private List<Contract> contracts; //HACK: contracts here should be stored in order
         public int? ID => _id;
@@ -36,7 +35,7 @@ namespace ZooBazaarLogicLayer.People
         public string Address => address;
         public string PhoneNumber => phoneNumber;
         public string Email => email;
-        public bool HasContract => hasContract;
+        
 
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);
@@ -51,12 +50,8 @@ namespace ZooBazaarLogicLayer.People
             this.phoneNumber = phone;
             this.email = email;
             this.birthDate = birthDate;
-            this.hasContract = hasContract;
         }
-        public Employee()
-        {
-           
-        }
+      
         /// <summary>
         /// EXISTING employee
         /// </summary>
@@ -75,7 +70,6 @@ namespace ZooBazaarLogicLayer.People
             args.Add("phoneNumber", phoneNumber);
             args.Add("email", email);
             args.Add("birthDate", birthDate);
-            args.Add("hasContract", hasContract);
 
             return args;
         }
@@ -99,11 +93,7 @@ namespace ZooBazaarLogicLayer.People
             
             email = e;
         }
-        public void ChangeContractStatus(bool c)
-        {
-
-            hasContract = c;
-        }
+        
         public void ChangeBirthDay(DateTime t)
         {
             if (DateTime.Today < t)
