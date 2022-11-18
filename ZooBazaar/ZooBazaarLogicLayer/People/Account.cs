@@ -15,12 +15,11 @@ namespace ZooBazaarLogicLayer.People
     
     public class Account : IDataProvider
     {
-        private readonly int? id;
+        public readonly int? id;
         private readonly string salt;
         private string hashedPassword;
         private string username;
         private string email;
-        
 
         public string Username
         {
@@ -37,7 +36,7 @@ namespace ZooBazaarLogicLayer.People
         public string Email => email;
 
         public AccountType AccountType { get; private set; }
-
+       
         /// <summary>
         /// Create new user
         /// </summary>
@@ -62,7 +61,7 @@ namespace ZooBazaarLogicLayer.People
             this.email = email;
             AccountType = accountType;
         }
-
+       
 
         /// <summary>
         /// Checks whether the input password, when hashed, matches the one saved in the database.

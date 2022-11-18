@@ -62,7 +62,26 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return finalResult;
         }
+        public IReadOnlyCollection<Employee> GetEmployeesById(int id1)
+        {
+            var queryResult = dataSource.GetById(id1);
+            List<Employee> finalResult = new List<Employee>();
+            SpeciesManager sm = SpeciesManager.CreateForDatabase();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+                //bool hasContract = result.GetValueAs<bool>("hasContract");
 
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
+        }
         //TODO: Dear Luc Amogus, Inner join with a contracts table to get employees with inactive contracts
         public IValidationResponse UpdateContractStatus(Employee e)
         {

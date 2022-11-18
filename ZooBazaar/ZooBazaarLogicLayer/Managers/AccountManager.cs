@@ -87,7 +87,6 @@ namespace ZooBazaarLogicLayer.Managers
             string salt = accountData.GetValueAs<string>("salt");
             string password = accountData.GetValueAs<string>("hashedPassword");
             AccountType type = accountData.GetValueAs<AccountType>("accountType");
-
             Account a = new Account(id, dbusername, salt, password, dbemail, type);
             return a;
         }

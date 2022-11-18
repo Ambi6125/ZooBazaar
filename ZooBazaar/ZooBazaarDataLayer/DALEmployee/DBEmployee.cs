@@ -42,7 +42,13 @@ namespace ZooBazaarDataLayer.DALEmployee
 
             return communicator.Select(query);
         }
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetById(int id)
+        {
+            MySqlCondition condition = new MySqlCondition("accountId", "%" + id + "%", Strictness.MustBeSimilar);
+            SelectQuery query = new SelectQuery(table, "*", condition);
 
+            return communicator.Select(query);
+        }
         public IValidationResponse UpdateEntry(IDataProvider employee)
         {
             object idValue = employee.GetParameterArgs().ElementAt(0);
@@ -138,6 +144,9 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Select(query);
         }
 
-        
+        public IValidationResponse UpdateContractStatus(IDataProvider employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

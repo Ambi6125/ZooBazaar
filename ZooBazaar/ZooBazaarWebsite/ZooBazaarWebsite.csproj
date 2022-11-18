@@ -14,4 +14,14 @@
     <PackageReference Include="bootstrap" Version="5.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZooBazaarLogicLayer\ZooBazaarLogicLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EasyTools">
+      <HintPath>..\Shared\EasyTools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
