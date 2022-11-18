@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ZooBazaarWebsite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ZooBazaarWebsite.styles.css" asp-append-version="true" />
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <header>
+    
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+<div class="container-fluid">
+  <a class="navbar-brand" href="../">ZooBazaar</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ms-auto ">
+      <li class="nav-item">
+        <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+      </li>
+      @if(User.Identity.IsAuthenticated)
+                {
+      <li class="nav-item dropdown">
+        <a class="nav-link mx-2 dropdown-toggle" href="../" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="#">test</a></li>
+          <li><a class="dropdown-item" href="#">test</a></li>
+          <li><a class="dropdown-item" href="#">test</a></li>
+        </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+        <a class="nav-link mx-2" href="../Account/Login">Login</a>
+      </li>
+                        }
+                    </ul>
+  </div>
+</div>
+</nav>
+
+       
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - ZooBazaarWebsite - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+      <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
