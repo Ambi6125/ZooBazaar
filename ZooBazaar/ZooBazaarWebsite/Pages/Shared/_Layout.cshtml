@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ZooBazaarWebsite.styles.css" asp-append-version="true" />
     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
 </head>
 <body>
     <header>
@@ -28,7 +29,7 @@
       @if(User.Identity.IsAuthenticated)
                 {
 <li class="nav-item">
-        <a class="nav-link mx-2" href="../Profile/Index">Profile</a>
+        <a class="nav-link mx-2 btn btn-primary" href="../Profile/Index">Profile</a>
       </li>
                                  <li class="nav-item">
         <a class="nav-link mx-2" href="../Account/Logout">Logout</a>
@@ -37,7 +38,7 @@
                         else
                         {
                             <li class="nav-item">
-        <a class="nav-link mx-2" href="../Account/Login">Login</a>
+        <a class="nav-link mx-2 btn btn-primary" href="../Account/Login">Login</a>
       </li>
                         }
                     </ul>

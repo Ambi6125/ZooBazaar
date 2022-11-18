@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooBazaarDataLayer", "ZooBa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooBazaarDesktop", "ZooBazaarDesktop\ZooBazaarDesktop.csproj", "{8B8D1311-236A-40B3-9765-65510C1DDF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooBazaarWebsite", "ZooBazaarWebsite\ZooBazaarWebsite.csproj", "{DD3A7B83-5F13-4153-A612-75375988A458}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooBazaarWebsite", "ZooBazaarWebsite\ZooBazaarWebsite.csproj", "{DD3A7B83-5F13-4153-A612-75375988A458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
