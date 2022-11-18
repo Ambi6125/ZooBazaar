@@ -10,10 +10,44 @@ namespace ZooBazaarWebsite.Pages.Profile
     public class EditModel : PageModel
     {
         public EmployeeModel employee = new EmployeeModel();
+        [BindProperty]
+        public EmployeeModel updateEmployee { get; set; }
+        public Employee subject = new Employee();
 
         public void OnGet()
         {
             FillData();
+
+        }
+        public IActionResult OnPost()
+        {
+            EmployeeManager em = EmployeeManager.CreateForDatabase();
+            DateTime birthDate = DateTime.ParseExact(updateEmployee.BirthDate, "dd/MM/yyyy", null);
+            subject = GetEmployee();
+
+            try
+            { 
+                subject.ChangeAddress(updateEmployee.Address);
+                subject.Name = updateEmployee.FullName;
+                subject.ChangePhoneNumber(updateEmployee.Phone);
+                subject.ChangeEmail(updateEmployee.Email);
+                subject.ChangeBirthDay(birthDate.Date);
+                var response = em.UpdateEmployees(subject);
+                if (response.Success)
+                {
+                        return Redirect($"~/Profile/Index");
+
+                }
+                else
+                {
+                       return Redirect($"/");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Page();
+
+            }
         }
         private void FillData()
         {

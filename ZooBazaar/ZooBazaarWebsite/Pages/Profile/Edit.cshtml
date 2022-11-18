@@ -29,41 +29,44 @@
                             <label class="small mb-1" for="inputUsername">Username</label>
                             <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="@Model.employee.username" disabled>
                         </div>
-                         <form method="post">
+                         <form method="POST">
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                            
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Full name</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your full name" value="@Model.employee.FullName" disabled>
+                                <label class="small mb-1">Full name</label>
+                                <input class="form-control"type="text" placeholder="Enter your full name" value="@Model.employee.FullName" disabled>
+                                <input hidden asp-for="updateEmployee.FullName" value="@Model.employee.FullName" />  
+
                             </div>
                         </div>
                         <!-- Form Row        -->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Address</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your address" value="@Model.employee.Address">
+                                <label class="small mb-1" >Address</label>
+                                <input class="form-control" asp-for="updateEmployee.Address" type="text" placeholder="Enter your address" value="@Model.employee.Address">
                             </div>
                             
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="@Model.employee.Email">
+                            <label class="small mb-1" >Email address</label>
+                            <input class="form-control" asp-for="updateEmployee.Email" type="email" placeholder="Enter your email address" value="@Model.employee.Email">
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (phone number)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="@Model.employee.Phone">
+                                <label class="small mb-1" >Phone number</label>
+                                <input class="form-control" asp-for="updateEmployee.Phone" type="tel" placeholder="Enter your phone number" value="@Model.employee.Phone">
                             </div>
                             <!-- Form Group (birthday)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="@Model.employee.BirthDate" disabled>
+                                <label class="small mb-1" >Birthday</label>
+                                <input class="form-control" type="text" placeholder="Enter your birthday" value="@Model.employee.BirthDate" disabled>
+                               <input hidden asp-for="updateEmployee.BirthDate" value="@Model.employee.BirthDate" />  
                             </div>
                         </div>
                         <!-- Save changes button-->

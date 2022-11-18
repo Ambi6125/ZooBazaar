@@ -53,7 +53,10 @@ namespace ZooBazaarLogicLayer.People
             this.birthDate = birthDate;
             this.hasContract = hasContract;
         }
-
+        public Employee()
+        {
+           
+        }
         /// <summary>
         /// EXISTING employee
         /// </summary>
