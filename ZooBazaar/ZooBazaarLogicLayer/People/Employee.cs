@@ -56,10 +56,6 @@ namespace ZooBazaarLogicLayer.People
             this.email = email;
             this.birthDate = birthDate;
         }
-        public Employee()
-        {
-           
-        }
 
         /// <summary>
         /// EXISTING employee

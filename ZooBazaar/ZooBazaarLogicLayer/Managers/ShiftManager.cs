@@ -1,4 +1,5 @@
 ﻿using EasyTools.Validation;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,25 @@ namespace ZooBazaarLogicLayer.Managers
         private readonly IDalShift dataSource;
 
 
+        private ICollection<Employee> BuildEmployees(int id)
+        {
+            var tableWithCertainId = dataSource.GetEmployeesFromShift(id);
+            var shiftEmployees = new List<Employee>();
+            foreach (var item in tableWithCertainId) //Makes employees for enclosing shift
+            {
+                int empId = item.GetValueAs<int>("zb_employees.id");
+                string name = item.GetValueAs<string>("employeeName");
+                string address = item.GetValueAs<string>("address");
+                string phoneNumber = item.GetValueAs<string>("phoneNumber");
+                string email = item.GetValueAs<string>("email");
+                DateTime birthdate = Convert.ToDateTime(item.GetValueAs<string>("birthDate"));
+
+                Employee emp = new Employee(empId, name, address, phoneNumber, email, birthdate);
+                shiftEmployees.Add(emp);
+            }
+            return shiftEmployees;
+        }
+
         private ShiftManager(IDalShift dal)
         {
             dataSource = dal;
@@ -30,23 +50,11 @@ namespace ZooBazaarLogicLayer.Managers
 
             foreach (int id in identifiers) //Makes shift
             {
-                List<Employee> shiftEmployees = new List<Employee>();
 
                 var tableWithCertainId = allData.Where(x => x.GetValueAs<int>("zb_shifts.id") == id);
 
+                List<Employee> shiftEmployees = BuildEmployees(id).ToList();
 
-                foreach (var item in tableWithCertainId) //Makes employees for enclosing shift
-                {
-                    int empId = item.GetValueAs<int>("zb_employees.id");
-                    string name = item.GetValueAs<string>("employeeName");
-                    string address = item.GetValueAs<string>("address");
-                    string phoneNumber = item.GetValueAs<string>("phoneNumber");
-                    string email = item.GetValueAs<string>("email");
-                    DateTime birthdate = Convert.ToDateTime(item.GetValueAs<string>("birthDate"));
-
-                    Employee emp = new Employee(empId, name, address, phoneNumber, email, birthdate);
-                    shiftEmployees.Add(emp);
-                }
 
                 var singleEntry = tableWithCertainId.First();
 
@@ -60,7 +68,29 @@ namespace ZooBazaarLogicLayer.Managers
 
             return shifts;
         }
+
+        public int GetRecentId()
+        {
+            return dataSource.GetMostRecentId();
+        }
         
+        public Shift? GetByDateAndType(DateTime date, ShiftType type)
+        {
+            var response = dataSource.GetByTime(date, (int)type);
+
+            var singleResult = response.FirstOrDefault();
+
+            if(singleResult == null)
+                return null;
+
+            int id = singleResult.GetValueAs<int>("id");
+            ShiftType shiftType = (ShiftType)singleResult.GetValueAs<int>("shiftType");
+            var employees = BuildEmployees(id);
+            DateTime responseDate = Convert.ToDateTime(singleResult.GetValueAs<string>("date"));
+
+            Shift result = new Shift(id, responseDate, employees, shiftType);
+            return result;
+        }
 
         public static ShiftManager CreateForDatabase()
         {

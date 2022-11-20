@@ -58,7 +58,45 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByTime(DateTime date, int shiftType)
         {
-            throw new NotImplementedException();
+            List<IParameterValueCollection> parameters = new List<IParameterValueCollection>();
+            string query = "SELECT * FROM zb_shifts WHERE date = @date AND type = @type";
+            MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            using (cmd)
+            {
+                try
+                {
+                    conn.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        int dbshiftType = reader.GetInt32("shiftType");
+                        DateTime dbdate = reader.GetDateTime("date");
+
+                        ParameterValueCollection args = new ParameterValueCollection();
+                        args.Add("id", id);
+                        args.Add("shiftType", dbshiftType);
+                        args.Add("date", dbdate);
+                        parameters.Add(args);
+                    }
+                }
+                finally
+                {
+                    if(conn.State != System.Data.ConnectionState.Closed)
+                        conn.Close();
+                    conn.Dispose();
+                }
+            }
+            return (IReadOnlyCollection<IReadOnlyParameterValueCollection>)parameters;
+        }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesFromShift(int id)
+        {
+            MySqlTable table = new MySqlTable("zb_employeeshifts").Join(Join.Inner, "zb_employees", "employeeId = id");
+            MySqlCondition condition = new MySqlCondition("shiftId", id, Strictness.MustMatchExactly);
+            SelectQuery query = new SelectQuery(table, "*", condition);
+            return database.Select(query);
         }
 
         public IReadOnlyCollection<int> GetIdsOnDate(DateTime date)
@@ -72,6 +110,29 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
                 int shiftId = result.GetValueAs<int>("id");
             }
             return resultList;
+        }
+
+        public int GetMostRecentId()
+        {
+            int result = -1;
+            string query = "SELECT id FROM zb_shifts ORDER BY id desc LIMIT 1";
+            MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            using (cmd)
+            {
+                try
+                {
+                    conn.Open();
+                    result = (int)cmd.ExecuteScalar();
+                }
+                finally
+                {
+                    if (conn.State != System.Data.ConnectionState.Closed)
+                        conn.Close();
+                    conn.Dispose();
+                }
+            }
+            return result;
         }
 
         public IValidationResponse RegisterEmployee(ShiftEmployeeRelationShip data)

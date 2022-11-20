@@ -10,11 +10,13 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
 {
     public interface IDalShift
     {
+        int GetMostRecentId();
         IValidationResponse Add(IDataProvider shift);
         IValidationResponse RegisterEmployee(ShiftEmployeeRelationShip data);
         IValidationResponse RemoveEmployee(ShiftEmployeeRelationShip data);
 
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetBetween(DateTime start, DateTime end);
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesFromShift(int id);
         IReadOnlyCollection<int> GetIdsOnDate(DateTime date);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDate(DateTime date);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByTime(DateTime date, int shiftType);
