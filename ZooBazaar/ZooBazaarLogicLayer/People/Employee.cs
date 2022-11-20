@@ -40,6 +40,11 @@ namespace ZooBazaarLogicLayer.People
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);
 
+        public Employee()
+        {
+
+        }
+
         /// <summary>
         /// NEW employee
         /// </summary>
@@ -80,7 +85,6 @@ namespace ZooBazaarLogicLayer.People
 
         public void ChangeAddress(string a)
         {
-            
             address = a;
         }
         public void ChangePhoneNumber(string p)
@@ -115,6 +119,11 @@ namespace ZooBazaarLogicLayer.People
                     throw new NoContractsException();
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

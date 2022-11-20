@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpSpecies = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flpSpecies = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpAnimal = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDeleteAnimal = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.grpbResultcontainer = new System.Windows.Forms.GroupBox();
             this.flpAnimals = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tpExhibits = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.FLPExhibits = new System.Windows.Forms.FlowLayoutPanel();
             this.Searchbtn = new System.Windows.Forms.Button();
@@ -62,7 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.CExhibitbtn = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tpAccounts = new System.Windows.Forms.TabPage();
             this.btnLoadAllAccounts = new System.Windows.Forms.Button();
             this.btnNewAccount = new System.Windows.Forms.Button();
             this.grpbSearch = new System.Windows.Forms.GroupBox();
@@ -73,7 +73,7 @@
             this.lblSearchFor = new System.Windows.Forms.Label();
             this.grpbAccounts = new System.Windows.Forms.GroupBox();
             this.flpAccounts = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tpContracts = new System.Windows.Forms.TabPage();
             this.ContractsLoadbtn = new System.Windows.Forms.Button();
             this.NewContractbtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -89,7 +89,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBoxContracts = new System.Windows.Forms.GroupBox();
             this.flpContracts = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tpEmployees = new System.Windows.Forms.TabPage();
             this.btnGetAllEmp = new System.Windows.Forms.Button();
             this.btnCreateEmployee = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -100,51 +100,60 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
+            this.tpSchedule = new System.Windows.Forms.TabPage();
+            this.btnSearchShifts = new System.Windows.Forms.Button();
+            this.dtpShiftDateInput = new System.Windows.Forms.DateTimePicker();
+            this.lbEvening = new System.Windows.Forms.ListBox();
+            this.lbAfternoon = new System.Windows.Forms.ListBox();
+            this.lbMorning = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpSpecies.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpAnimal.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.grpbResultcontainer.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tpExhibits.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tpAccounts.SuspendLayout();
             this.grpbSearch.SuspendLayout();
             this.grpbAccounts.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tpContracts.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBoxContracts.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.tpEmployees.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tpSchedule.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tpSpecies);
+            this.tabControl1.Controls.Add(this.tpAnimal);
+            this.tabControl1.Controls.Add(this.tpExhibits);
+            this.tabControl1.Controls.Add(this.tpAccounts);
+            this.tabControl1.Controls.Add(this.tpContracts);
+            this.tabControl1.Controls.Add(this.tpEmployees);
+            this.tabControl1.Controls.Add(this.tpSchedule);
             this.tabControl1.Location = new System.Drawing.Point(37, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(922, 525);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tpSpecies
             // 
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(914, 492);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Species";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpSpecies.Controls.Add(this.groupBox2);
+            this.tpSpecies.Controls.Add(this.groupBox1);
+            this.tpSpecies.Location = new System.Drawing.Point(4, 29);
+            this.tpSpecies.Name = "tpSpecies";
+            this.tpSpecies.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSpecies.Size = new System.Drawing.Size(914, 492);
+            this.tpSpecies.TabIndex = 0;
+            this.tpSpecies.Text = "Species";
+            this.tpSpecies.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -270,17 +279,17 @@
             this.flpSpecies.Size = new System.Drawing.Size(609, 381);
             this.flpSpecies.TabIndex = 0;
             // 
-            // tabPage2
+            // tpAnimal
             // 
-            this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.grpbResultcontainer);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(914, 492);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Animal";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpAnimal.Controls.Add(this.groupBox4);
+            this.tpAnimal.Controls.Add(this.grpbResultcontainer);
+            this.tpAnimal.Location = new System.Drawing.Point(4, 29);
+            this.tpAnimal.Name = "tpAnimal";
+            this.tpAnimal.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAnimal.Size = new System.Drawing.Size(914, 492);
+            this.tpAnimal.TabIndex = 1;
+            this.tpAnimal.Text = "Animal";
+            this.tpAnimal.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -399,21 +408,21 @@
             this.flpAnimals.Size = new System.Drawing.Size(555, 391);
             this.flpAnimals.TabIndex = 0;
             // 
-            // tabPage3
+            // tpExhibits
             // 
-            this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Controls.Add(this.Searchbtn);
-            this.tabPage3.Controls.Add(this.Searchtb);
-            this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.SearchCB);
-            this.tabPage3.Controls.Add(this.CExhibitbtn);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(914, 492);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Exhibits";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tpExhibits.Controls.Add(this.groupBox3);
+            this.tpExhibits.Controls.Add(this.Searchbtn);
+            this.tpExhibits.Controls.Add(this.Searchtb);
+            this.tpExhibits.Controls.Add(this.label2);
+            this.tpExhibits.Controls.Add(this.SearchCB);
+            this.tpExhibits.Controls.Add(this.CExhibitbtn);
+            this.tpExhibits.Location = new System.Drawing.Point(4, 29);
+            this.tpExhibits.Name = "tpExhibits";
+            this.tpExhibits.Padding = new System.Windows.Forms.Padding(3);
+            this.tpExhibits.Size = new System.Drawing.Size(914, 492);
+            this.tpExhibits.TabIndex = 2;
+            this.tpExhibits.Text = "Exhibits";
+            this.tpExhibits.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -485,19 +494,19 @@
             this.CExhibitbtn.UseVisualStyleBackColor = true;
             this.CExhibitbtn.Click += new System.EventHandler(this.CExhibitbtn_Click);
             // 
-            // tabPage4
+            // tpAccounts
             // 
-            this.tabPage4.Controls.Add(this.btnLoadAllAccounts);
-            this.tabPage4.Controls.Add(this.btnNewAccount);
-            this.tabPage4.Controls.Add(this.grpbSearch);
-            this.tabPage4.Controls.Add(this.grpbAccounts);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(914, 492);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Accounts";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tpAccounts.Controls.Add(this.btnLoadAllAccounts);
+            this.tpAccounts.Controls.Add(this.btnNewAccount);
+            this.tpAccounts.Controls.Add(this.grpbSearch);
+            this.tpAccounts.Controls.Add(this.grpbAccounts);
+            this.tpAccounts.Location = new System.Drawing.Point(4, 29);
+            this.tpAccounts.Name = "tpAccounts";
+            this.tpAccounts.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAccounts.Size = new System.Drawing.Size(914, 492);
+            this.tpAccounts.TabIndex = 3;
+            this.tpAccounts.Text = "Accounts";
+            this.tpAccounts.UseVisualStyleBackColor = true;
             // 
             // btnLoadAllAccounts
             // 
@@ -600,19 +609,19 @@
             this.flpAccounts.Size = new System.Drawing.Size(597, 391);
             this.flpAccounts.TabIndex = 0;
             // 
-            // tabPage5
+            // tpContracts
             // 
-            this.tabPage5.Controls.Add(this.ContractsLoadbtn);
-            this.tabPage5.Controls.Add(this.NewContractbtn);
-            this.tabPage5.Controls.Add(this.groupBox5);
-            this.tabPage5.Controls.Add(this.groupBoxContracts);
-            this.tabPage5.Location = new System.Drawing.Point(4, 29);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(914, 492);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Contracts";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tpContracts.Controls.Add(this.ContractsLoadbtn);
+            this.tpContracts.Controls.Add(this.NewContractbtn);
+            this.tpContracts.Controls.Add(this.groupBox5);
+            this.tpContracts.Controls.Add(this.groupBoxContracts);
+            this.tpContracts.Location = new System.Drawing.Point(4, 29);
+            this.tpContracts.Name = "tpContracts";
+            this.tpContracts.Padding = new System.Windows.Forms.Padding(3);
+            this.tpContracts.Size = new System.Drawing.Size(914, 492);
+            this.tpContracts.TabIndex = 4;
+            this.tpContracts.Text = "Contracts";
+            this.tpContracts.UseVisualStyleBackColor = true;
             // 
             // ContractsLoadbtn
             // 
@@ -771,19 +780,19 @@
             this.flpContracts.Size = new System.Drawing.Size(558, 431);
             this.flpContracts.TabIndex = 0;
             // 
-            // tabPage6
+            // tpEmployees
             // 
-            this.tabPage6.Controls.Add(this.btnGetAllEmp);
-            this.tabPage6.Controls.Add(this.btnCreateEmployee);
-            this.tabPage6.Controls.Add(this.groupBox7);
-            this.tabPage6.Controls.Add(this.groupBox6);
-            this.tabPage6.Location = new System.Drawing.Point(4, 29);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(914, 492);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Employees";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tpEmployees.Controls.Add(this.btnGetAllEmp);
+            this.tpEmployees.Controls.Add(this.btnCreateEmployee);
+            this.tpEmployees.Controls.Add(this.groupBox7);
+            this.tpEmployees.Controls.Add(this.groupBox6);
+            this.tpEmployees.Location = new System.Drawing.Point(4, 29);
+            this.tpEmployees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tpEmployees.Name = "tpEmployees";
+            this.tpEmployees.Size = new System.Drawing.Size(914, 492);
+            this.tpEmployees.TabIndex = 5;
+            this.tpEmployees.Text = "Employees";
+            this.tpEmployees.UseVisualStyleBackColor = true;
             // 
             // btnGetAllEmp
             // 
@@ -888,41 +897,112 @@
             this.flpEmployees.Size = new System.Drawing.Size(547, 324);
             this.flpEmployees.TabIndex = 0;
             // 
+            // tpSchedule
+            // 
+            this.tpSchedule.Controls.Add(this.button2);
+            this.tpSchedule.Controls.Add(this.btnSearchShifts);
+            this.tpSchedule.Controls.Add(this.dtpShiftDateInput);
+            this.tpSchedule.Controls.Add(this.lbEvening);
+            this.tpSchedule.Controls.Add(this.lbAfternoon);
+            this.tpSchedule.Controls.Add(this.lbMorning);
+            this.tpSchedule.Location = new System.Drawing.Point(4, 29);
+            this.tpSchedule.Name = "tpSchedule";
+            this.tpSchedule.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSchedule.Size = new System.Drawing.Size(914, 492);
+            this.tpSchedule.TabIndex = 6;
+            this.tpSchedule.Text = "Schedule";
+            this.tpSchedule.UseVisualStyleBackColor = true;
+            // 
+            // btnSearchShifts
+            // 
+            this.btnSearchShifts.Location = new System.Drawing.Point(293, 56);
+            this.btnSearchShifts.Name = "btnSearchShifts";
+            this.btnSearchShifts.Size = new System.Drawing.Size(94, 29);
+            this.btnSearchShifts.TabIndex = 3;
+            this.btnSearchShifts.Text = "Search";
+            this.btnSearchShifts.UseVisualStyleBackColor = true;
+            this.btnSearchShifts.Click += new System.EventHandler(this.OnShiftSearch);
+            // 
+            // dtpShiftDateInput
+            // 
+            this.dtpShiftDateInput.Location = new System.Drawing.Point(28, 58);
+            this.dtpShiftDateInput.Name = "dtpShiftDateInput";
+            this.dtpShiftDateInput.Size = new System.Drawing.Size(250, 27);
+            this.dtpShiftDateInput.TabIndex = 2;
+            // 
+            // lbEvening
+            // 
+            this.lbEvening.FormattingEnabled = true;
+            this.lbEvening.ItemHeight = 20;
+            this.lbEvening.Location = new System.Drawing.Point(550, 340);
+            this.lbEvening.Name = "lbEvening";
+            this.lbEvening.Size = new System.Drawing.Size(322, 124);
+            this.lbEvening.TabIndex = 1;
+            // 
+            // lbAfternoon
+            // 
+            this.lbAfternoon.FormattingEnabled = true;
+            this.lbAfternoon.ItemHeight = 20;
+            this.lbAfternoon.Location = new System.Drawing.Point(550, 198);
+            this.lbAfternoon.Name = "lbAfternoon";
+            this.lbAfternoon.Size = new System.Drawing.Size(322, 124);
+            this.lbAfternoon.TabIndex = 1;
+            // 
+            // lbMorning
+            // 
+            this.lbMorning.FormattingEnabled = true;
+            this.lbMorning.ItemHeight = 20;
+            this.lbMorning.Location = new System.Drawing.Point(550, 56);
+            this.lbMorning.Name = "lbMorning";
+            this.lbMorning.Size = new System.Drawing.Size(322, 124);
+            this.lbMorning.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(87, 427);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(106, 37);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 549);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Zoo bazaar";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.Load += new System.EventHandler(this.OnLoad);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tpSpecies.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tpAnimal.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.grpbResultcontainer.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tpExhibits.ResumeLayout(false);
+            this.tpExhibits.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
+            this.tpAccounts.ResumeLayout(false);
             this.grpbSearch.ResumeLayout(false);
             this.grpbSearch.PerformLayout();
             this.grpbAccounts.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
+            this.tpContracts.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBoxContracts.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
+            this.tpEmployees.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.tpSchedule.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -930,13 +1010,13 @@
         #endregion
 
         private TabControl tabControl1;
-        private TabPage tabPage1;
+        private TabPage tpSpecies;
         private Button btnSearch;
         private FlowLayoutPanel flpSpecies;
-        private TabPage tabPage2;
+        private TabPage tpAnimal;
         private FlowLayoutPanel flpAnimals;
         private GroupBox grpbResultcontainer;
-        private TabPage tabPage3;
+        private TabPage tpExhibits;
         private Button CExhibitbtn;
         private FlowLayoutPanel FLPExhibits;
         private Button Searchbtn;
@@ -963,7 +1043,7 @@
         private Button btnNewAnimal;
         private Button btnDeleteAnimal;
         private Button button1;
-        private TabPage tabPage4;
+        private TabPage tpAccounts;
         private GroupBox grpbSearch;
         private Button btnAccountSearch;
         private ComboBox cbbAccountSearchFilter;
@@ -974,7 +1054,7 @@
         private FlowLayoutPanel flpAccounts;
         private Button btnNewAccount;
         private Button btnLoadAllAccounts;
-        private TabPage tabPage5;
+        private TabPage tpContracts;
         private GroupBox groupBoxContracts;
         private FlowLayoutPanel flpContracts;
         private Button ContractsLoadbtn;
@@ -988,7 +1068,7 @@
         private CheckBox chbActiveStatus;
         private Label label8;
         private CheckBox chbNonActiveStatus;
-        private TabPage tabPage6;
+        private TabPage tpEmployees;
         private GroupBox groupBox6;
         private FlowLayoutPanel flpEmployees;
         private GroupBox groupBox7;
@@ -1001,5 +1081,12 @@
         private Button btnGetAllEmp;
         private Label label11;
         private ComboBox cbContractType;
+        private TabPage tpSchedule;
+        private Button btnSearchShifts;
+        private DateTimePicker dtpShiftDateInput;
+        private ListBox lbEvening;
+        private ListBox lbAfternoon;
+        private ListBox lbMorning;
+        private Button button2;
     }
 }

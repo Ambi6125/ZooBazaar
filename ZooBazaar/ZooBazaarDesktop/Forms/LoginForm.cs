@@ -59,7 +59,7 @@ namespace ZooBazaarDesktop.Forms
             }
             else
             {
-                MessageBox.Show("Invalid data.");
+                MessageBox.Show("Invalid password.");
             }
         }
     }

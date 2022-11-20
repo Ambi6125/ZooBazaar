@@ -31,6 +31,6 @@ namespace ZooBazaarLogicLayer.Mail.Presets
             this.unhashedPassword = unhashedPassword;
         }
 
-        public override string CredentialKey => "MorbinTime";
+        public override string CredentialKey => "tausulwykyiyjrts";
     }
 }

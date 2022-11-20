@@ -133,6 +133,7 @@ namespace ZooBazaarDesktop.Forms
             }
             else
             {
+                MessageBox.Show(mailResponse.Message);
                 DialogResult dr = MessageBox.Show("The account was saved, but could a mail could not be sent.\nDelete the account?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if(dr == DialogResult.Yes)
                 {

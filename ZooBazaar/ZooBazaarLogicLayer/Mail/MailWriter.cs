@@ -91,8 +91,7 @@ namespace ZooBazaarLogicLayer.Mail
                     mail.To.Add(Receiver);
                     mail.Body = Message;
                     mail.IsBodyHtml = IsHtml;
-
-                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 465))
                     {
                         smtp.Credentials = new System.Net.NetworkCredential(sender, CredentialKey);
                         smtp.EnableSsl = EnableSsl;

@@ -13,6 +13,7 @@ using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.Managers;
 using ZooBazaarLogicLayer.Zones;
 using ZooBazaarLogicLayer.People;
+using ZooBazaarLogicLayer.Schedule.Shifts;
 
 namespace ZooBazaarDesktop.Forms
 {
@@ -661,5 +662,35 @@ namespace ZooBazaarDesktop.Forms
                 }
             }
         }
+
+        #region Shift tab UI (Beta)
+
+        private void RefillShiftListBoxes(IEnumerable<Shift> shifts)
+        {
+            lbMorning.Items.Clear();
+            lbAfternoon.Items.Clear();
+            lbEvening.Items.Clear();
+
+            var morningShift = shifts.First(x => x.ShiftType == ShiftType.Morning);
+            lbMorning.Items.AddRange(morningShift.Employees.ToArray());
+
+            var afternoonShift = shifts.First(x => x.ShiftType == ShiftType.Afternoon);
+            lbAfternoon.Items.AddRange(afternoonShift.Employees.ToArray());
+
+            var eveningShift = shifts.First(x => x.ShiftType == ShiftType.Evening);
+            lbEvening.Items.AddRange(eveningShift.Employees.ToArray());
+        }
+
+        private void OnShiftSearch(object sender, EventArgs e)
+        {
+            var manager = ShiftManager.CreateForDatabase();
+
+            DateTime selectedDate = dtpShiftDateInput.Value;
+            var result = manager.GetByDate(selectedDate);
+
+            RefillShiftListBoxes(result);
+        }
+
+        #endregion
     }
 }
