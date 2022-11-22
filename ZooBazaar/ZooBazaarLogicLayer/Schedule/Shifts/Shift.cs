@@ -25,7 +25,7 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
         public Shift(DateTime date, ShiftType type)
         {
             id = null;
-            this.date = date;
+            this.date = date.Date;
             employees = new List<Employee>();
             shiftType = type;
         }
@@ -33,7 +33,7 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
         public Shift(int id, DateTime dateTime, ICollection<Employee> employees, ShiftType shift)
         {
             this.id = id;
-            date = dateTime;
+            date = dateTime.Date;
             this.employees = new List<Employee>();
             this.employees.AddRange(employees);
         }

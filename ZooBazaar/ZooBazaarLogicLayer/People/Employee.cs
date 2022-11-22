@@ -10,7 +10,7 @@ using ZooBazaarLogicLayer.Exceptions;
 
 namespace ZooBazaarLogicLayer.People
 {
-    public class Employee : IDataProvider
+    public class Employee : IDataProvider, IEquatable<Employee>
     {
         private readonly int? _id;
         private string name;
@@ -124,6 +124,11 @@ namespace ZooBazaarLogicLayer.People
         public override string ToString()
         {
             return Name;
+        }
+
+        public bool Equals(Employee? other)
+        {
+            return ID.Equals(other?.ID);
         }
     }
 }

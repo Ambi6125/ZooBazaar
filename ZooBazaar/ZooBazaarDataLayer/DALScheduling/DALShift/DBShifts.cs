@@ -58,10 +58,12 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByTime(DateTime date, int shiftType)
         {
-            List<IParameterValueCollection> parameters = new List<IParameterValueCollection>();
-            string query = "SELECT * FROM zb_shifts WHERE date = @date AND type = @type";
+            var parameters = new List<ParameterValueCollection>();
+            string query = "SELECT * FROM zb_shifts WHERE date = @date AND shiftType = @type";
             MySqlConnection conn = new MySqlConnection(Data.connectionString);
             MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("date", date.Date);
+            cmd.Parameters.AddWithValue("type", shiftType);
             using (cmd)
             {
                 try
@@ -88,14 +90,14 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
                     conn.Dispose();
                 }
             }
-            return (IReadOnlyCollection<IReadOnlyParameterValueCollection>)parameters;
+            return parameters;
         }
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesFromShift(int id)
         {
             MySqlTable table = new MySqlTable("zb_employeeshifts").Join(Join.Inner, "zb_employees", "employeeId = id");
             MySqlCondition condition = new MySqlCondition("shiftId", id, Strictness.MustMatchExactly);
-            SelectQuery query = new SelectQuery(table, "*", condition);
+            SelectQuery query = new SelectQuery(table, "zb_employees.*", condition);
             return database.Select(query);
         }
 

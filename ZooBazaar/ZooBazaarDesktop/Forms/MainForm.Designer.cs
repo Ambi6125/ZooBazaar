@@ -101,12 +101,12 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.tpSchedule = new System.Windows.Forms.TabPage();
+            this.btnNew = new System.Windows.Forms.Button();
             this.btnSearchShifts = new System.Windows.Forms.Button();
             this.dtpShiftDateInput = new System.Windows.Forms.DateTimePicker();
             this.lbEvening = new System.Windows.Forms.ListBox();
             this.lbAfternoon = new System.Windows.Forms.ListBox();
             this.lbMorning = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpSpecies.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -899,7 +899,7 @@
             // 
             // tpSchedule
             // 
-            this.tpSchedule.Controls.Add(this.button2);
+            this.tpSchedule.Controls.Add(this.btnNew);
             this.tpSchedule.Controls.Add(this.btnSearchShifts);
             this.tpSchedule.Controls.Add(this.dtpShiftDateInput);
             this.tpSchedule.Controls.Add(this.lbEvening);
@@ -912,6 +912,16 @@
             this.tpSchedule.TabIndex = 6;
             this.tpSchedule.Text = "Schedule";
             this.tpSchedule.UseVisualStyleBackColor = true;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(87, 427);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(106, 37);
+            this.btnNew.TabIndex = 4;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.OnNewClick);
             // 
             // btnSearchShifts
             // 
@@ -956,15 +966,6 @@
             this.lbMorning.Name = "lbMorning";
             this.lbMorning.Size = new System.Drawing.Size(322, 124);
             this.lbMorning.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(87, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 37);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1087,6 +1088,6 @@
         private ListBox lbEvening;
         private ListBox lbAfternoon;
         private ListBox lbMorning;
-        private Button button2;
+        private Button btnNew;
     }
 }

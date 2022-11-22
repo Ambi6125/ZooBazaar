@@ -692,5 +692,12 @@ namespace ZooBazaarDesktop.Forms
         }
 
         #endregion
+
+        private void OnNewClick(object sender, EventArgs e)
+        {
+            AddShiftsForm form = new AddShiftsForm(this);
+            form.Show();
+            Hide();
+        }
     }
 }

@@ -32,8 +32,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbbType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbEmployees = new System.Windows.Forms.ListBox();
+            this.lbEmployeesAvailable = new System.Windows.Forms.ListBox();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.lbEmployeesUsed = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // dtpDate
@@ -42,6 +43,7 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(250, 27);
             this.dtpDate.TabIndex = 0;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.OnInputChanged);
             // 
             // label2
             // 
@@ -64,6 +66,7 @@
             this.cbbType.Name = "cbbType";
             this.cbbType.Size = new System.Drawing.Size(151, 28);
             this.cbbType.TabIndex = 2;
+            this.cbbType.SelectedIndexChanged += new System.EventHandler(this.OnInputChanged);
             // 
             // label3
             // 
@@ -74,14 +77,14 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Time of day";
             // 
-            // lbEmployees
+            // lbEmployeesAvailable
             // 
-            this.lbEmployees.FormattingEnabled = true;
-            this.lbEmployees.ItemHeight = 20;
-            this.lbEmployees.Location = new System.Drawing.Point(365, 67);
-            this.lbEmployees.Name = "lbEmployees";
-            this.lbEmployees.Size = new System.Drawing.Size(343, 344);
-            this.lbEmployees.TabIndex = 4;
+            this.lbEmployeesAvailable.FormattingEnabled = true;
+            this.lbEmployeesAvailable.ItemHeight = 20;
+            this.lbEmployeesAvailable.Location = new System.Drawing.Point(365, 67);
+            this.lbEmployeesAvailable.Name = "lbEmployeesAvailable";
+            this.lbEmployeesAvailable.Size = new System.Drawing.Size(343, 144);
+            this.lbEmployeesAvailable.TabIndex = 4;
             // 
             // btnCreate
             // 
@@ -93,19 +96,31 @@
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.OnAddClick);
             // 
+            // lbEmployeesUsed
+            // 
+            this.lbEmployeesUsed.FormattingEnabled = true;
+            this.lbEmployeesUsed.ItemHeight = 20;
+            this.lbEmployeesUsed.Location = new System.Drawing.Point(365, 263);
+            this.lbEmployeesUsed.Name = "lbEmployeesUsed";
+            this.lbEmployeesUsed.Size = new System.Drawing.Size(343, 124);
+            this.lbEmployeesUsed.TabIndex = 4;
+            // 
             // AddShiftsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 443);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.lbEmployees);
+            this.Controls.Add(this.lbEmployeesUsed);
+            this.Controls.Add(this.lbEmployeesAvailable);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbbType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpDate);
             this.Name = "AddShiftsForm";
             this.Text = "AddShiftsForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,7 +132,8 @@
         private Label label2;
         private ComboBox cbbType;
         private Label label3;
-        private ListBox lbEmployees;
+        private ListBox lbEmployeesAvailable;
         private Button btnCreate;
+        private ListBox lbEmployeesUsed;
     }
 }

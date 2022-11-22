@@ -21,17 +21,21 @@ namespace ZooBazaarLogicLayer.Managers
         {
             var tableWithCertainId = dataSource.GetEmployeesFromShift(id);
             var shiftEmployees = new List<Employee>();
-            foreach (var item in tableWithCertainId) //Makes employees for enclosing shift
+            bool hasEmployees = tableWithCertainId.Any();
+            if (hasEmployees)
             {
-                int empId = item.GetValueAs<int>("zb_employees.id");
-                string name = item.GetValueAs<string>("employeeName");
-                string address = item.GetValueAs<string>("address");
-                string phoneNumber = item.GetValueAs<string>("phoneNumber");
-                string email = item.GetValueAs<string>("email");
-                DateTime birthdate = Convert.ToDateTime(item.GetValueAs<string>("birthDate"));
+                foreach (var item in tableWithCertainId) //Makes employees for enclosing shift
+                {
+                    int empId = item.GetValueAs<int>("id");
+                    string name = item.GetValueAs<string>("employeeName");
+                    string address = item.GetValueAs<string>("address");
+                    string phoneNumber = item.GetValueAs<string>("phoneNumber");
+                    string email = item.GetValueAs<string>("email");
+                    DateTime birthdate = item.GetValueAs<DateTime>("birthDate");
 
-                Employee emp = new Employee(empId, name, address, phoneNumber, email, birthdate);
-                shiftEmployees.Add(emp);
+                    Employee emp = new Employee(empId, name, address, phoneNumber, email, birthdate);
+                    shiftEmployees.Add(emp);
+                }
             }
             return shiftEmployees;
         }
@@ -74,6 +78,36 @@ namespace ZooBazaarLogicLayer.Managers
             return dataSource.GetMostRecentId();
         }
         
+        public IReadOnlyCollection<Employee> GetEmployeesFromShift(Shift shift)
+        {
+            List<Employee> employees = new List<Employee>();
+            var response = dataSource.GetEmployeesFromShift(shift.ID);
+
+            foreach(var data in response)
+            {
+                int id = data.GetValueAs<int>("id");
+                string employeeName = data.GetValueAs<string>("employeeName");
+                string address = data.GetValueAs<string>("address");
+                string phoneNumber = data.GetValueAs<string>("phoneNumber");
+                string email = data.GetValueAs<string>("email");
+                DateTime birthdate = data.GetValueAs<DateTime>("birthDate");
+                int accountId = data.GetValueAs<int>("accountId");
+
+                employees.Add(new Employee(id, employeeName, address, phoneNumber, email, birthdate));
+            }
+            return employees;
+        }
+
+        public Shift GetPreviousShift(Shift s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Shift GetNextShift(Shift s)
+        {
+            throw new NotImplementedException();
+        }
+
         public Shift? GetByDateAndType(DateTime date, ShiftType type)
         {
             var response = dataSource.GetByTime(date, (int)type);
@@ -86,7 +120,7 @@ namespace ZooBazaarLogicLayer.Managers
             int id = singleResult.GetValueAs<int>("id");
             ShiftType shiftType = (ShiftType)singleResult.GetValueAs<int>("shiftType");
             var employees = BuildEmployees(id);
-            DateTime responseDate = Convert.ToDateTime(singleResult.GetValueAs<string>("date"));
+            DateTime responseDate = singleResult.GetValueAs<DateTime>("date");
 
             Shift result = new Shift(id, responseDate, employees, shiftType);
             return result;

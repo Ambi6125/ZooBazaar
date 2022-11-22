@@ -12,5 +12,19 @@ namespace ZooBazaarLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public static IEnumerable<T> ExceptIn<T>(this IEnumerable<T> self, IEnumerable<T> other)
+        {
+            List<T> list = self.ToList();
+
+            foreach (T item in list)
+            {
+                if (other.Contains(item))
+                {
+                    list.Remove(item);
+                }
+            }
+            return list;
+        }
     }
 }
