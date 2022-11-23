@@ -17,11 +17,12 @@ namespace ZooBazaarLogicLayer
         {
             List<T> list = self.ToList();
 
-            foreach (T item in list)
+            for(int i = 0; i < other.Count(); i++)
             {
-                if (other.Contains(item))
+                var target = other.ElementAt(i);
+                if (list.Contains(target))
                 {
-                    list.Remove(item);
+                    list.Remove(target);
                 }
             }
             return list;
