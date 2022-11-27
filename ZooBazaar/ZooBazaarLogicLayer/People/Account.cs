@@ -15,11 +15,14 @@ namespace ZooBazaarLogicLayer.People
     
     public class Account : IDataProvider
     {
-        public readonly int? id;
+        private readonly int? id;
         private readonly string salt;
         private string hashedPassword;
         private string username;
         private string email;
+
+        public int ID => id.HasValue ? id.Value : throw new NullReferenceException();
+
 
         public string Username
         {
@@ -100,6 +103,11 @@ namespace ZooBazaarLogicLayer.People
             pvc.Add("accountType", AccountType);
 
             return pvc;
+        }
+
+        public override string ToString()
+        {
+            return email;
         }
     }
 }

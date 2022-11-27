@@ -73,5 +73,10 @@ namespace ZooBazaarDesktop.Forms
                 origin.Close();
             }
         }
+
+        private void OnAssignAccountClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

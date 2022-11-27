@@ -18,7 +18,8 @@ namespace ZooBazaarLogicLayer.People
         private string phoneNumber;
         private string email;
         private DateTime birthDate;
-        //TODO: Implement Contracts for Employees
+        private int? accountId;
+
         private List<Contract> contracts; //HACK: contracts here should be stored in order
         public int? ID => _id;
         public string Name
@@ -75,6 +76,7 @@ namespace ZooBazaarLogicLayer.People
             args.Add("phoneNumber", phoneNumber);
             args.Add("email", email);
             args.Add("birthDate", birthDate);
+            args.Add("accountId", accountId);
 
             return args;
         }
@@ -98,6 +100,16 @@ namespace ZooBazaarLogicLayer.People
             email = e;
         }
         
+        public bool AssignAccount(Account account)
+        {
+            bool isNotAssigned = !accountId.HasValue;
+            if (isNotAssigned)
+            {
+                this.accountId = account.ID;
+            }
+            return isNotAssigned;
+        }
+
         public void ChangeBirthDay(DateTime t)
         {
             if (DateTime.Today < t)

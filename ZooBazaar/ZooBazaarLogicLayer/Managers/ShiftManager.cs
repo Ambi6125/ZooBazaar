@@ -32,6 +32,7 @@ namespace ZooBazaarLogicLayer.Managers
                     string phoneNumber = item.GetValueAs<string>("phoneNumber");
                     string email = item.GetValueAs<string>("email");
                     DateTime birthdate = item.GetValueAs<DateTime>("birthDate");
+                    
 
                     Employee emp = new Employee(empId, name, address, phoneNumber, email, birthdate);
                     shiftEmployees.Add(emp);

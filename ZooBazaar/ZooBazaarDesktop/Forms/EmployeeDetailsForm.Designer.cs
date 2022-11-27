@@ -39,87 +39,91 @@
             this.txtbUpdateEmployeeEmail = new System.Windows.Forms.TextBox();
             this.btnEmployeeUpdate = new System.Windows.Forms.Button();
             this.dtpUpdateEmployeeBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.btnAssignAccount = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 65);
+            this.label2.Location = new System.Drawing.Point(37, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.Size = new System.Drawing.Size(49, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 100);
+            this.label3.Location = new System.Drawing.Point(37, 133);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 15);
+            this.label3.Size = new System.Drawing.Size(62, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Address";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 134);
+            this.label4.Location = new System.Drawing.Point(37, 179);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 15);
+            this.label4.Size = new System.Drawing.Size(108, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Phone Number";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 166);
+            this.label5.Location = new System.Drawing.Point(37, 221);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 15);
+            this.label5.Size = new System.Drawing.Size(46, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Email";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 191);
+            this.label6.Location = new System.Drawing.Point(37, 255);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.Size = new System.Drawing.Size(70, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Brithdate";
             // 
             // txtbUpdateEmployeeName
             // 
-            this.txtbUpdateEmployeeName.Location = new System.Drawing.Point(141, 69);
+            this.txtbUpdateEmployeeName.Location = new System.Drawing.Point(161, 92);
+            this.txtbUpdateEmployeeName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbUpdateEmployeeName.Name = "txtbUpdateEmployeeName";
-            this.txtbUpdateEmployeeName.Size = new System.Drawing.Size(204, 23);
+            this.txtbUpdateEmployeeName.Size = new System.Drawing.Size(233, 27);
             this.txtbUpdateEmployeeName.TabIndex = 1;
             // 
             // txtbUpdateEmployeeAddress
             // 
-            this.txtbUpdateEmployeeAddress.Location = new System.Drawing.Point(141, 100);
+            this.txtbUpdateEmployeeAddress.Location = new System.Drawing.Point(161, 133);
+            this.txtbUpdateEmployeeAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbUpdateEmployeeAddress.Name = "txtbUpdateEmployeeAddress";
-            this.txtbUpdateEmployeeAddress.Size = new System.Drawing.Size(204, 23);
+            this.txtbUpdateEmployeeAddress.Size = new System.Drawing.Size(233, 27);
             this.txtbUpdateEmployeeAddress.TabIndex = 1;
             // 
             // txtbUpdateEmployeePhoneNumber
             // 
-            this.txtbUpdateEmployeePhoneNumber.Location = new System.Drawing.Point(141, 131);
+            this.txtbUpdateEmployeePhoneNumber.Location = new System.Drawing.Point(161, 175);
+            this.txtbUpdateEmployeePhoneNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbUpdateEmployeePhoneNumber.Name = "txtbUpdateEmployeePhoneNumber";
-            this.txtbUpdateEmployeePhoneNumber.Size = new System.Drawing.Size(138, 23);
+            this.txtbUpdateEmployeePhoneNumber.Size = new System.Drawing.Size(157, 27);
             this.txtbUpdateEmployeePhoneNumber.TabIndex = 1;
             // 
             // txtbUpdateEmployeeEmail
             // 
-            this.txtbUpdateEmployeeEmail.Location = new System.Drawing.Point(141, 163);
+            this.txtbUpdateEmployeeEmail.Location = new System.Drawing.Point(161, 217);
+            this.txtbUpdateEmployeeEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtbUpdateEmployeeEmail.Name = "txtbUpdateEmployeeEmail";
-            this.txtbUpdateEmployeeEmail.Size = new System.Drawing.Size(204, 23);
+            this.txtbUpdateEmployeeEmail.Size = new System.Drawing.Size(233, 27);
             this.txtbUpdateEmployeeEmail.TabIndex = 1;
             // 
             // btnEmployeeUpdate
             // 
-            this.btnEmployeeUpdate.Location = new System.Drawing.Point(163, 269);
+            this.btnEmployeeUpdate.Location = new System.Drawing.Point(186, 359);
+            this.btnEmployeeUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEmployeeUpdate.Name = "btnEmployeeUpdate";
-            this.btnEmployeeUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnEmployeeUpdate.Size = new System.Drawing.Size(86, 31);
             this.btnEmployeeUpdate.TabIndex = 2;
             this.btnEmployeeUpdate.Text = "Update";
             this.btnEmployeeUpdate.UseVisualStyleBackColor = true;
@@ -127,26 +131,17 @@
             // 
             // dtpUpdateEmployeeBirthDate
             // 
-            this.dtpUpdateEmployeeBirthDate.Location = new System.Drawing.Point(145, 195);
+            this.dtpUpdateEmployeeBirthDate.Location = new System.Drawing.Point(166, 260);
+            this.dtpUpdateEmployeeBirthDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpUpdateEmployeeBirthDate.Name = "dtpUpdateEmployeeBirthDate";
-            this.dtpUpdateEmployeeBirthDate.Size = new System.Drawing.Size(200, 23);
+            this.dtpUpdateEmployeeBirthDate.Size = new System.Drawing.Size(228, 27);
             this.dtpUpdateEmployeeBirthDate.TabIndex = 3;
-            // 
-            // btnAssignAccount
-            // 
-            this.btnAssignAccount.Location = new System.Drawing.Point(163, 240);
-            this.btnAssignAccount.Name = "btnAssignAccount";
-            this.btnAssignAccount.Size = new System.Drawing.Size(116, 23);
-            this.btnAssignAccount.TabIndex = 4;
-            this.btnAssignAccount.Text = "Assign Account";
-            this.btnAssignAccount.UseVisualStyleBackColor = true;
             // 
             // EmployeeDetailsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 326);
-            this.Controls.Add(this.btnAssignAccount);
+            this.ClientSize = new System.Drawing.Size(486, 435);
             this.Controls.Add(this.dtpUpdateEmployeeBirthDate);
             this.Controls.Add(this.btnEmployeeUpdate);
             this.Controls.Add(this.txtbUpdateEmployeeEmail);
@@ -158,6 +153,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EmployeeDetailsForm";
             this.Text = "EmployeeDetails";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
@@ -179,6 +175,5 @@
         private TextBox txtbUpdateEmployeeEmail;
         private Button btnEmployeeUpdate;
         private DateTimePicker dtpUpdateEmployeeBirthDate;
-        private Button btnAssignAccount;
     }
 }

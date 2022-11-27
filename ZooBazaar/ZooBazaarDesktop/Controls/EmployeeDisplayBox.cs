@@ -28,7 +28,7 @@ namespace ZooBazaarDesktop.Controls
         private void OnLoad(object sender, EventArgs e)
         {
             lblName.Text = employee.Name;
-            lblAge.Text = employee.Age.ToString() + " year(s) old";
+            lblAge.Text = employee.Age + " year(s) old";
         }
 
         private void btnDetailsClick(object sender, EventArgs e)
@@ -39,6 +39,12 @@ namespace ZooBazaarDesktop.Controls
         private void OnViewContractsClick(object sender, EventArgs e)
         {
             new EmployeeContracts(employee, (MainForm)ParentForm).Show();
+        }
+
+        private void OnAssignClick(object sender, EventArgs e)
+        {
+            AssignAccountForm form = new AssignAccountForm(employee);
+            form.Show();
         }
     }
 }

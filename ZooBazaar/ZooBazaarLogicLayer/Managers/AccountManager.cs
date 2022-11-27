@@ -29,6 +29,26 @@ namespace ZooBazaarLogicLayer.Managers
             return _dataSource.AddAccount(account);
         }
 
+        public IReadOnlyCollection<Account> GetUnassignedAccounts()
+        {
+            List<Account> unassignedAccounts = new List<Account>();
+            var respose = _dataSource.GetUnassigned();
+
+            foreach(var entry in respose)
+            {
+                int id = entry.GetValueAs<int>("id");
+                string username = entry.GetValueAs<string>("username");
+                string email = entry.GetValueAs<string>("email");
+                string salt = entry.GetValueAs<string>("salt");
+                string hashedPassword = entry.GetValueAs<string>("password");
+                AccountType type = entry.GetValueAs<AccountType>("accountType");
+
+                unassignedAccounts.Add(new Account(id, username, salt, hashedPassword, email, type));
+            }
+
+            return unassignedAccounts;
+        }
+
         public IReadOnlyList<Account> GetByUsername(string username)
         {
             List<Account> accounts = new List<Account>();

@@ -14,6 +14,7 @@ namespace ZooBazaarDataLayer.DALAccount
         IValidationResponse UpdateAccount(IDataProvider account);
         IValidationResponse DeleteAccount(IDataProvider account);
 
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetUnassigned();
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByUsername(string username);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByEmail(string email);
     }
