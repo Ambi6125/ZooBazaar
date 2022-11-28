@@ -353,7 +353,7 @@ namespace ZooBazaarDesktop.Forms
         {
             flpContracts.Controls.Clear();
             ContractManager cm = ContractManager.CreateForDatabase();
-            foreach (Contract contract in cm.GetByEmployeeName(tbSearchAccountInput.Text))
+            foreach (Contract contract in cm.GetByEmployeeName(SearchContbx.Text))
             {
                 ContractDisplayBox box = new ContractDisplayBox(contract);
                 flpContracts.Controls.Add(box);

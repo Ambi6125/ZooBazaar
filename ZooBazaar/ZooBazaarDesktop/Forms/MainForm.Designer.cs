@@ -728,7 +728,7 @@
             this.FilterConcb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FilterConcb.FormattingEnabled = true;
             this.FilterConcb.Items.AddRange(new object[] {
-            "FirstName",
+            "Name",
             "Type",
             "Status"});
             this.FilterConcb.Location = new System.Drawing.Point(16, 67);

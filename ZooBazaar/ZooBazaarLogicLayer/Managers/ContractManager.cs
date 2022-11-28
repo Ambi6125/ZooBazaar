@@ -81,7 +81,7 @@ namespace ZooBazaarLogicLayer.Managers
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 bool isActive = contractData.GetValueAs<bool>("isActive");
-                int hours = contractData.GetValueAs<int>("contarctHours");
+                int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
                 Contract c = new Contract(id, startDate, endDate, type, isActive, name);
@@ -101,7 +101,7 @@ namespace ZooBazaarLogicLayer.Managers
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 bool isActive = contractData.GetValueAs<bool>("isActive");
-                int hours = contractData.GetValueAs<int>("contarctHours");
+                int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
                 Contract c = new Contract(id, startDate, endDate, type, isActive, name);

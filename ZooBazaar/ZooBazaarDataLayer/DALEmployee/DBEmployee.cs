@@ -144,6 +144,8 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Select(query);
         }
 
+
+
         public IValidationResponse UpdateContractStatus(IDataProvider employee)
         {
             throw new NotImplementedException();
