@@ -59,7 +59,15 @@ namespace ZooBazaarLogicLayer.Managers
                 int id = contractData.GetValueAs<int>("id");
                 string resultname = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
-                DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
+                DateTime? endDate;
+                try
+                {
+                    endDate = contractData.GetValueAs<DateTime>("endDate");
+                }
+                catch (InvalidCastException)
+                {
+                    endDate = null;
+                }
                 bool isActive = contractData.GetValueAs<bool>("isActive");
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
