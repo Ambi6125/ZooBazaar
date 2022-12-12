@@ -14,7 +14,6 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
         IValidationResponse Add(IDataProvider shift);
         IValidationResponse RegisterEmployee(ShiftEmployeeRelationShip data);
         IValidationResponse RemoveEmployee(ShiftEmployeeRelationShip data);
-
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetBetween(DateTime start, DateTime end);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesFromShift(int id);
         IReadOnlyCollection<int> GetIdsOnDate(DateTime date);
