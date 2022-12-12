@@ -163,6 +163,7 @@
             this.Controls.Add(this.dTPStart);
             this.Name = "CreateContractForm";
             this.Text = "CreateContractForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClose);
             this.Load += new System.EventHandler(this.CreateContractForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

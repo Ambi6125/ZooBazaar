@@ -16,7 +16,7 @@ namespace ZooBazaarLogicLayer.People
         private DateTime? endDate;
 
         public ContractType ContractType { get; private set; }
-        public bool IsActive { get; set; }
+        public bool IsActive => endDate is null || endDate.Value.Date > DateTime.Today;
         public DateTime StartDate => startDate;
         public DateTime? EndDate => endDate;
 
@@ -24,31 +24,20 @@ namespace ZooBazaarLogicLayer.People
 
         public int ID => id.Value;
 
-        public Contract(DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
+        public Contract(DateTime startDate, DateTime? endDate, ContractType contractType)
         {
             this.startDate = startDate;
             this.endDate = endDate;
             ContractType = contractType;
-            IsActive = isActive;
         }
 
-        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive, string name)
+        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, string employeeName)
         {
             this.id = id;
             this.startDate = startDate;
             this.endDate = endDate;
             ContractType = contractType;
-            IsActive = isActive;
-            EmployeeName = name;
-        }
-
-        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, bool isActive)
-        {
-            this.id = id;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            ContractType = contractType;
-            IsActive = isActive;
+            EmployeeName = employeeName;
         }
 
         public void ChangeType(ContractType type)
@@ -58,12 +47,13 @@ namespace ZooBazaarLogicLayer.People
 
         public IParameterValueCollection GetParameterArgs()
         {
-            ParameterValueCollection pvc = new ParameterValueCollection();
-            pvc.Add("id", id);
-            pvc.Add("startDate", startDate);
-            pvc.Add("endDate", endDate);
-            pvc.Add("isActive", IsActive);
-            pvc.Add("contractHours", (int)ContractType);
+            ParameterValueCollection pvc = new ParameterValueCollection
+            {
+                { "id", id },
+                { "startDate", startDate },
+                { "endDate", endDate },
+                { "contractHours", (int)ContractType }
+            };
 
             return pvc;
         }

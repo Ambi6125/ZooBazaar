@@ -18,6 +18,8 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
 
         public int ID => id.HasValue ? id.Value : throw new NullReferenceException("No ID assigned yet.");
 
+        public DateTime Date => date.Date;
+
         public IReadOnlyList<Employee> Employees => employees;
         
         public ShiftType ShiftType => shiftType;

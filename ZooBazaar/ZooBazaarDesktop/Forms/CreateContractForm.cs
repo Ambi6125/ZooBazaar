@@ -40,9 +40,8 @@ namespace ZooBazaarDesktop.Forms
             {
                 end = dTPEnd.Value;
             }
-            bool active = true;
-            //bool active = start.Date == DateTime.Now.Date;
-            Contract contract = new Contract(start, end, type, active);
+
+            Contract contract = new Contract(start, end, type);
 
             int num = employeelistbox.SelectedIndex;
             var emp = empmanager.GetEmployeesWithNoContracts();
@@ -100,6 +99,11 @@ namespace ZooBazaarDesktop.Forms
                 string name = $"{e.Name} - {e.Email}";
                 employeelistbox.Items.Add(name);
             }           
+        }
+
+        private void OnClose(object sender, FormClosedEventArgs e)
+        {
+            mainForm.Show();
         }
     }
 }
