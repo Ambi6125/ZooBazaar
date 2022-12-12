@@ -33,6 +33,15 @@ namespace ZooBazaarDesktop.Colours
             public static Color FullTime => Color.LightGreen;
             public static Color ZeroTime => Color.Goldenrod;
         }
+
+        internal class ShiftColors
+        {
+            public static Color NoEmployees => Color.IndianRed;
+            public static Color NotEnough => Color.Yellow;
+            public static Color ExactlyEnough => Color.Green;
+            public static Color MoreThanEnough => Color.LightBlue;
+        }
+
         #endregion
     }
 }

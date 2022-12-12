@@ -99,14 +99,35 @@ namespace ZooBazaarLogicLayer.Managers
             return employees;
         }
 
-        public Shift GetPreviousShift(Shift s)
+        public Shift? GetPreviousShift(Shift s)
         {
-            throw new NotImplementedException();
-        }
+            DateTime? finalDate = null;
+            ShiftType? finalType = null;
 
-        public Shift GetNextShift(Shift s)
-        {
-            throw new NotImplementedException();
+            switch (s.ShiftType)
+            {
+                case ShiftType.Morning:
+                    finalType = ShiftType.Evening;
+                    finalDate = s.Date.AddDays(-1);
+                    break;
+                case ShiftType.Afternoon:
+                    finalDate = s.Date;
+                    finalType = ShiftType.Morning;
+                    break;
+                case ShiftType.Evening:
+                    finalDate = s.Date;
+                    finalType = ShiftType.Afternoon;
+                    break;
+            }
+
+            if (finalType is not null && finalDate is not null)
+            {
+                return GetByDateAndType(finalDate.Value, finalType.Value);
+            }
+            else
+            {
+                throw new ArgumentException("Could not calculate previous date and type.");
+            }
         }
 
         public Shift? GetByDateAndType(DateTime date, ShiftType type)

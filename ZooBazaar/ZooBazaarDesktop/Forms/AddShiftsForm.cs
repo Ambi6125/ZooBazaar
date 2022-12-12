@@ -105,15 +105,16 @@ namespace ZooBazaarDesktop.Forms
 
 
             Shift? currentShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
-            if(currentShift is null)
+            
+            if(currentShift is not null) //No shift exists here yet
             {
-                takenEmployees = Enumerable.Empty<Employee>().ToList();
-                availableEmployees = em.GetAll().ToList(); //TODO: Not all employees should be available -- finish the logic for this
-            }
-            else
-            {
-                availableEmployees = em.GetAll().Except(currentShift.Employees).ToList();
                 takenEmployees = currentShift.Employees.ToList();
+                Shift? previousShift = sm.GetPreviousShift(currentShift);
+
+                //TODO: Get employees without contracts
+                availableEmployees = em.GetAll().ToList();
+
+                
             }
 
             DisplayEmployeesCorrectly(availableEmployees, takenEmployees);

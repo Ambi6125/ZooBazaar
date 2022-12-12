@@ -173,7 +173,7 @@ namespace ZooBazaarLogicLayer.Managers
                     contractType = ContractType.FullTime;
                 }
 
-                Contract contract = new Contract(id, startDate, endDate, contractType, isActive, resultname);
+                Contract contract = new Contract(id, startDate, endDate, contractType, resultname);
                 finalResult.Add(contract);
             }
             return finalResult;

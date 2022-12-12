@@ -11,7 +11,7 @@ using EasyTools.MySqlDatabaseTools;
 
 namespace ZooBazaarLogicLayer.People
 {
-    public enum AccountType { Default = 0, Admin = 1 }
+    public enum AccountType { Employee = 0, Admin = 1, Customer = 2 }
     
     public class Account : IDataProvider
     {
@@ -43,7 +43,7 @@ namespace ZooBazaarLogicLayer.People
         /// <summary>
         /// Create new user
         /// </summary>
-        public Account(string username, string password, HashAlgorithm hash, string email, AccountType accountType = AccountType.Default)
+        public Account(string username, string password, HashAlgorithm hash, string email, AccountType accountType = AccountType.Employee)
         {
             salt = Generate.NewString(60);
             hashedPassword = hash(password, salt);

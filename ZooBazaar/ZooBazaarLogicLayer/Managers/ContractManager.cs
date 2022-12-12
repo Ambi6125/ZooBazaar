@@ -59,12 +59,19 @@ namespace ZooBazaarLogicLayer.Managers
                 int id = contractData.GetValueAs<int>("id");
                 string resultname = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
-                DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
-                bool isActive = contractData.GetValueAs<bool>("isActive");
+                DateTime? endDate;
+                try
+                {
+                    endDate = contractData.GetValueAs<DateTime>("endDate");
+                }
+                catch (InvalidCastException)
+                {
+                    endDate = null;
+                }
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, isActive, resultname);
+                Contract c = new Contract(id, startDate, endDate, type, resultname);
                 contracts.Add(c);
             }
             return contracts;
@@ -80,11 +87,10 @@ namespace ZooBazaarLogicLayer.Managers
                 string name = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
-                bool isActive = contractData.GetValueAs<bool>("isActive");
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, isActive, name);
+                Contract c = new Contract(id, startDate, endDate, type, name);
                 contracts.Add(c);
             }
             return contracts;            
@@ -100,11 +106,10 @@ namespace ZooBazaarLogicLayer.Managers
                 string name = contractData.GetValueAs<string>("employeeName");
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
-                bool isActive = contractData.GetValueAs<bool>("isActive");
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, isActive, name);
+                Contract c = new Contract(id, startDate, endDate, type,  name);
                 contracts.Add(c);
             }
             return contracts;
