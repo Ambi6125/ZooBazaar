@@ -46,12 +46,12 @@ namespace ZooBazaarDesktop.Forms
 
             int num = employeelistbox.SelectedIndex;
             var emp = empmanager.GetEmployeesWithNoContracts();
-            Contract oldcontract = emp.ElementAt(num).CurrentContract;
-            if (oldcontract != null)
-            {
-                oldcontract.IsActive = false;
-                manager.UpdateContract(oldcontract);
-            }
+            //Contract oldcontract = emp.ElementAt(num).CurrentContract;
+            //if (oldcontract != null)
+            //{
+            //    oldcontract.IsActive = false;
+            //    manager.UpdateContract(oldcontract);
+            //}
             manager.CreateContract(contract);
             var result = manager.AssignContract(emp.ElementAt(num));
             if (result.Success)
