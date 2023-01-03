@@ -36,7 +36,37 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
         {
             var result = new List<IReadOnlyParameterValueCollection>();
             string query = $"SELECT zb_shifts.*, zb_employees.* FROM {FullJoin} WHERE date >= @MinDate AND date < @MaxDate ORDER BY zb_shifts.id";
-            throw new NotImplementedException();
+            MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("MinDate", start);
+            cmd.Parameters.AddWithValue("MaxDate", end);
+            using (cmd)
+            {
+                try
+                {
+                    conn.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        int dbshiftType = reader.GetInt32("shiftType");
+                        DateTime dbdate = reader.GetDateTime("date");
+
+                        ParameterValueCollection args = new ParameterValueCollection();
+                        args.Add("id", id);
+                        args.Add("shiftType", dbshiftType);
+                        args.Add("date", dbdate);
+                        result.Add(args);
+                    }
+                }
+                finally
+                {
+                    if (conn.State != System.Data.ConnectionState.Closed)
+                        conn.Close();
+                    conn.Dispose();
+                }
+            }
+            return result;
         }
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDate(DateTime date)

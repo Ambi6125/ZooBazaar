@@ -183,6 +183,43 @@ namespace ZooBazaarLogicLayer.Managers
             return dataSource.RemoveEmployee(relationShip);
         }
 
+        public IReadOnlyCollection<Shift> GetAllCurrentWeeksShifts(DateTime date)
+        {
+            List<Shift> result = new List<Shift>();
+            var response = dataSource.GetBetween(GetMonday(date), GetSunday(date));
+            var identifiers = dataSource.GetIdsOnDate(date);
+            foreach ( var shift in response)
+            {
+                var tableWithCertainId = response.Where(x => x.GetValueAs<int>("zb_shifts.id") == id);
 
+                List<Employee> shiftEmployees = BuildEmployees(id).ToList();
+
+
+                var singleEntry = tableWithCertainId.First();
+
+                int shiftId = singleEntry.GetValueAs<int>("zb_shifts.id");
+                ShiftType type = singleEntry.GetValueAs<ShiftType>("shiftType");
+                DateTime shiftDate = Convert.ToDateTime(singleEntry.GetValueAs<string>("date"));
+
+                Shift s = new Shift(shiftId, shiftDate, shiftEmployees, type);
+                shifts.Add(s);
+            }
+        }
+
+        private DateTime GetMonday(DateTime date)
+        {
+            int datessincemonday = (int)date.DayOfWeek - 1;
+            if(datessincemonday == -1)
+            {
+                datessincemonday = 6;
+            }
+            return date.AddDays(- datessincemonday);
+        }
+
+        private DateTime GetSunday(DateTime date)
+        {
+            int datesuntilsunday = 7 - (int)date.DayOfWeek;
+            return date.AddDays(datesuntilsunday);
+        }
     }
 }

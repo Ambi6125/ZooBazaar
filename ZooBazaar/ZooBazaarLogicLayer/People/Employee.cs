@@ -60,10 +60,11 @@ namespace ZooBazaarLogicLayer.People
         /// <summary>
         /// EXISTING employee
         /// </summary>
-        public Employee(int? id,string name, string address, string phone, string email, DateTime birthDate)
+        public Employee(int? id,string name, string address, string phone, string email, DateTime birthDate/*, List<Contract> contracts*/)
             :this(name,address,phone,email, birthDate)
         {
             this._id = id;
+            //this.contracts = contracts;
         }
 
         public IParameterValueCollection GetParameterArgs()
@@ -78,6 +79,24 @@ namespace ZooBazaarLogicLayer.People
             args.Add("accountId", accountId);
 
             return args;
+        }
+        /// <summary>
+        /// Returns the currently active contract, if there is one.
+        /// </summary>
+        public Contract? CurrentContract
+        {
+            get
+            {
+                Contract t = contracts.LastOrDefault();
+                if (t is null || t.IsActive == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    return t;
+                }
+            }
         }
 
         public void ChangeAddress(string a)
