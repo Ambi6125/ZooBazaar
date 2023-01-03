@@ -21,9 +21,11 @@ namespace ZooBazaarDataLayer
 
         public IParameterValueCollection GetParameterArgs()
         {
-            ParameterValueCollection pvc = new ParameterValueCollection();
-            pvc.Add("employeeId", employeeid);
-            pvc.Add("contractId", contractid);            
+            ParameterValueCollection pvc = new ParameterValueCollection
+            {
+                { "employeeId", employeeid },
+                { "contractId", contractid }
+            };
 
             return pvc;
         }

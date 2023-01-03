@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ZooBazaarDataLayer.DALScheduling;
 using ZooBazaarDataLayer.DALScheduling.DALShift;
 using ZooBazaarLogicLayer.People;
+using ZooBazaarLogicLayer.Schedule.Availability;
 using ZooBazaarLogicLayer.Schedule.Shifts;
 
 namespace ZooBazaarLogicLayer.Managers
@@ -181,5 +182,7 @@ namespace ZooBazaarLogicLayer.Managers
         {
             return dataSource.RemoveEmployee(relationShip);
         }
+
+
     }
 }

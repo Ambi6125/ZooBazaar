@@ -20,7 +20,6 @@ namespace ZooBazaarLogicLayer.People
         private DateTime birthDate;
         private int? accountId;
 
-        private List<Contract> contracts; //HACK: contracts here should be stored in order
         public int? ID => _id;
         public string Name
         {
@@ -80,10 +79,6 @@ namespace ZooBazaarLogicLayer.People
 
             return args;
         }
-        /// <summary>
-        /// Returns the currently active contract, if there is one.
-        /// </summary>
-        public Contract? CurrentContract => contracts.Last().IsActive ? contracts.Last() : null;
 
         public void ChangeAddress(string a)
         {
@@ -118,20 +113,7 @@ namespace ZooBazaarLogicLayer.People
             }
             birthDate = t;
         }
-        public bool IsActive
-        {
-            get
-            {
-                if (contracts.Any())
-                {
-                    return CurrentContract.IsActive;
-                }
-                else
-                {
-                    throw new NoContractsException();
-                }
-            }
-        }
+        
 
         public override string ToString()
         {

@@ -117,7 +117,7 @@ namespace ZooBazaarDesktop.Forms
                 
             }
 
-            DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
+            //TODO: DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
         }
     }
 }
