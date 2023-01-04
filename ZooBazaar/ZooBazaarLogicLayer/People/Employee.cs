@@ -34,9 +34,7 @@ namespace ZooBazaarLogicLayer.People
         }
         public string Address => address;
         public string PhoneNumber => phoneNumber;
-        public string Email => email;
-        
-
+        public string Email => email;        
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);
 
@@ -83,21 +81,21 @@ namespace ZooBazaarLogicLayer.People
         /// <summary>
         /// Returns the currently active contract, if there is one.
         /// </summary>
-        public Contract? CurrentContract
-        {
-            get
-            {
-                Contract t = contracts.LastOrDefault();
-                if (t is null || t.IsActive == false)
-                {
-                    return null;
-                }
-                else
-                {
-                    return t;
-                }
-            }
-        }
+        //public Contract? CurrentContract
+        //{
+        //    get
+        //    {
+        //        Contract t = contracts.LastOrDefault();
+        //        if (t is null || t.IsActive == false)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            return t;
+        //        }
+        //    }
+        //}
 
         public void ChangeAddress(string a)
         {

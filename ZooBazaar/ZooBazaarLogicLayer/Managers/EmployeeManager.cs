@@ -146,6 +146,7 @@ namespace ZooBazaarLogicLayer.Managers
             return finalResult;
         }
 
+        //This needs to change
         public IReadOnlyCollection<Contract> GetAllEmployeeContracts(Employee employee)
         {
             var queryResult = dataSource.GetAllEmployeesContracts(employee.ID);
@@ -156,7 +157,6 @@ namespace ZooBazaarLogicLayer.Managers
                 string resultname = result.GetValueAs<string>("employeeName");
                 DateTime startDate = result.GetValueAs<DateTime>("startDate");
                 DateTime endDate = result.GetValueAs<DateTime>("endDate");
-                bool isActive = result.GetValueAs<bool>("isActive");
                 int contractHours = result.GetValueAs<int>("contractHours");
                 ContractType contractType = ContractType.ZeroBased;
 
@@ -172,6 +172,8 @@ namespace ZooBazaarLogicLayer.Managers
                 {
                     contractType = ContractType.FullTime;
                 }
+
+                
 
                 Contract contract = new Contract(id, startDate, endDate, contractType, resultname);
                 finalResult.Add(contract);

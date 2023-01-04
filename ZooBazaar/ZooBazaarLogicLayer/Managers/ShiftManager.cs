@@ -183,27 +183,42 @@ namespace ZooBazaarLogicLayer.Managers
             return dataSource.RemoveEmployee(relationShip);
         }
 
+        //TODO: figure out how to get all current week shifts
         public IReadOnlyCollection<Shift> GetAllCurrentWeeksShifts(DateTime date)
         {
             List<Shift> result = new List<Shift>();
             var response = dataSource.GetBetween(GetMonday(date), GetSunday(date));
-            var identifiers = dataSource.GetIdsOnDate(date);
             foreach ( var shift in response)
             {
-                var tableWithCertainId = response.Where(x => x.GetValueAs<int>("zb_shifts.id") == id);
-
-                List<Employee> shiftEmployees = BuildEmployees(id).ToList();
-
-
-                var singleEntry = tableWithCertainId.First();
-
-                int shiftId = singleEntry.GetValueAs<int>("zb_shifts.id");
-                ShiftType type = singleEntry.GetValueAs<ShiftType>("shiftType");
-                DateTime shiftDate = Convert.ToDateTime(singleEntry.GetValueAs<string>("date"));
-
-                Shift s = new Shift(shiftId, shiftDate, shiftEmployees, type);
-                shifts.Add(s);
+                if (!result.Any(x => x.ID == shift.GetValueAs<int>("id")))
+                {
+                    int id = shift.GetValueAs<int>("id");
+                    ShiftType type = shift.GetValueAs<ShiftType>("shiftType");
+                    DateTime shiftDate = Convert.ToDateTime(shift.GetValueAs<string>("date"));
+                    List<Employee> shiftEmployees = BuildEmployees(id).ToList();
+                    Shift s = new Shift(id, shiftDate, shiftEmployees, type);
+                    result.Add(s);
+                }
             }
+            return result;
+
+            //var response = dataSource.GetBetween(GetMonday(date), GetSunday(date));//gets a list of shifts between monday and sunday
+            //var identifiers = dataSource.GetIdsOnDate(date);//gets a list of shift ids on a specific date
+            //foreach (var shift in response)
+            //{
+            //    var tableWithCertainId = response.Where(x => x.GetValueAs<int>("zb_shifts.id") == id);
+
+            //    List<Employee> shiftEmployees = BuildEmployees(id).ToList(); //we get employees from a specific shift using the shift id
+
+            //    var singleEntry = tableWithCertainId.First();
+
+            //    int shiftId = singleEntry.GetValueAs<int>("zb_shifts.id");
+            //    ShiftType type = singleEntry.GetValueAs<ShiftType>("shiftType");
+            //    DateTime shiftDate = Convert.ToDateTime(singleEntry.GetValueAs<string>("date"));
+
+            //    Shift s = new Shift(shiftId, shiftDate, shiftEmployees, type);
+            //    result.Add(s);
+            //}
         }
 
         private DateTime GetMonday(DateTime date)
@@ -218,6 +233,10 @@ namespace ZooBazaarLogicLayer.Managers
 
         private DateTime GetSunday(DateTime date)
         {
+            if(date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return date;
+            }
             int datesuntilsunday = 7 - (int)date.DayOfWeek;
             return date.AddDays(datesuntilsunday);
         }

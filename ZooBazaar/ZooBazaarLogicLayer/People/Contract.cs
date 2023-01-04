@@ -33,13 +33,22 @@ namespace ZooBazaarLogicLayer.People
             this.owner = owner;
         }
 
-        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, string employeeName, Employee owner)
+        //public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, string employeeName, Employee owner)
+        //{
+        //    this.id = id;
+        //    this.startDate = startDate;
+        //    this.endDate = endDate;
+        //    ContractType = contractType;
+        //    EmployeeName = employeeName;
+        //    this.owner = owner;
+        //}
+
+        public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, Employee owner)
         {
             this.id = id;
             this.startDate = startDate;
             this.endDate = endDate;
             ContractType = contractType;
-            EmployeeName = employeeName;
             this.owner = owner;
         }
 

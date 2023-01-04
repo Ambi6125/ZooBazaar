@@ -26,6 +26,7 @@ namespace ZooBazaarDataLayer.DALContracts
             return _communicator.Insert(q);
         }
 
+        //Needs to be removed
         public IValidationResponse AssignContract(IDataProvider employee)
         {
             int recentid = LatestContractEntry();
@@ -53,28 +54,27 @@ namespace ZooBazaarDataLayer.DALContracts
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByEmployeeName(string name)
         {
-            MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employeecontracts", "zb_employeecontracts.contractId = zb_contracts.id");
-            MySqlTable join2 = join.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_employeecontracts.employeeId");
+            MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_contracts.employeeId");
             MySqlCondition condition = new MySqlCondition("employeeName", "%"+name+"%", Strictness.MustBeSimilar);
-            SelectQuery q = new SelectQuery(join2, "zb_contracts.*, zb_employees.employeeName", condition);
+            SelectQuery q = new SelectQuery(join, "*", condition);
             return _communicator.Select(q);
         }
 
+        //Needs to be removed
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByStatus(bool active)
         {
             MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employeecontracts", "zb_employeecontracts.contractId = zb_contracts.id");
             MySqlTable join2 = join.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_employeecontracts.employeeId");
             MySqlCondition condition = new MySqlCondition("isActive", active, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(join2, "zb_contracts.*, zb_employees.employeeName", condition);
+            SelectQuery q = new SelectQuery(join2, "zb_contracts.*, zb_employees.*", condition);
             return _communicator.Select(q);
         }
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByType(int hour)
         {
-            MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employeecontracts", "zb_employeecontracts.contractId = zb_contracts.id");
-            MySqlTable join2 = join.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_employeecontracts.employeeId");
+            MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employees", "zb_employees.id = zb_contracts.employeeId");
             MySqlCondition condition = new MySqlCondition("contractHours", hour, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(join2, "zb_contracts.*, zb_employees.employeeName", condition);
+            SelectQuery q = new SelectQuery(join, "*", condition);
             return _communicator.Select(q);
         }
 

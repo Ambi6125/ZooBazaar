@@ -40,19 +40,11 @@ namespace ZooBazaarDesktop.Forms
             {
                 end = dTPEnd.Value;
             }
-
-            Contract contract = new Contract(start, end, type);
-
+            
             int num = employeelistbox.SelectedIndex;
             var emp = empmanager.GetEmployeesWithNoContracts();
-            //Contract oldcontract = emp.ElementAt(num).CurrentContract;
-            //if (oldcontract != null)
-            //{
-            //    oldcontract.IsActive = false;
-            //    manager.UpdateContract(oldcontract);
-            //}
-            manager.CreateContract(contract);
-            var result = manager.AssignContract(emp.ElementAt(num));
+            Contract contract = new Contract(start, end, type, emp.ElementAt(num));            
+            var result = manager.CreateContract(contract);            
             if (result.Success)
             {
                 MessageBox.Show("Succesfully created.");
@@ -63,6 +55,14 @@ namespace ZooBazaarDesktop.Forms
             {
                 MessageBox.Show($"Something went wrong: {result.Message}");
             }
+
+            //Contract oldcontract = emp.ElementAt(num).CurrentContract;
+            //if (oldcontract != null)
+            //{
+            //    oldcontract.IsActive = false;
+            //    manager.UpdateContract(oldcontract);
+            //}
+            //var result = manager.AssignContract(emp.ElementAt(num));
         }
 
         private void Cancelbutton_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@ namespace ZooBazaarDataLayer.DALEmployee
 
             return communicator.Select(query);
         }
+
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetById(int id)
         {
             MySqlCondition condition = new MySqlCondition("accountId", "%" + id + "%", Strictness.MustBeSimilar);
@@ -49,6 +50,7 @@ namespace ZooBazaarDataLayer.DALEmployee
 
             return communicator.Select(query);
         }
+
         public IValidationResponse UpdateEntry(IDataProvider employee)
         {
             object idValue = employee.GetParameterArgs().ElementAt(0);
@@ -58,15 +60,14 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Update(query);
         }
 
-
         //TODO: Make it with left join, result need to give employees without contracts
         public MySqlConnection GetConnection()
         {
             MySqlConnection conn =
                 new MySqlConnection("Server=studmysql01.fhict.local;Uid=dbi468695;Database=dbi468695;Pwd=MorbinTime;SslMode=none;");
             return conn;
-
         }
+
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithNoContracts()
         {
             //MySqlTable join = table.Join(Join.Left, "zb_employeecontracts", "zb_employees.id = zb_employeecontracts.employeeId");
@@ -132,7 +133,7 @@ namespace ZooBazaarDataLayer.DALEmployee
             MySqlTable jointable = new MySqlTable("zb_contracts");
             MySqlTable join = jointable.Join(Join.Inner, "zb_employeecontracts", "zb_contracts.id = zb_employeecontracts.contractId");
             MySqlCondition condition = new MySqlCondition("employeeId", id, Strictness.MustMatchExactly);
-            SelectQuery q = new SelectQuery(join, "zb_contracts.*",condition);
+            SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.*",condition);
             return communicator.Select(q);
         }
 
@@ -143,8 +144,6 @@ namespace ZooBazaarDataLayer.DALEmployee
 
             return communicator.Select(query);
         }
-
-
 
         public IValidationResponse UpdateContractStatus(IDataProvider employee)
         {

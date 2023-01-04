@@ -56,8 +56,7 @@ namespace ZooBazaarLogicLayer.Managers
             var result = _dataSource.GetByEmployeeName(name);
             foreach (var contractData in result)
             {
-                int id = contractData.GetValueAs<int>("id");
-                string resultname = contractData.GetValueAs<string>("employeeName");
+                int id = contractData.GetValueAs<int>(0);                
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime? endDate;
                 try
@@ -71,7 +70,15 @@ namespace ZooBazaarLogicLayer.Managers
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, resultname);
+                int employeeid = contractData.GetValueAs<int>(5);
+                string resultname = contractData.GetValueAs<string>("employeeName");
+                string address = contractData.GetValueAs<string>("address");
+                string phone = contractData.GetValueAs<string>("phoneNumber");
+                string email = contractData.GetValueAs<string>("email");
+                DateTime birthday = contractData.GetValueAs<DateTime>("birthDate");
+                Employee employee = new Employee(employeeid, resultname, address, phone, email, birthday);
+
+                Contract c = new Contract(id, startDate, endDate, type, employee);
                 contracts.Add(c);
             }
             return contracts;
@@ -83,14 +90,22 @@ namespace ZooBazaarLogicLayer.Managers
             var result = _dataSource.GetByStatus(active);
             foreach (var contractData in result)
             {
-                int id = contractData.GetValueAs<int>("id");
-                string name = contractData.GetValueAs<string>("employeeName");
+                int id = contractData.GetValueAs<int>(0);
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type, name);
+                int employeeid = contractData.GetValueAs<int>(5);
+                string resultname = contractData.GetValueAs<string>("employeeName");
+                string address = contractData.GetValueAs<string>("address");
+                string phone = contractData.GetValueAs<string>("phoneNumber");
+                string email = contractData.GetValueAs<string>("email");
+                DateTime birthday = contractData.GetValueAs<DateTime>("birthDate");
+                Employee employee = new Employee(employeeid, resultname, address, phone, email, birthday);
+
+
+                Contract c = new Contract(id, startDate, endDate, type, employee);
                 contracts.Add(c);
             }
             return contracts;            
@@ -102,14 +117,21 @@ namespace ZooBazaarLogicLayer.Managers
             var result = _dataSource.GetByType(hour);
             foreach (var contractData in result)
             {
-                int id = contractData.GetValueAs<int>("id");
-                string name = contractData.GetValueAs<string>("employeeName");
+                int id = contractData.GetValueAs<int>(0);
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                Contract c = new Contract(id, startDate, endDate, type,  name);
+                int employeeid = contractData.GetValueAs<int>(5);
+                string resultname = contractData.GetValueAs<string>("employeeName");
+                string address = contractData.GetValueAs<string>("address");
+                string phone = contractData.GetValueAs<string>("phoneNumber");
+                string email = contractData.GetValueAs<string>("email");
+                DateTime birthday = contractData.GetValueAs<DateTime>("birthDate");
+                Employee employee = new Employee(employeeid, resultname, address, phone, email, birthday);
+
+                Contract c = new Contract(id, startDate, endDate, type, employee);
                 contracts.Add(c);
             }
             return contracts;
