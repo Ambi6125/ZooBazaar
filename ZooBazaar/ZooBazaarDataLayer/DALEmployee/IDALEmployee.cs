@@ -21,5 +21,6 @@ namespace ZooBazaarDataLayer.DALEmployee
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts(int? id);
         //IValidationResponse UpdateContractStatus(IDataProvider employee);
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployees();
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithActiveContract(DateTime date);
     }
 }

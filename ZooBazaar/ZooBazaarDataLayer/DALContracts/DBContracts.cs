@@ -103,6 +103,40 @@ namespace ZooBazaarDataLayer.DALContracts
             return id;
         }
 
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetActiveContracts(DateTime date)
+        {
+            List<ParameterValueCollection> list = new List<ParameterValueCollection>();
+            string command = "select * from zb_contracts where (startDate <= @date AND coalesce(endDate, @date) >= @date) AND employeeId not in (SELECT employeeId from zb_contracts where startDate > @date";
+            using MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            using MySqlCommand read = new MySqlCommand(command, conn);
+            read.Parameters.AddWithValue("date", date.Date);
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = read.ExecuteReader();
+                while (reader.Read())
+                {
+                    ParameterValueCollection parameterValueCollection = new ParameterValueCollection();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        ParameterValuePair paramValue = new ParameterValuePair(reader.GetName(i), reader.GetValue(i));
+                        parameterValueCollection.Add(paramValue);
+                    }
+
+                    list.Add(parameterValueCollection);
+                }
+                reader.Close();
+            }
+            finally
+            {
+                if (conn.State != System.Data.ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+            return list;
+        }
+
         //public IReadOnlyParameterValueCollection? GetLatestContractAssigned(int id)
         //{
         //    MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employeecontracts", "zb_employeecontracts.contractId = zb_contracts.id");

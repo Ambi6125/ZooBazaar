@@ -245,11 +245,13 @@ namespace ZooBazaarLogicLayer.Managers
             return date.AddDays(datesuntilsunday);
         }
 
-        public IReadOnlyCollection<Employee> GetEmployeesThatCanWork(DateTime date, ShiftType type, Shift s)
+        public IReadOnlyCollection<Employee> GetEmployeesThatCanWork(Shift s)
         {
+            EmployeeManager manager = EmployeeManager.CreateForDatabase();
+
             //First we get all employees with an active contract and put them in a list
 
-            List<Employee> employees = new List<Employee>(); //Replace new List<Employee>(); with the method that gives employees with active contract
+            List<Employee> employees = manager.GetEmployeesWithActiveContract(s.Date).ToList();
 
             //Second we get a list of employees that can not work in the shift that we are looking at and remove those from the first list
 
@@ -269,7 +271,7 @@ namespace ZooBazaarLogicLayer.Managers
             //Fourth we get a list of employees that can not work based on hours and we remove those from the first list
             //To get those employees who have completed their weeks hours we utilize GetAllcurrentweekshifts method by checking each shift list of employees
 
-            List<Shift> shifts = GetAllCurrentWeeksShifts(date).ToList();
+            List<Shift> shifts = GetAllCurrentWeeksShifts(s.Date).ToList();
             List<Employee> completedemp = new List<Employee>();
             foreach (Employee e in employees)
             {
@@ -286,6 +288,9 @@ namespace ZooBazaarLogicLayer.Managers
                 }
 
                 //TODO: add an if stament to check contract type which we need to use to calculate if the hours he has worked is equal to the amount he needs to work with exception of zerobased contracts
+
+
+
                 //if(e has fulltime contract)
                 if (hoursworked >= 5)
                 {

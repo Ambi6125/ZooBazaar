@@ -18,5 +18,6 @@ namespace ZooBazaarDataLayer.DALContracts
         //TODO: Be gone
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByStatus(bool active);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByType(int hour);
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetActiveContracts(DateTime date);
     }
 }
