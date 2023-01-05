@@ -74,7 +74,7 @@ namespace ZooBazaarDataLayer.DALEmployee
             //MySqlCondition condition = new MySqlCondition("zb_employeecontracts.contractId", null, Strictness.MustMatchExactly);
             //SelectQuery q = new SelectQuery(join, "zb_employees.*", condition);
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();
-            string command = "SELECT * FROM zb_employees LEFT JOIN zb_employeecontracts ON zb_employeecontracts.employeeId = zb_employees.id WHERE zb_employeecontracts.contractId IS NULL";
+            string command = "SELECT * FROM zb_employees LEFT JOIN zb_contracts ON zb_contracts.employeeId = zb_employees.id WHERE zb_contracts.id IS NULL";
             MySqlConnection conn = GetConnection();
             MySqlCommand read = new MySqlCommand(command, conn);
             try
@@ -128,6 +128,7 @@ namespace ZooBazaarDataLayer.DALEmployee
             return communicator.Select(q);
         }
 
+        //TODO: Change
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts(int? id)
         {
             MySqlTable jointable = new MySqlTable("zb_contracts");

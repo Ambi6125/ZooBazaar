@@ -35,11 +35,13 @@ namespace ZooBazaarLogicLayer.Managers
             return _dataSource.CreateContract(contract);
         }
 
+        //TODO: Be gone
         public IValidationResponse AssignContract(Employee emp)
         {
             return _dataSource.AssignContract(emp);
         }
 
+        //TODO: UpdateContract needs to be used
         public IValidationResponse UpdateContract(Contract contract)
         {
             return _dataSource.UpdateContract(contract);
@@ -84,6 +86,7 @@ namespace ZooBazaarLogicLayer.Managers
             return contracts;
         }
 
+        //TODO: GetContractsByStatus needs to be changed 
         public IReadOnlyCollection<Contract> GetByStatus(bool active)
         {
             List<Contract> contracts = new List<Contract>();

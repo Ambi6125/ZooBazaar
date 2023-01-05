@@ -1,10 +1,12 @@
 ﻿using EasyTools.Validation;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZooBazaarDataLayer.DALEmployee;
 using ZooBazaarDataLayer.DALScheduling;
 using ZooBazaarDataLayer.DALScheduling.DALShift;
 using ZooBazaarLogicLayer.People;
@@ -202,6 +204,7 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return result;
 
+            #region commented code
             //var response = dataSource.GetBetween(GetMonday(date), GetSunday(date));//gets a list of shifts between monday and sunday
             //var identifiers = dataSource.GetIdsOnDate(date);//gets a list of shift ids on a specific date
             //foreach (var shift in response)
@@ -219,6 +222,7 @@ namespace ZooBazaarLogicLayer.Managers
             //    Shift s = new Shift(shiftId, shiftDate, shiftEmployees, type);
             //    result.Add(s);
             //}
+            #endregion
         }
 
         private DateTime GetMonday(DateTime date)
@@ -239,6 +243,72 @@ namespace ZooBazaarLogicLayer.Managers
             }
             int datesuntilsunday = 7 - (int)date.DayOfWeek;
             return date.AddDays(datesuntilsunday);
+        }
+
+        public IReadOnlyCollection<Employee> GetEmployeesThatCanWork(DateTime date, ShiftType type, Shift s)
+        {
+            //First we get all employees with an active contract and put them in a list
+
+            List<Employee> employees = new List<Employee>(); //Replace new List<Employee>(); with the method that gives employees with active contract
+
+            //Second we get a list of employees that can not work in the shift that we are looking at and remove those from the first list
+
+
+
+            //Third we get a list of employees that have worked in the previous shift and we remove them from the first updated list
+
+            Shift shift = GetPreviousShift(s);
+            foreach(Employee employee in shift.Employees)
+            {
+                if(employees.Any(x => x.ID == employee.ID))
+                {
+                    employees.Remove(employee);
+                }                
+            }
+
+            //Fourth we get a list of employees that can not work based on hours and we remove those from the first list
+            //To get those employees who have completed their weeks hours we utilize GetAllcurrentweekshifts method by checking each shift list of employees
+
+            List<Shift> shifts = GetAllCurrentWeeksShifts(date).ToList();
+            List<Employee> completedemp = new List<Employee>();
+            foreach (Employee e in employees)
+            {
+                int hoursworked = 0;
+                foreach (Shift sh in shifts)
+                {
+                    foreach (Employee emp in sh.Employees)
+                    {
+                        if (e == emp)
+                        {
+                            hoursworked++;
+                        }
+                    }
+                }
+
+                //TODO: add an if stament to check contract type which we need to use to calculate if the hours he has worked is equal to the amount he needs to work with exception of zerobased contracts
+                //if(e has fulltime contract)
+                if (hoursworked >= 5)
+                {
+                    completedemp.Add(e);
+                }
+                //if(e has parttime contract)
+                if (hoursworked >= 4)
+                {
+                    completedemp.Add(e);
+                }
+            }
+
+            foreach (Employee e in completedemp)
+            {
+                if (employees.Any(x => x.ID == e.ID))
+                {
+                    employees.Remove(e);
+                }
+            }
+
+            //We give final list
+
+            return employees;
         }
     }
 }

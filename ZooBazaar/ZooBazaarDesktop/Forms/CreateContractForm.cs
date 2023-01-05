@@ -43,6 +43,8 @@ namespace ZooBazaarDesktop.Forms
             
             int num = employeelistbox.SelectedIndex;
             var emp = empmanager.GetEmployeesWithNoContracts();
+
+
             Contract contract = new Contract(start, end, type, emp.ElementAt(num));            
             var result = manager.CreateContract(contract);            
             if (result.Success)

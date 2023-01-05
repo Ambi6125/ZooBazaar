@@ -87,6 +87,7 @@ namespace ZooBazaarLogicLayer.Managers
         {
             return dataSource.UpdateEntry(e);
         }
+
         public IReadOnlyCollection<Employee> GetEmployeesWithNoContracts()
         {
             var queryResult = dataSource.GetEmployeesWithNoContracts();
@@ -175,8 +176,8 @@ namespace ZooBazaarLogicLayer.Managers
 
                 
 
-                Contract contract = new Contract(id, startDate, endDate, contractType, resultname);
-                finalResult.Add(contract);
+                //Contract contract = new Contract(id, startDate, endDate, contractType, resultname);
+                //finalResult.Add(contract);
             }
             return finalResult;
         }

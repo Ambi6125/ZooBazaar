@@ -26,7 +26,7 @@ namespace ZooBazaarDataLayer.DALContracts
             return _communicator.Insert(q);
         }
 
-        //Needs to be removed
+        //TODO: Needs to be removed
         public IValidationResponse AssignContract(IDataProvider employee)
         {
             int recentid = LatestContractEntry();
@@ -60,7 +60,7 @@ namespace ZooBazaarDataLayer.DALContracts
             return _communicator.Select(q);
         }
 
-        //Needs to be removed
+        //TODO: Needs to be removed
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByStatus(bool active)
         {
             MySqlTable join = zb_contracts.Join(Join.Inner, "zb_employeecontracts", "zb_employeecontracts.contractId = zb_contracts.id");
@@ -78,6 +78,7 @@ namespace ZooBazaarDataLayer.DALContracts
             return _communicator.Select(q);
         }
 
+        //TODO: Need to be removed
         private int LatestContractEntry()
         {
             int id = -1;

@@ -11,9 +11,11 @@ namespace ZooBazaarDataLayer.DALContracts
     public interface IDALContacts
     {
         IValidationResponse CreateContract(IDataProvider contract);
+        //TODO: Be gone
         IValidationResponse AssignContract(IDataProvider relationship);
         IValidationResponse UpdateContract(IDataProvider contract);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByEmployeeName(string name);
+        //TODO: Be gone
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByStatus(bool active);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByType(int hour);
     }

@@ -402,7 +402,7 @@ namespace ZooBazaarDesktop.Forms
             }
             foreach (Contract contract in cm.GetByStatus(status))
             {
-                ContractDisplayBox box = new ContractDisplayBox(contract );
+                ContractDisplayBox box = new ContractDisplayBox(contract);
                 flpContracts.Controls.Add(box);
             }
         }

@@ -20,9 +20,8 @@ namespace ZooBazaarLogicLayer.People
         public bool IsActive => endDate is null || endDate.Value.Date > DateTime.Today;
         public DateTime StartDate => startDate;
         public DateTime? EndDate => endDate;
-
-        public string EmployeeName { get; }
-
+        public string EmployeeName => owner.Name;
+        //TODO: get contract id check if needed
         public int ID => id.Value;
 
         public Contract(DateTime startDate, DateTime? endDate, ContractType contractType, Employee owner)
@@ -32,16 +31,6 @@ namespace ZooBazaarLogicLayer.People
             ContractType = contractType;
             this.owner = owner;
         }
-
-        //public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, string employeeName, Employee owner)
-        //{
-        //    this.id = id;
-        //    this.startDate = startDate;
-        //    this.endDate = endDate;
-        //    ContractType = contractType;
-        //    EmployeeName = employeeName;
-        //    this.owner = owner;
-        //}
 
         public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, Employee owner)
         {
@@ -70,5 +59,15 @@ namespace ZooBazaarLogicLayer.People
 
             return pvc;
         }
+
+        //public Contract(int? id, DateTime startDate, DateTime? endDate, ContractType contractType, string employeeName, Employee owner)
+        //{
+        //    this.id = id;
+        //    this.startDate = startDate;
+        //    this.endDate = endDate;
+        //    ContractType = contractType;
+        //    EmployeeName = employeeName;
+        //    this.owner = owner;
+        //}
     }
 }
