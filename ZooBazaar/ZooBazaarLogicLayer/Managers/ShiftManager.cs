@@ -255,7 +255,14 @@ namespace ZooBazaarLogicLayer.Managers
 
             //Second we get a list of employees that can not work in the shift that we are looking at and remove those from the first list
 
-
+            List<Employee> result = manager.GetUnAvailableEmployeeByShift(s).ToList();
+            foreach(Employee empl in result)
+            {
+                if (employees.Any(x => x.ID == empl.ID))
+                {
+                    employees.Remove(empl);
+                }
+            }
 
             //Third we get a list of employees that have worked in the previous shift and we remove them from the first updated list
 
@@ -287,20 +294,35 @@ namespace ZooBazaarLogicLayer.Managers
                     }
                 }
 
-                //TODO: add an if stament to check contract type which we need to use to calculate if the hours he has worked is equal to the amount he needs to work with exception of zerobased contracts
+                //if stament to check contract type which we need to use to calculate if the hours he has worked is equal to the amount he needs to work with exception of zerobased contracts
 
-
-
-                //if(e has fulltime contract)
-                if (hoursworked >= 5)
+                ContractManager contractManager = ContractManager.CreateForDatabase();
+                List<Contract> contracts = contractManager.GetActiveContracts(s.Date).ToList();
+                ContractType type = ContractType.ZeroBased;
+                foreach (Contract contract in contracts)
                 {
-                    completedemp.Add(e);
+                    if(contract.EmployeeName == e.Name)
+                    {
+                        type = contract.ContractType; break;
+                    }
                 }
-                //if(e has parttime contract)
-                if (hoursworked >= 4)
+
+
+                if(type == ContractType.FullTime)
                 {
-                    completedemp.Add(e);
+                    if (hoursworked >= 5)
+                    {
+                        completedemp.Add(e);
+                    }
                 }
+
+                if (type == ContractType.PartTime)
+                {
+                    if (hoursworked >= 4)
+                    {
+                        completedemp.Add(e);
+                    }
+                }                  
             }
 
             foreach (Employee e in completedemp)

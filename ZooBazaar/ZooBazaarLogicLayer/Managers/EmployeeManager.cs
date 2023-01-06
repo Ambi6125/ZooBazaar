@@ -8,6 +8,7 @@ using ZooBazaarDataLayer.DALAnimal;
 using ZooBazaarDataLayer.DALEmployee;
 using ZooBazaarLogicLayer.Animals;
 using ZooBazaarLogicLayer.People;
+using ZooBazaarLogicLayer.Schedule.Shifts;
 
 namespace ZooBazaarLogicLayer.Managers
 {
@@ -185,6 +186,25 @@ namespace ZooBazaarLogicLayer.Managers
         public IReadOnlyCollection<Employee> GetEmployeesWithActiveContract(DateTime date)
         {
             var queryResult = dataSource.GetEmployeesWithActiveContract(date);
+            List<Employee> finalResult = new List<Employee>();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
+        }
+
+        public IReadOnlyCollection<Employee> GetUnAvailableEmployeeByShift(Shift s)
+        {
+            var queryResult = dataSource.GetUnAvailableEmployeeByShift(s.Date.DayOfWeek, (int)s.ShiftType);
             List<Employee> finalResult = new List<Employee>();
             foreach (var result in queryResult)
             {

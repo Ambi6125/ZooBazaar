@@ -22,5 +22,6 @@ namespace ZooBazaarDataLayer.DALEmployee
         //IValidationResponse UpdateContractStatus(IDataProvider employee);
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployees();
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithActiveContract(DateTime date);
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetUnAvailableEmployeeByShift(DayOfWeek weekday, int type);
     }
 }

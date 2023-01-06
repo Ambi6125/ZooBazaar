@@ -54,6 +54,7 @@ namespace ZooBazaarDataLayer.DALScheduling.DALAvailability
 
             return new ValidationResponse(true, "Removed succesfully");
         }
+
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDay(DayOfWeek weekday)
         {
             List<IReadOnlyParameterValueCollection> resultData = new List<IReadOnlyParameterValueCollection>();
