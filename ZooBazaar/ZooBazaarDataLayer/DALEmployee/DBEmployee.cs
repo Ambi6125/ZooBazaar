@@ -154,7 +154,7 @@ namespace ZooBazaarDataLayer.DALEmployee
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithActiveContract(DateTime date)
         {
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();
-            string command = "select zb_employees.* from zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_contracts.employeeId where (startDate <= @date AND coalesce(endDate, @date) >= @date) AND employeeId not in (SELECT employeeId from zb_contracts where startDate > @date";
+            string command = "select zb_employees.* from zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_contracts.employeeId where (startDate <= @date AND coalesce(endDate, @date) >= @date) AND employeeId not in (SELECT employeeId from zb_contracts where startDate > @date);";
             using MySqlConnection conn = GetConnection();
             using MySqlCommand read = new MySqlCommand(command, conn);
             read.Parameters.AddWithValue("date", date.Date);
@@ -189,7 +189,7 @@ namespace ZooBazaarDataLayer.DALEmployee
         {
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();
 
-            string query = "SELECT zb_employees.* FROM zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_unavailability.employeeId WHERE day = @day AND shiftType = @type";
+            string query = "SELECT zb_employees.* FROM zb_unavailability INNER JOIN zb_employees ON zb_employees.id = zb_unavailability.employeeId WHERE day = @day AND shiftType = @type";
 
             string day = UtilityMethods.ConvertDayToString(weekday);
 

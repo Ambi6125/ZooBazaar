@@ -195,7 +195,7 @@ namespace ZooBazaarLogicLayer.Managers
                 {
                     int id = shift.GetValueAs<int>("id");
                     ShiftType type = shift.GetValueAs<ShiftType>("shiftType");
-                    DateTime shiftDate = Convert.ToDateTime(shift.GetValueAs<string>("date"));
+                    DateTime shiftDate = shift.GetValueAs<DateTime>("date");
                     List<Employee> shiftEmployees = BuildEmployees(id).ToList();
                     Shift s = new Shift(id, shiftDate, shiftEmployees, type);
                     result.Add(s);
@@ -266,13 +266,16 @@ namespace ZooBazaarLogicLayer.Managers
             //Third we get a list of employees that have worked in the previous shift and we remove them from the first updated list
 
             Shift shift = GetPreviousShift(s);
-            foreach(Employee employee in shift.Employees)
+            if(shift != null)
             {
-                if(employees.Any(x => x.ID == employee.ID))
+                foreach (Employee employee in shift.Employees)
                 {
-                    employees.Remove(employee);
-                }                
-            }
+                    if (employees.Any(x => x.ID == employee.ID))
+                    {
+                        employees.Remove(employee);
+                    }
+                }
+            }            
 
             //Fourth we get a list of employees that can not work based on hours and we remove those from the first list
             //To get those employees who have completed their weeks hours we utilize GetAllcurrentweekshifts method by checking each shift list of employees

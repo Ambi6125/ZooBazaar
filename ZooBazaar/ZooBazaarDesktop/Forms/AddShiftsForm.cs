@@ -98,22 +98,37 @@ namespace ZooBazaarDesktop.Forms
 
         private void Search(object sender, EventArgs e)
         {
-            ShiftManager sm = ShiftManager.CreateForDatabase();
-            EmployeeManager em = EmployeeManager.CreateForDatabase();
+            ShiftManager sm = ShiftManager.CreateForDatabase();            
             List<Employee> availableEmployees;
-            List<Employee> takenEmployees;
+            List<Employee> takenEmployees = Enumerable.Empty<Employee>().ToList();
 
-            Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
-
+            Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);            
             if(selectedShift != null)
             {
                 takenEmployees = sm.GetEmployeesFromShift(selectedShift).ToList();
+            }
+            
+            if(takenEmployees != null)
+            {
+                availableEmployees = sm.GetEmployeesThatCanWork(selectedShift).ToList();
+            }
+            else
+            {
+                Shift shift = new Shift(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
+                availableEmployees = sm.GetEmployeesThatCanWork(shift).ToList();
             }            
-                                                       //TODO: create a method that gives the below resault
-            availableEmployees = em.GetAll().ToList(); // this contains all the employees with an active contract
-            Shift previoushift = sm.GetPreviousShift(selectedShift);
-            List<Employee> employeesfrompreviousshift = sm.GetEmployeesFromShift(previoushift).ToList();
-            availableEmployees.RemoveAll(e => employeesfrompreviousshift.Contains(e));
+
+            DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
+
+            #region comented code
+            //EmployeeManager em = EmployeeManager.CreateForDatabase();
+            // this contains all the employees with an active contract
+            //Shift previoushift = sm.GetPreviousShift(selectedShift);
+            //if(previoushift != null)
+            //{
+            //    List<Employee> employeesfrompreviousshift = sm.GetEmployeesFromShift(previoushift).ToList();
+            //    availableEmployees.RemoveAll(e => employeesfrompreviousshift.Contains(e));
+            //}
 
             //if (selectedShift is not null) //No shift exists here yet
             //{
@@ -122,8 +137,7 @@ namespace ZooBazaarDesktop.Forms
             //    //TODO: Get employees without contracts
             //    availableEmployees = em.GetAll().ToList();
             //}
-
-            //TODO: DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
+            #endregion
         }
     }
 }
