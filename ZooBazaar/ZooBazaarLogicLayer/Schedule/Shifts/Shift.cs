@@ -38,6 +38,7 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
             date = dateTime.Date;
             this.employees = new List<Employee>();
             this.employees.AddRange(employees);
+            this.shiftType = shift;
         }
 
         public IValidationResponse AddEmployee(Employee employee)

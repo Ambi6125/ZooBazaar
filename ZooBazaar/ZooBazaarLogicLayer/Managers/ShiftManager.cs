@@ -58,17 +58,16 @@ namespace ZooBazaarLogicLayer.Managers
 
             foreach (int id in identifiers) //Makes shift
             {
-
-                var tableWithCertainId = allData.Where(x => x.GetValueAs<int>("zb_shifts.id") == id);
-
+                //Uses the id from identifiers to get the specific shift data from the allData list 
+                var tableWithCertainId = allData.Where(x => x.GetValueAs<int>(0) == id);
+                //Uses the id to get all the employees from that shift 
                 List<Employee> shiftEmployees = BuildEmployees(id).ToList();
-
 
                 var singleEntry = tableWithCertainId.First();
 
-                int shiftId = singleEntry.GetValueAs<int>("zb_shifts.id");
+                int shiftId = singleEntry.GetValueAs<int>(0);
                 ShiftType type = singleEntry.GetValueAs<ShiftType>("shiftType");
-                DateTime shiftDate = Convert.ToDateTime(singleEntry.GetValueAs<string>("date"));
+                DateTime shiftDate = singleEntry.GetValueAs<DateTime>("date");
 
                 Shift s = new Shift(shiftId, shiftDate, shiftEmployees, type);
                 shifts.Add(s);

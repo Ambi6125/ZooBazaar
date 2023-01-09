@@ -131,6 +131,11 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
             return database.Select(query);
         }
 
+        /// <summary>
+        /// Gets the id of every shift from a specified date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public IReadOnlyCollection<int> GetIdsOnDate(DateTime date)
         {
             MySqlCondition condition = new MySqlCondition("date", date, Strictness.MustMatchExactly);
@@ -140,6 +145,7 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
             foreach(var result in response)
             {
                 int shiftId = result.GetValueAs<int>("id");
+                resultList.Add(shiftId);
             }
             return resultList;
         }

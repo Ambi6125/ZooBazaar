@@ -96,7 +96,7 @@ namespace ZooBazaarDesktop.Forms
         }
 
 
-        private void OnInputChanged(object sender, EventArgs e)
+        private void Search(object sender, EventArgs e)
         {
             ShiftManager sm = ShiftManager.CreateForDatabase();
             EmployeeManager em = EmployeeManager.CreateForDatabase();

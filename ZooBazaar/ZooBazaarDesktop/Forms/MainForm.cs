@@ -671,14 +671,29 @@ namespace ZooBazaarDesktop.Forms
             lbAfternoon.Items.Clear();
             lbEvening.Items.Clear();
 
-            var morningShift = shifts.First(x => x.ShiftType == ShiftType.Morning);
-            lbMorning.Items.AddRange(morningShift.Employees.ToArray());
+            if(shifts.Count() == 0)
+            {
+                MessageBox.Show("There are no shifts in the selected date.");
+                return;
+            }
 
-            var afternoonShift = shifts.First(x => x.ShiftType == ShiftType.Afternoon);
-            lbAfternoon.Items.AddRange(afternoonShift.Employees.ToArray());
+            var morningShift = shifts.FirstOrDefault(x => x.ShiftType == ShiftType.Morning, null);
+            if(morningShift != null)
+            {
+                lbMorning.Items.AddRange(morningShift.Employees.ToArray());
+            }            
 
-            var eveningShift = shifts.First(x => x.ShiftType == ShiftType.Evening);
-            lbEvening.Items.AddRange(eveningShift.Employees.ToArray());
+            var afternoonShift = shifts.FirstOrDefault(x => x.ShiftType == ShiftType.Afternoon, null);
+            if(afternoonShift != null)
+            {
+                lbAfternoon.Items.AddRange(afternoonShift.Employees.ToArray());
+            }            
+
+            var eveningShift = shifts.FirstOrDefault(x => x.ShiftType == ShiftType.Evening, null);
+            if(eveningShift != null)
+            {
+                lbEvening.Items.AddRange(eveningShift.Employees.ToArray());
+            }            
         }
 
         private void OnShiftSearch(object sender, EventArgs e)
@@ -686,7 +701,7 @@ namespace ZooBazaarDesktop.Forms
             var manager = ShiftManager.CreateForDatabase();
 
             DateTime selectedDate = dtpShiftDateInput.Value;
-            var result = manager.GetByDate(selectedDate);
+            var result = manager.GetByDate(selectedDate.Date);
 
             RefillShiftListBoxes(result);
         }

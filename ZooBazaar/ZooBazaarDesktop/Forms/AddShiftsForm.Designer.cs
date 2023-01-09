@@ -35,6 +35,7 @@
             this.lbEmployeesAvailable = new System.Windows.Forms.ListBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.lbEmployeesUsed = new System.Windows.Forms.ListBox();
+            this.Searchbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dtpDate
@@ -43,7 +44,6 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(250, 27);
             this.dtpDate.TabIndex = 0;
-            this.dtpDate.ValueChanged += new System.EventHandler(this.OnInputChanged);
             // 
             // label2
             // 
@@ -66,7 +66,6 @@
             this.cbbType.Name = "cbbType";
             this.cbbType.Size = new System.Drawing.Size(151, 28);
             this.cbbType.TabIndex = 2;
-            this.cbbType.SelectedIndexChanged += new System.EventHandler(this.OnInputChanged);
             // 
             // label3
             // 
@@ -105,11 +104,22 @@
             this.lbEmployeesUsed.Size = new System.Drawing.Size(343, 124);
             this.lbEmployeesUsed.TabIndex = 4;
             // 
+            // Searchbtn
+            // 
+            this.Searchbtn.Location = new System.Drawing.Point(225, 146);
+            this.Searchbtn.Name = "Searchbtn";
+            this.Searchbtn.Size = new System.Drawing.Size(89, 28);
+            this.Searchbtn.TabIndex = 6;
+            this.Searchbtn.Text = "search";
+            this.Searchbtn.UseVisualStyleBackColor = true;
+            this.Searchbtn.Click += new System.EventHandler(this.Search);
+            // 
             // AddShiftsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 443);
+            this.Controls.Add(this.Searchbtn);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.lbEmployeesUsed);
             this.Controls.Add(this.lbEmployeesAvailable);
@@ -135,5 +145,6 @@
         private ListBox lbEmployeesAvailable;
         private Button btnCreate;
         private ListBox lbEmployeesUsed;
+        private Button Searchbtn;
     }
 }
