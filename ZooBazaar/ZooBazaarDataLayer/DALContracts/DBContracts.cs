@@ -106,7 +106,7 @@ namespace ZooBazaarDataLayer.DALContracts
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetActiveContracts(DateTime date)
         {
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();
-            string command = "select * from zb_contracts where (startDate <= @date AND coalesce(endDate, @date) >= @date) AND employeeId not in (SELECT employeeId from zb_contracts where startDate > @date";
+            string command = "select * from zb_contracts inner join zb_employees on zb_contracts.employeeId = zb_employees.id where (startDate <= @date AND coalesce(endDate, @date) >= @date) AND employeeId not in (SELECT employeeId from zb_contracts where startDate > @date);";
             using MySqlConnection conn = new MySqlConnection(Data.connectionString);
             using MySqlCommand read = new MySqlCommand(command, conn);
             read.Parameters.AddWithValue("date", date.Date);

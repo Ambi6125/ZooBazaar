@@ -134,7 +134,7 @@ namespace ZooBazaarLogicLayer.People
 
         public override string ToString()
         {
-            return Name;
+            return $"{Name} - {Email}";
         }
 
         public bool Equals(Employee? other)

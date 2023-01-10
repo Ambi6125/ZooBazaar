@@ -108,6 +108,9 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return finalResult;
         }
+
+        //Useless like gays => Yannick
+        [Obsolete]
         public IReadOnlyCollection<Employee> GetEmployeesWithInactiveContracts(bool isActive)
         {
             var queryResult = dataSource.GetEmployeesWithInactiveContracts(isActive);
@@ -217,6 +220,21 @@ namespace ZooBazaarLogicLayer.Managers
 
                 Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
                 finalResult.Add(employee);
+            }
+            return finalResult;
+        }
+
+        public IReadOnlyCollection<Employee> GetEmployeesThatCanGetAContract()
+        {
+            ContractManager manager = ContractManager.CreateForDatabase();
+            List<Employee> finalResult = GetAll().ToList();
+            List<Contract> contracts = manager.GetActiveContracts(DateTime.Now.Date).ToList();
+            foreach(var contract in contracts)
+            {
+                if(contract.EndDate is not null)
+                {
+                    finalResult.Remove(contract.EmployeeOwner);
+                }
             }
             return finalResult;
         }

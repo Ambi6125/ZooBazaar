@@ -61,11 +61,11 @@ namespace ZooBazaarLogicLayer.Managers
                 int id = contractData.GetValueAs<int>(0);                
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
                 DateTime? endDate;
-                try
+                if (contractData["endDate"] is not (null or DBNull))
                 {
                     endDate = contractData.GetValueAs<DateTime>("endDate");
                 }
-                catch (InvalidCastException)
+                else
                 {
                     endDate = null;
                 }
@@ -95,7 +95,15 @@ namespace ZooBazaarLogicLayer.Managers
             {
                 int id = contractData.GetValueAs<int>(0);
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
-                DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
+                DateTime? endDate;
+                if (contractData["endDate"] is not (null or DBNull))
+                {
+                    endDate = contractData.GetValueAs<DateTime>("endDate");
+                }
+                else
+                {
+                    endDate = null;
+                }
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
@@ -122,11 +130,19 @@ namespace ZooBazaarLogicLayer.Managers
             {
                 int id = contractData.GetValueAs<int>(0);
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
-                DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
+                DateTime? endDate;
+                if (contractData["endDate"] is not (null or DBNull))
+                {
+                    endDate = contractData.GetValueAs<DateTime>("endDate");
+                }
+                else
+                {
+                    endDate = null;
+                }
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 
-                int employeeid = contractData.GetValueAs<int>(5);
+                int employeeid = contractData.GetValueAs<int>(4);
                 string resultname = contractData.GetValueAs<string>("employeeName");
                 string address = contractData.GetValueAs<string>("address");
                 string phone = contractData.GetValueAs<string>("phoneNumber");
@@ -148,7 +164,15 @@ namespace ZooBazaarLogicLayer.Managers
             {
                 int id = contractData.GetValueAs<int>(0);
                 DateTime startDate = contractData.GetValueAs<DateTime>("startDate");
-                DateTime endDate = contractData.GetValueAs<DateTime>("endDate");
+                DateTime? endDate;
+                if (contractData["endDate"] is not (null or DBNull))
+                {
+                    endDate = contractData.GetValueAs<DateTime>("endDate");
+                }
+                else
+                {
+                    endDate = null;
+                }
                 int hours = contractData.GetValueAs<int>("contractHours");
                 ContractType type = (ContractType)hours;
 

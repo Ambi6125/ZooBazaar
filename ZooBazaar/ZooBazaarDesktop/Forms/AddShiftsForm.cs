@@ -40,6 +40,7 @@ namespace ZooBazaarDesktop.Forms
         {
             ShiftType type = (ShiftType)cbbType.SelectedIndex;
             DateTime date = dtpDate.Value;
+            Shift finalshift;
             Employee? emp = default;
             try
             {
@@ -58,7 +59,7 @@ namespace ZooBazaarDesktop.Forms
             {
                 Shift newShift = new Shift(date, type);
                 manager.AddShift(newShift);
-
+                finalshift = newShift;
                 int recentId = manager.GetRecentId();
 
                 var relationship = new ZooBazaarDataLayer.DALScheduling.DALShift.ShiftEmployeeRelationShip(emp.ID.Value, recentId);
@@ -67,14 +68,12 @@ namespace ZooBazaarDesktop.Forms
             else
             {
                 response = manager.Register(existingShift, emp);
+                finalshift = existingShift;
             }
             if (response.Success)
             {
-                var dr = MessageBox.Show("Succesfully added.\nWould you like to close this form now?", "Success", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.Yes)
-                {
-                    Close();
-                }
+                lbLog.Items.Add($"{finalshift}: added {emp.Name}");
+                Search(sender, EventArgs.Empty);
             }
             else
             {
@@ -99,24 +98,25 @@ namespace ZooBazaarDesktop.Forms
         private void Search(object sender, EventArgs e)
         {
             ShiftManager sm = ShiftManager.CreateForDatabase();            
-            List<Employee> availableEmployees;
+            List<Employee> availableEmployees = Enumerable.Empty<Employee>().ToList();
             List<Employee> takenEmployees = Enumerable.Empty<Employee>().ToList();
-
+            
             Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);            
             if(selectedShift != null)
             {
                 takenEmployees = sm.GetEmployeesFromShift(selectedShift).ToList();
-            }
-            
-            if(takenEmployees != null)
-            {
-                availableEmployees = sm.GetEmployeesThatCanWork(selectedShift).ToList();
+                if (takenEmployees != null)
+                {
+                    availableEmployees = sm.GetEmployeesThatCanWork(selectedShift).ToList();
+                }
+
+                availableEmployees.RemoveAll(x => takenEmployees.Contains(x));
             }
             else
             {
                 Shift shift = new Shift(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
                 availableEmployees = sm.GetEmployeesThatCanWork(shift).ToList();
-            }            
+            }                                   
 
             DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
 

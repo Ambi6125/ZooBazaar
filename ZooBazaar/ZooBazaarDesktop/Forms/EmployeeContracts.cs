@@ -28,12 +28,23 @@ namespace ZooBazaarDesktop.Forms
         {
             flpEmployeeContracts.Controls.Clear();
             EmployeeManager em = EmployeeManager.CreateForDatabase();
-            foreach (Contract contract in em.GetAllEmployeeContracts(employee))
+            var allcontracts = em.GetAllEmployeeContracts(employee);
+            if(allcontracts.Any())
             {
-                ContractDisplayBox box = new ContractDisplayBox(contract);
-                flpEmployeeContracts.Controls.Add(box);
+                foreach (Contract contract in allcontracts)
+                {
+                    ContractDisplayBox box = new ContractDisplayBox(contract);
+                    flpEmployeeContracts.Controls.Add(box);
+                }
             }
-            
+            else
+            {
+                DialogResult dr = MessageBox.Show("This Employee has no Contract.\nWould you like to close this Form?", "No Contracts", MessageBoxButtons.YesNo);
+                if(dr == DialogResult.Yes)
+                {
+                    Close();
+                }
+            }
         }
 
         private void OnClose(object sender, FormClosedEventArgs e)

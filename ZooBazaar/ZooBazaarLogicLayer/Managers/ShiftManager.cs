@@ -254,6 +254,8 @@ namespace ZooBazaarLogicLayer.Managers
 
             //Second we get a list of employees that can not work in the shift that we are looking at and remove those from the first list
 
+
+
             List<Employee> result = manager.GetUnAvailableEmployeeByShift(s).ToList();
             foreach(Employee empl in result)
             {

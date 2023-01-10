@@ -131,8 +131,7 @@ namespace ZooBazaarDataLayer.DALEmployee
         //TODO: Change
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployeesContracts(int? id)
         {
-            MySqlTable jointable = new MySqlTable("zb_contracts");
-            MySqlTable join = jointable.Join(Join.Inner, "zb_employeecontracts", "zb_contracts.id = zb_employeecontracts.contractId");
+            MySqlTable join = table.Join(Join.Inner, "zb_contracts", "zb_contracts.employeeId = zb_employees.id");
             MySqlCondition condition = new MySqlCondition("employeeId", id, Strictness.MustMatchExactly);
             SelectQuery q = new SelectQuery(join, "zb_contracts.*, zb_employees.*",condition);
             return communicator.Select(q);

@@ -25,7 +25,7 @@ namespace ZooBazaarDesktop.Forms
         {
             InitializeComponent();
             mainForm = Origin;
-            FillList(empmanager.GetEmployeesWithNoContracts().ToArray());
+            FillList(empmanager.GetEmployeesThatCanGetAContract().ToArray());
         }
 
         private void Createbtn_Click(object sender, EventArgs e)
@@ -41,11 +41,9 @@ namespace ZooBazaarDesktop.Forms
                 end = dTPEnd.Value;
             }
             
-            int num = employeelistbox.SelectedIndex;
-            var emp = empmanager.GetEmployeesWithNoContracts();
+            Employee selectedemployee = (Employee)employeelistbox.SelectedItem;
 
-
-            Contract contract = new Contract(start, end, type, emp.ElementAt(num));            
+            Contract contract = new Contract(start, end, type, selectedemployee);            
             var result = manager.CreateContract(contract);            
             if (result.Success)
             {
@@ -57,14 +55,6 @@ namespace ZooBazaarDesktop.Forms
             {
                 MessageBox.Show($"Something went wrong: {result.Message}");
             }
-
-            //Contract oldcontract = emp.ElementAt(num).CurrentContract;
-            //if (oldcontract != null)
-            //{
-            //    oldcontract.IsActive = false;
-            //    manager.UpdateContract(oldcontract);
-            //}
-            //var result = manager.AssignContract(emp.ElementAt(num));
         }
 
         private void Cancelbutton_Click(object sender, EventArgs e)
@@ -98,8 +88,7 @@ namespace ZooBazaarDesktop.Forms
         {
             foreach (Employee e in employees)
             {
-                string name = $"{e.Name} - {e.Email}";
-                employeelistbox.Items.Add(name);
+                employeelistbox.Items.Add(e);
             }           
         }
 

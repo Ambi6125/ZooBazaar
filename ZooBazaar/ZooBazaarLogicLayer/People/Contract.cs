@@ -23,6 +23,7 @@ namespace ZooBazaarLogicLayer.People
         public string EmployeeName => owner.Name;
         //TODO: get contract id check if needed
         public int ID => id.Value;
+        public Employee EmployeeOwner => owner;
 
         public Contract(DateTime startDate, DateTime? endDate, ContractType contractType, Employee owner)
         {

@@ -570,7 +570,7 @@ namespace ZooBazaarDesktop.Forms
         #region Contracts tab UI
         private void FilterConcb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FilterConcb.Text == "FirstName")
+            if (FilterConcb.Text == "Name")
             {
                 contractSearch = SearchContractsByName;
             }

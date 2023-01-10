@@ -84,5 +84,23 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
             ArgumentNullException.ThrowIfNull(other);
             return ID == other.ID;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder(date.ToString("dd/MM/yyyy"));
+            switch (shiftType)
+            {
+                case ShiftType.Morning:
+                    sb.Append(" Morning");
+                    break;
+                case ShiftType.Afternoon:
+                    sb.Append(" Afternoon");
+                    break;
+                case ShiftType.Evening:
+                    sb.Append(" Evening");
+                    break;
+            }
+            return sb.ToString();
+        }
     }
 }
