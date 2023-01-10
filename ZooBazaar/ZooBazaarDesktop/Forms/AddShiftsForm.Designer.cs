@@ -90,7 +90,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(48, 374);
+            this.btnCreate.Location = new System.Drawing.Point(41, 217);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(94, 29);
             this.btnCreate.TabIndex = 5;
@@ -139,9 +139,9 @@
             // 
             this.lbLog.FormattingEnabled = true;
             this.lbLog.ItemHeight = 20;
-            this.lbLog.Location = new System.Drawing.Point(41, 239);
+            this.lbLog.Location = new System.Drawing.Point(41, 252);
             this.lbLog.Name = "lbLog";
-            this.lbLog.Size = new System.Drawing.Size(150, 104);
+            this.lbLog.Size = new System.Drawing.Size(285, 144);
             this.lbLog.TabIndex = 9;
             // 
             // AddShiftsForm

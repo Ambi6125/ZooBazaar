@@ -291,7 +291,7 @@ namespace ZooBazaarLogicLayer.Managers
                 {
                     foreach (Employee emp in sh.Employees)
                     {
-                        if (e == emp)
+                        if (e.Equals(emp))
                         {
                             hoursworked++;
                         }

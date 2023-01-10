@@ -130,7 +130,6 @@ namespace ZooBazaarLogicLayer.People
             }
             birthDate = t;
         }
-        
 
         public override string ToString()
         {
