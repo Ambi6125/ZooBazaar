@@ -59,5 +59,10 @@ namespace ZooBazaarDataLayer.DALExhibit
             return communicator.Select(q);
         }
 
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAll()
+        {
+            SelectQuery q = new SelectQuery(table, "*");
+            return communicator.Select(q);
+        }
     }
 }

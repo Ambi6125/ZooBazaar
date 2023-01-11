@@ -17,5 +17,6 @@ namespace ZooBazaarDataLayer.DALExhibit
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByZone(string zone);
         IReadOnlyParameterValueCollection? GetById(int id);
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAll();
     }
 }

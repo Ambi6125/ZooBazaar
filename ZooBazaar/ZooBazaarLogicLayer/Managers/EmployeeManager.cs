@@ -151,7 +151,25 @@ namespace ZooBazaarLogicLayer.Managers
             return finalResult;
         }
 
-        //This needs to change
+        public IReadOnlyCollection<Employee> Employeewithfuturecontracts()
+        {
+            var queryResult = dataSource.GetEmployeesWhosContractHaveNotStarted();
+            List<Employee> finalResult = new List<Employee>();
+            foreach (var result in queryResult)
+            {
+                int? id = result.GetValueAs<int?>("id");
+                string resultname = result.GetValueAs<string>("employeeName");
+                string address = result.GetValueAs<string>("address");
+                string phoneNumber = result.GetValueAs<string>("phoneNumber");
+                string email = result.GetValueAs<string>("email");
+                DateTime birth = result.GetValueAs<DateTime>("birthDate");
+
+                Employee employee = new Employee(id, resultname, address, phoneNumber, email, birth);
+                finalResult.Add(employee);
+            }
+            return finalResult;
+        }
+
         public IReadOnlyCollection<Contract> GetAllEmployeeContracts(Employee employee)
         {
             var queryResult = dataSource.GetAllEmployeesContracts(employee.ID);
@@ -241,6 +259,16 @@ namespace ZooBazaarLogicLayer.Managers
                     finalResult.Remove(contract.EmployeeOwner);
                 }
             }
+
+            List<Employee> empwithfuturecon = Employeewithfuturecontracts().ToList();
+            foreach (Employee e in empwithfuturecon)
+            {
+                if (finalResult.Any(x => x.ID == e.ID))
+                {
+                    finalResult.Remove(e);
+                }
+            }
+
             return finalResult;
         }
     }

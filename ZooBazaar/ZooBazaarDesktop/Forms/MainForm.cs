@@ -704,6 +704,7 @@ namespace ZooBazaarDesktop.Forms
             var result = manager.GetByDate(selectedDate.Date);
 
             RefillShiftListBoxes(result);
+            UpdateColours();
         }
 
         #endregion
@@ -713,6 +714,38 @@ namespace ZooBazaarDesktop.Forms
             EditShiftsForm form = new EditShiftsForm(this);
             form.Show();
             Hide();
+        }
+
+        private void UpdateColours()
+        {
+            ExhibitManager manager = ExhibitManager.CreateForDatabase();
+            int exhibitcount = manager.GetAll().Count;
+            if (exhibitcount <= lbMorning.Items.Count)
+            {
+                lbMorning.BackColor = Color.FromArgb(51, 204, 51);
+            }
+            else
+            {
+                lbMorning.BackColor = Color.FromArgb(255, 77, 77);
+            }
+
+            if (exhibitcount <= lbAfternoon.Items.Count)
+            {
+                lbAfternoon.BackColor = Color.FromArgb(51, 204, 51);
+            }
+            else
+            {
+                lbAfternoon.BackColor = Color.FromArgb(255, 77, 77);
+            }
+
+            if (exhibitcount <= lbEvening.Items.Count)
+            {
+                lbEvening.BackColor = Color.FromArgb(51, 204, 51);
+            }
+            else
+            {
+                lbEvening.BackColor = Color.FromArgb(255, 77, 77);
+            }
         }
     }
 }

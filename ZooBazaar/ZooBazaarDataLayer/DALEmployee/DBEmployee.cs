@@ -184,6 +184,39 @@ namespace ZooBazaarDataLayer.DALEmployee
             return list;
         }
 
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWhosContractHaveNotStarted()
+        {
+            List<ParameterValueCollection> list = new List<ParameterValueCollection>();
+            string command = "select zb_employees.* from zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_contracts.employeeId where startDate < now()";
+            using MySqlConnection conn = GetConnection();
+            using MySqlCommand read = new MySqlCommand(command, conn);
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = read.ExecuteReader();
+                while (reader.Read())
+                {
+                    ParameterValueCollection parameterValueCollection = new ParameterValueCollection();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        ParameterValuePair paramValue = new ParameterValuePair(reader.GetName(i), reader.GetValue(i));
+                        parameterValueCollection.Add(paramValue);
+                    }
+
+                    list.Add(parameterValueCollection);
+                }
+                reader.Close();
+            }
+            finally
+            {
+                if (conn.State != System.Data.ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+            return list;
+        }
+
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetUnAvailableEmployeeByShift(DayOfWeek weekday, int type)
         {
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();

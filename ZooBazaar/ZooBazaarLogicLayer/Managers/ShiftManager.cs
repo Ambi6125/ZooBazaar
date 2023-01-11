@@ -383,7 +383,7 @@ namespace ZooBazaarLogicLayer.Managers
                 {
                     employees.Remove(e);
                 }
-            }
+            }            
 
             //We give final list
 

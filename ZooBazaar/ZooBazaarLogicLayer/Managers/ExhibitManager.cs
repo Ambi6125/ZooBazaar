@@ -98,6 +98,23 @@ namespace ZooBazaarLogicLayer.Managers
             return finalResult;
         }
 
+        public IReadOnlyCollection<Exhibit> GetAll()
+        {
+            var queryResult = dataSource.GetAll();
+            List<Exhibit> finalResult = new List<Exhibit>();
+            foreach (var result in queryResult)
+            {
+                int? exhibitId = result.GetValueAs<int?>("id");
+                string resaultname = result.GetValueAs<string>("name");
+                string zone = result.GetValueAs<string>("zone");
+                int count = result.GetValueAs<int>("count");
+                int capacity = result.GetValueAs<int>("capacity");
+                Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, capacity, count);
+                finalResult.Add(exhibit);
+            }
+            return finalResult;
+        }
+
         public IReadOnlyCollection<Exhibit> GetByFullName(string zone, string name)
         {
             return GetByZone(zone).Where(x => x.Name.Equals(name)).ToList();
