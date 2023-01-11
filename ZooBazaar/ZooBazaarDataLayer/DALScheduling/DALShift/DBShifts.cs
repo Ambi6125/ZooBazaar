@@ -24,7 +24,7 @@ namespace ZooBazaarDataLayer.DALScheduling.DALShift
         /// </summary>
         private MySqlTable FullJoin => shifts
                 .Join(Join.Inner, "zb_employeeShifts", "zb_shifts.id = shiftId")
-                .Join(Join.Inner, "zb_employees", "zb_employeeshifts.employeeId = zb_employees.id");
+                .Join(Join.Left, "zb_employees", "zb_employeeshifts.employeeId = zb_employees.id");
 
         public IValidationResponse Add(IDataProvider shift)
         {

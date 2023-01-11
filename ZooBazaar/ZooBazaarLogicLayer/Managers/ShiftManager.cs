@@ -54,6 +54,11 @@ namespace ZooBazaarLogicLayer.Managers
             List<Shift> shifts = new List<Shift>();
             var allData = dataSource.GetByDate(date);
 
+            if (!allData.Any())
+            {
+                return Enumerable.Empty<Shift>().ToArray();
+            }
+
             var identifiers = dataSource.GetIdsOnDate(date);
 
             foreach (int id in identifiers) //Makes shift
@@ -129,6 +134,37 @@ namespace ZooBazaarLogicLayer.Managers
             else
             {
                 throw new ArgumentException("Could not calculate previous date and type.");
+            }
+        }
+
+        public Shift? GetNextShift(Shift s)
+        {
+            DateTime? finalDate = null;
+            ShiftType? finalType = null;
+
+            switch (s.ShiftType)
+            {
+                case ShiftType.Morning:
+                    finalDate = s.Date;
+                    finalType = ShiftType.Afternoon;
+                    break;
+                case ShiftType.Afternoon:
+                    finalDate = s.Date;
+                    finalType = ShiftType.Evening;
+                    break;
+                case ShiftType.Evening:
+                    finalDate = s.Date.AddDays(1).Date;
+                    finalType = ShiftType.Morning;
+                    break;
+            }
+
+            if (finalType is not null && finalDate is not null)
+            {
+                return GetByDateAndType(finalDate.Value, finalType.Value);
+            }
+            else
+            {
+                throw new ArgumentException("Could not calculate next date and type.");
             }
         }
 
@@ -267,17 +303,29 @@ namespace ZooBazaarLogicLayer.Managers
 
             //Third we get a list of employees that have worked in the previous shift and we remove them from the first updated list
 
-            Shift shift = GetPreviousShift(s);
-            if(shift != null)
+            Shift? previousShift = GetPreviousShift(s);
+            if(previousShift != null)
             {
-                foreach (Employee employee in shift.Employees)
+                foreach (Employee employee in previousShift.Employees)
                 {
                     if (employees.Any(x => x.ID == employee.ID))
                     {
                         employees.Remove(employee);
                     }
                 }
-            }            
+            }        
+            
+            Shift? nextShift = GetNextShift(s);
+            if(nextShift is not null)
+            {
+                foreach(Employee employee in nextShift.Employees)
+                {
+                    if(employees.Any(x => x.ID == employee.ID))
+                    {
+                        employees.Remove(employee);
+                    }
+                }
+            }
 
             //Fourth we get a list of employees that can not work based on hours and we remove those from the first list
             //To get those employees who have completed their weeks hours we utilize GetAllcurrentweekshifts method by checking each shift list of employees

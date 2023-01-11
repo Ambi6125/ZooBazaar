@@ -44,7 +44,7 @@ namespace ZooBazaarDesktop.Forms
             Employee? emp = default;
             try
             {
-                emp = lbEmployeesAvailable.SelectedItem as Employee;
+                emp = (Employee?)lbEmployeesAvailable.SelectedItem;
             }
             catch (IndexOutOfRangeException)
             {
@@ -55,6 +55,11 @@ namespace ZooBazaarDesktop.Forms
             ShiftManager manager = ShiftManager.CreateForDatabase();
             var existingShift = manager.GetByDateAndType(date, type);
             IValidationResponse response;
+            if(emp is null)
+            {
+                MessageBox.Show("No selection.");
+                return;
+            }
             if(existingShift is null)
             {
                 Shift newShift = new Shift(date, type);
@@ -100,25 +105,34 @@ namespace ZooBazaarDesktop.Forms
             ShiftManager sm = ShiftManager.CreateForDatabase();            
             List<Employee> availableEmployees = Enumerable.Empty<Employee>().ToList();
             List<Employee> takenEmployees = Enumerable.Empty<Employee>().ToList();
-            
-            Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);            
-            if(selectedShift != null)
+
+            try
             {
-                takenEmployees = sm.GetEmployeesFromShift(selectedShift).ToList();
-                if (takenEmployees != null)
+                Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
+
+
+                if (selectedShift is not null)
                 {
-                    availableEmployees = sm.GetEmployeesThatCanWork(selectedShift).ToList();
+                    takenEmployees = sm.GetEmployeesFromShift(selectedShift).ToList();
+                    if (takenEmployees != null)
+                    {
+                        availableEmployees = sm.GetEmployeesThatCanWork(selectedShift).ToList();
+                    }
+
+                    availableEmployees.RemoveAll(x => takenEmployees.Contains(x));
+                }
+                else
+                {
+                    Shift shift = new Shift(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
+                    availableEmployees = sm.GetEmployeesThatCanWork(shift).ToList();
                 }
 
-                availableEmployees.RemoveAll(x => takenEmployees.Contains(x));
+                DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
             }
-            else
+            catch (ArgumentException)
             {
-                Shift shift = new Shift(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
-                availableEmployees = sm.GetEmployeesThatCanWork(shift).ToList();
-            }                                   
-
-            DisplayEmployeesCorrectly(availableEmployees, takenEmployees);
+                MessageBox.Show("Invalid data.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             #region comented code
             //EmployeeManager em = EmployeeManager.CreateForDatabase();
@@ -138,6 +152,11 @@ namespace ZooBazaarDesktop.Forms
             //    availableEmployees = em.GetAll().ToList();
             //}
             #endregion
+        }
+
+        private void OnRemoveClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

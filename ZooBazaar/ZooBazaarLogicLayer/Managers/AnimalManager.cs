@@ -13,6 +13,7 @@ namespace ZooBazaarLogicLayer.Managers
 {
     public class AnimalManager
     {
+        private List<Animal> animals = new List<Animal>();
         private IDalAnimal dataSource;
 
         private AnimalManager(IDalAnimal source)

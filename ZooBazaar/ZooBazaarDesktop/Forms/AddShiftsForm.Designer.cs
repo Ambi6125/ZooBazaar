@@ -39,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbLog = new System.Windows.Forms.ListBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dtpDate
@@ -144,11 +145,22 @@
             this.lbLog.Size = new System.Drawing.Size(285, 144);
             this.lbLog.TabIndex = 9;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(149, 219);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(94, 29);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.OnRemoveClick);
+            // 
             // AddShiftsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 443);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lbLog);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -182,5 +194,6 @@
         private Label label1;
         private Label label4;
         private ListBox lbLog;
+        private Button btnRemove;
     }
 }

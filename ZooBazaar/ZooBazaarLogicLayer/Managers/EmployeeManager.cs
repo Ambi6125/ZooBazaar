@@ -15,7 +15,7 @@ namespace ZooBazaarLogicLayer.Managers
     public class EmployeeManager
     {
         private IDALEmployee dataSource;
-        private EmployeeManager(IDALEmployee source)
+        public EmployeeManager(IDALEmployee source)
         {
             dataSource = source;
         }
