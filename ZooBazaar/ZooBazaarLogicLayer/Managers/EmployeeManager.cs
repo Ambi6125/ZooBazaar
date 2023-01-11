@@ -161,7 +161,15 @@ namespace ZooBazaarLogicLayer.Managers
                 int? id = result.GetValueAs<int?>("id");
                 string resultname = result.GetValueAs<string>("employeeName");
                 DateTime startDate = result.GetValueAs<DateTime>("startDate");
-                DateTime endDate = result.GetValueAs<DateTime>("endDate");
+                DateTime? endDate;
+                if(result["endDate"] is (null or DBNull))
+                {
+                    endDate = null;
+                }
+                else
+                {
+                    endDate = result.GetValueAs<DateTime>("endDate");
+                }
                 int contractHours = result.GetValueAs<int>("contractHours");
                 ContractType contractType = ContractType.ZeroBased;
 
