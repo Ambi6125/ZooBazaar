@@ -14,10 +14,10 @@ using ZooBazaarLogicLayer.Schedule.Shifts;
 
 namespace ZooBazaarDesktop.Forms
 {
-    public partial class AddShiftsForm : Form
+    public partial class EditShiftsForm : Form
     {
         private readonly MainForm mainForm;
-        public AddShiftsForm(MainForm source)
+        public EditShiftsForm(MainForm source)
         {
             InitializeComponent();
             this.mainForm = source;
@@ -156,7 +156,16 @@ namespace ZooBazaarDesktop.Forms
 
         private void OnRemoveClick(object sender, EventArgs e)
         {
-
+            Employee? selectedemployee = (Employee?)lbEmployeesUsed.SelectedItem;
+            if(selectedemployee == null)
+            {
+                MessageBox.Show("Please select an employee");
+                return;
+            }
+            ShiftManager sm = ShiftManager.CreateForDatabase();
+            Shift? selectedShift = sm.GetByDateAndType(dtpDate.Value, (ShiftType)cbbType.SelectedIndex);
+            sm.RemoveEmployee(new(selectedemployee.ID.Value, selectedShift.ID));
+            Search(sender, EventArgs.Empty);
         }
     }
 }

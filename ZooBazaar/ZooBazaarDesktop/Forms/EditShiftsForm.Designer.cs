@@ -1,6 +1,6 @@
 ﻿namespace ZooBazaarDesktop.Forms
 {
-    partial class AddShiftsForm
+    partial class EditShiftsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -173,7 +173,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpDate);
             this.Name = "AddShiftsForm";
-            this.Text = "AddShiftsForm";
+            this.Text = "Edit Shifts";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);

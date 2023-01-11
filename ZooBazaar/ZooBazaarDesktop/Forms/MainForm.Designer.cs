@@ -107,6 +107,9 @@
             this.lbEvening = new System.Windows.Forms.ListBox();
             this.lbAfternoon = new System.Windows.Forms.ListBox();
             this.lbMorning = new System.Windows.Forms.ListBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpSpecies.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -899,6 +902,9 @@
             // 
             // tpSchedule
             // 
+            this.tpSchedule.Controls.Add(this.label14);
+            this.tpSchedule.Controls.Add(this.label13);
+            this.tpSchedule.Controls.Add(this.label12);
             this.tpSchedule.Controls.Add(this.btnNew);
             this.tpSchedule.Controls.Add(this.btnSearchShifts);
             this.tpSchedule.Controls.Add(this.dtpShiftDateInput);
@@ -919,7 +925,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(106, 37);
             this.btnNew.TabIndex = 4;
-            this.btnNew.Text = "New";
+            this.btnNew.Text = "Edit";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.OnNewClick);
             // 
@@ -944,7 +950,7 @@
             // 
             this.lbEvening.FormattingEnabled = true;
             this.lbEvening.ItemHeight = 20;
-            this.lbEvening.Location = new System.Drawing.Point(550, 340);
+            this.lbEvening.Location = new System.Drawing.Point(551, 353);
             this.lbEvening.Name = "lbEvening";
             this.lbEvening.Size = new System.Drawing.Size(322, 124);
             this.lbEvening.TabIndex = 1;
@@ -962,10 +968,37 @@
             // 
             this.lbMorning.FormattingEnabled = true;
             this.lbMorning.ItemHeight = 20;
-            this.lbMorning.Location = new System.Drawing.Point(550, 56);
+            this.lbMorning.Location = new System.Drawing.Point(550, 45);
             this.lbMorning.Name = "lbMorning";
             this.lbMorning.Size = new System.Drawing.Size(322, 124);
             this.lbMorning.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(551, 19);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 20);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "Morning Shift";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(553, 175);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(110, 20);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Afternoon Shift";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(550, 330);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 20);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Evening Shift";
             // 
             // MainForm
             // 
@@ -1004,6 +1037,7 @@
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.tpSchedule.ResumeLayout(false);
+            this.tpSchedule.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1089,5 +1123,8 @@
         private ListBox lbAfternoon;
         private ListBox lbMorning;
         private Button btnNew;
+        private Label label14;
+        private Label label13;
+        private Label label12;
     }
 }

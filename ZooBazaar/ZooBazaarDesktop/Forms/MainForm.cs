@@ -710,7 +710,7 @@ namespace ZooBazaarDesktop.Forms
 
         private void OnNewClick(object sender, EventArgs e)
         {
-            AddShiftsForm form = new AddShiftsForm(this);
+            EditShiftsForm form = new EditShiftsForm(this);
             form.Show();
             Hide();
         }
