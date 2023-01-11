@@ -17,7 +17,7 @@ namespace ZooBazaarLogicLayer.People
         private Employee owner;
 
         public ContractType ContractType { get; private set; }
-        public bool IsActive => endDate is null || endDate.Value.Date > DateTime.Today;
+        public bool IsActive => (endDate is null || endDate.Value.Date > DateTime.Today) && DateTime.Today > startDate;
         public DateTime StartDate => startDate;
         public DateTime? EndDate => endDate;
         public string EmployeeName => owner.Name;

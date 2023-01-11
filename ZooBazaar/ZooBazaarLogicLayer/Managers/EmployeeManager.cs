@@ -159,7 +159,6 @@ namespace ZooBazaarLogicLayer.Managers
             foreach (var result in queryResult)
             {
                 int? id = result.GetValueAs<int?>("id");
-                string resultname = result.GetValueAs<string>("employeeName");
                 DateTime startDate = result.GetValueAs<DateTime>("startDate");
                 DateTime? endDate;
                 if(result["endDate"] is (null or DBNull))
@@ -186,10 +185,8 @@ namespace ZooBazaarLogicLayer.Managers
                     contractType = ContractType.FullTime;
                 }
 
-                
-
-                //Contract contract = new Contract(id, startDate, endDate, contractType, resultname);
-                //finalResult.Add(contract);
+                Contract contract = new Contract(id, startDate, endDate, contractType, employee);
+                finalResult.Add(contract);
             }
             return finalResult;
         }
