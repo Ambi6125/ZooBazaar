@@ -17,9 +17,30 @@ namespace ZooBazaarLogicLayer.People
         private Employee owner;
 
         public ContractType ContractType { get; private set; }
-        public bool IsActive => (endDate is null || endDate.Value.Date > DateTime.Today) && DateTime.Today > startDate;
+        public bool IsActive => (endDate is null || endDate.Value.Date > DateTime.Today) && DateTime.Today >= startDate;
         public DateTime StartDate => startDate;
-        public DateTime? EndDate => endDate;
+        public DateTime? EndDate
+        {
+            get => endDate;
+            set
+            {
+                if (value.HasValue)
+                {
+                    if (value.Value.Date >= DateTime.Today)
+                    {
+                        endDate = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("End date cannot be in the past");
+                    }
+                }
+                else
+                {
+                    endDate = null;
+                }
+            }
+        }
         public string EmployeeName => owner.Name;
         //TODO: get contract id check if needed
         public int ID => id.Value;

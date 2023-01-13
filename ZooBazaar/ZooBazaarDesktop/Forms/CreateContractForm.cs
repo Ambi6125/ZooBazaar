@@ -29,7 +29,7 @@ namespace ZooBazaarDesktop.Forms
         }
 
         private void Createbtn_Click(object sender, EventArgs e)
-        {            
+        {
             DateTime start = dTPStart.Value;
             DateTime? end;
             if (checkBoxEnd.Checked)
@@ -42,9 +42,17 @@ namespace ZooBazaarDesktop.Forms
             }
             
             Employee selectedemployee = (Employee)employeelistbox.SelectedItem;
-
-            Contract contract = new Contract(start, end, type, selectedemployee);            
-            var result = manager.CreateContract(contract);            
+            Contract[] selectedEmployeesContracts = manager.GetByEmployeeName(selectedemployee.Name).ToArray();
+            Func<Contract, bool> contractHasNoEndDate = c => c.EndDate is null;
+            if(selectedEmployeesContracts.Any(contractHasNoEndDate))
+            {
+                var oldContract = selectedEmployeesContracts.Single(contractHasNoEndDate);
+                oldContract.EndDate = DateTime.Today;
+                manager.UpdateContract(oldContract);
+            }
+            
+            Contract newContract = new Contract(start, end, type, selectedemployee);            
+            var result = manager.CreateContract(newContract);            
             if (result.Success)
             {
                 MessageBox.Show("Succesfully created.");

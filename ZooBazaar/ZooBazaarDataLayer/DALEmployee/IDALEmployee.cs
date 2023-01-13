@@ -23,6 +23,6 @@ namespace ZooBazaarDataLayer.DALEmployee
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllEmployees();
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWithActiveContract(DateTime date);
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetUnAvailableEmployeeByShift(DayOfWeek weekday, int type);
-        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWhosContractHaveNotStarted();
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWhoseContractHaveNotStarted();
     }
 }

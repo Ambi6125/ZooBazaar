@@ -720,31 +720,24 @@ namespace ZooBazaarDesktop.Forms
         {
             ExhibitManager manager = ExhibitManager.CreateForDatabase();
             int exhibitcount = manager.GetAll().Count;
-            if (exhibitcount <= lbMorning.Items.Count)
-            {
-                lbMorning.BackColor = Color.FromArgb(51, 204, 51);
-            }
-            else
-            {
-                lbMorning.BackColor = Color.FromArgb(255, 77, 77);
-            }
 
-            if (exhibitcount <= lbAfternoon.Items.Count)
-            {
-                lbAfternoon.BackColor = Color.FromArgb(51, 204, 51);
-            }
-            else
-            {
-                lbAfternoon.BackColor = Color.FromArgb(255, 77, 77);
-            }
+            int totalScheduled = lbMorning.Items.Count + lbAfternoon.Items.Count + lbEvening.Items.Count;
 
-            if (exhibitcount <= lbEvening.Items.Count)
+            ListBox[] scheduleListBoxes = { lbMorning, lbAfternoon, lbEvening };
+
+            if(totalScheduled < exhibitcount)
             {
-                lbEvening.BackColor = Color.FromArgb(51, 204, 51);
+                foreach(ListBox lb in scheduleListBoxes)
+                {
+                    lb.BackColor = Color.FromArgb(255, 77, 77);
+                }
             }
             else
             {
-                lbEvening.BackColor = Color.FromArgb(255, 77, 77);
+                foreach(ListBox lb in scheduleListBoxes)
+                {
+                    lb.BackColor = Color.FromArgb(51, 204, 51);
+                }
             }
         }
     }

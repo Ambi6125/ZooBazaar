@@ -45,8 +45,8 @@ namespace ZooBazaarDataLayer.DALContracts
 
         public IValidationResponse UpdateContract(IDataProvider contract)
         {
-            int accountId = contract.GetParameterArgs().GetValueAs<int>("id");
-            MySqlCondition condition = new MySqlCondition("id", accountId, Strictness.MustMatchExactly);
+            int contractId = contract.GetParameterArgs().GetValueAs<int>("id");
+            MySqlCondition condition = new MySqlCondition("id", contractId, Strictness.MustMatchExactly);
             UpdateQuery q = new UpdateQuery(zb_contracts, contract, condition);
 
             return _communicator.Update(q);

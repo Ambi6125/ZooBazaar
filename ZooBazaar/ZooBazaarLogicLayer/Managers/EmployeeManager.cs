@@ -153,7 +153,7 @@ namespace ZooBazaarLogicLayer.Managers
 
         public IReadOnlyCollection<Employee> Employeewithfuturecontracts()
         {
-            var queryResult = dataSource.GetEmployeesWhosContractHaveNotStarted();
+            var queryResult = dataSource.GetEmployeesWhoseContractHaveNotStarted();
             List<Employee> finalResult = new List<Employee>();
             foreach (var result in queryResult)
             {
@@ -254,6 +254,7 @@ namespace ZooBazaarLogicLayer.Managers
             List<Contract> contracts = manager.GetActiveContracts(DateTime.Now.Date).ToList();
             foreach(var contract in contracts)
             {
+
                 if(contract.EndDate is not null)
                 {
                     finalResult.Remove(contract.EmployeeOwner);
@@ -261,6 +262,7 @@ namespace ZooBazaarLogicLayer.Managers
             }
 
             List<Employee> empwithfuturecon = Employeewithfuturecontracts().ToList();
+            
             foreach (Employee e in empwithfuturecon)
             {
                 if (finalResult.Any(x => x.ID == e.ID))

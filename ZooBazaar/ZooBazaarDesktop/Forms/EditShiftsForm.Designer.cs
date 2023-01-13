@@ -70,6 +70,7 @@
             this.cbbType.Name = "cbbType";
             this.cbbType.Size = new System.Drawing.Size(151, 28);
             this.cbbType.TabIndex = 2;
+            this.cbbType.SelectedIndexChanged += new System.EventHandler(this.Search);
             // 
             // label3
             // 
@@ -155,7 +156,7 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.OnRemoveClick);
             // 
-            // AddShiftsForm
+            // EditShiftsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -172,7 +173,7 @@
             this.Controls.Add(this.cbbType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpDate);
-            this.Name = "AddShiftsForm";
+            this.Name = "EditShiftsForm";
             this.Text = "Edit Shifts";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnClosed);
             this.Load += new System.EventHandler(this.OnLoad);

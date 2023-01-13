@@ -184,10 +184,10 @@ namespace ZooBazaarDataLayer.DALEmployee
             return list;
         }
 
-        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWhosContractHaveNotStarted()
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetEmployeesWhoseContractHaveNotStarted()
         {
             List<ParameterValueCollection> list = new List<ParameterValueCollection>();
-            string command = "select zb_employees.* from zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_contracts.employeeId where startDate < now()";
+            string command = "select zb_employees.* from zb_contracts INNER JOIN zb_employees ON zb_employees.id = zb_contracts.employeeId where startDate > now()";
             using MySqlConnection conn = GetConnection();
             using MySqlCommand read = new MySqlCommand(command, conn);
             try
