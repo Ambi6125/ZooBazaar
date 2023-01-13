@@ -93,5 +93,40 @@ namespace ZooBazaarDataLayer.DALScheduling.DALAvailability
             }
             
         }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDayAndType(DayOfWeek weekday, int type)
+        {
+            string query = "select zb_employees.id from zb_employees inner join zb_unavailability on id = employeeId where day = @day AND shiftType = @type;";
+            using MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            using MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("day", UtilityMethods.ConvertDayToString(weekday));
+            cmd.Parameters.AddWithValue("type", type);
+            List<ParameterValueCollection> resultData = new List<ParameterValueCollection>();
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var pvc = new ParameterValueCollection
+                    {
+                        { "id", reader.GetInt32("id") },
+                        { "employeeName", reader.GetString(1) },
+                        { "address", reader.GetString(2) },
+                        { "phoneNumber", reader.GetString(3) },
+                        { "email", reader.GetString(4) },
+                        { "birthDate", reader.GetDateTime(5) },
+                        { "accountId", reader.GetInt32(6) }
+                    };
+                    resultData.Add(pvc);
+                }
+            }
+            finally
+            {
+                if (conn.State is not System.Data.ConnectionState.Closed)
+                    conn.Close();
+            }
+            return resultData;
+        }
     }
 }

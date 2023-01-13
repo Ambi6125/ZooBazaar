@@ -14,5 +14,7 @@ namespace ZooBazaarDataLayer.DALScheduling.DALAvailability
         IValidationResponse Remove(IDataProvider data);
 
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDay(DayOfWeek weekday);
+
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDayAndType(DayOfWeek dayType, int day);
     }
 }

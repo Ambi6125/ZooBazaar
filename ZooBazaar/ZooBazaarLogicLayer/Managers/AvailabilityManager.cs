@@ -49,5 +49,25 @@ namespace ZooBazaarLogicLayer.Managers
 
             return result;
         }
+
+        public IReadOnlyCollection<UnavailabilityData> GetByMoment(DayOfWeek weekday, ShiftType momentOfDay)
+        {
+            var response = repo.GetByDayAndType(weekday, (int)momentOfDay);
+            List<UnavailabilityData> data = new List<UnavailabilityData>();
+            foreach (var parameters in response)
+            {
+                int id = parameters.GetValueAs<int>("id");
+                string empName = parameters.GetValueAs<string>("name");
+                string address = parameters.GetValueAs<string>("address");
+                string phoneNumber = parameters.GetValueAs<string>("phoneNumber");
+                string email = parameters.GetValueAs<string>("email");
+                DateTime birthDate = parameters.GetValueAs<DateTime>("birthDate");
+                int accountId = parameters.GetValueAs<int>("accountId");
+
+                Employee emp = new Employee(id, empName, address, phoneNumber, email, birthDate);
+                data.Add(new UnavailabilityData(emp, weekday, momentOfDay));
+            }
+            return data;
+        }
     }
 }
