@@ -15,6 +15,7 @@ namespace ZooBazaarLogicLayer.Managers
     public class ExhibitManager
     {
         private readonly IDALExhibit dataSource;
+        private readonly List<Exhibit> exhibits = new List<Exhibit>();
 
         private ExhibitManager(IDALExhibit source)
         {
@@ -28,22 +29,46 @@ namespace ZooBazaarLogicLayer.Managers
 
         public static ExhibitManager CreateForUnitTest()
         {
-            throw new NotImplementedException();
+            return new ExhibitManager(new MockDALExhibit());
         }
 
         public IValidationResponse AddExhibit(Exhibit e)
         {
-            return dataSource.AddEntry(e);
+            var response = dataSource.AddEntry(e);
+            if (response.Success)
+            {
+                exhibits.Add(e);
+            }
+            return response;
         }
 
         public IValidationResponse DeleteExhibit(Exhibit e)
         {
-            return dataSource.DeleteEntry(e);
+            var response = dataSource.DeleteEntry(e);
+            if (response.Success)
+            {
+                exhibits.Remove(e);
+            }
+            return response;
         }
 
         public IValidationResponse UpdateExhibit(Exhibit e)
         {
-            return dataSource.UpdateEntry(e);
+            var response = dataSource.UpdateEntry(e);
+            if (response.Success)
+            {
+                bool occurs = exhibits.Any(exh => exh.Id == e.Id);
+                if (occurs)
+                {
+                    int index = exhibits.FindIndex(exh => exh.Id == e.Id);
+                    exhibits[index] = e;
+                }
+                else
+                {
+                    return new ValidationResponse(false, "No such entry can be updated");
+                }
+            }
+            return response;
         }
 
         public Exhibit SearchById(int id)

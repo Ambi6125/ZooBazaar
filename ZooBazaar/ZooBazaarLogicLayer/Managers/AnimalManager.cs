@@ -28,14 +28,14 @@ namespace ZooBazaarLogicLayer.Managers
 
         public static AnimalManager CreateForUnitTest()
         {
-            throw new NotImplementedException();
+            return new AnimalManager(new MockDALAnimal());
         }
 
         
         public IReadOnlyCollection<Animal> GetAnimalsByName(string name)
         {
             var queryResult = dataSource.GetByName(name);
-            List<Animal> finalResult = new List<Animal>();
+            List<Animal> finalResult = animals.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
             SpeciesManager sm = SpeciesManager.CreateForDatabase();
             foreach(var result in queryResult)
             {
@@ -46,7 +46,11 @@ namespace ZooBazaarLogicLayer.Managers
                 Species s = sm.GetById(speciesId);
                 string status = result.GetValueAs<string>("status");
                 Animal animal = new Animal(id, resultname, birth, s, status);
-                finalResult.Add(animal);
+                if (!finalResult.Any(x => x.ID == id))
+                {
+                    finalResult.Add(animal);
+                    animals.Add(animal);
+                }
             }
             return finalResult;
         }
@@ -75,7 +79,12 @@ namespace ZooBazaarLogicLayer.Managers
         }
         public IValidationResponse CreateAnimal(Animal a)
         {
-            return dataSource.AddEntry(a);
+            var response = dataSource.AddEntry(a);
+            if (response.Success)
+            {
+                animals.Add(a);
+            }
+            return response;
         }
         public IValidationResponse DeleteAnimal(Animal a)
         {

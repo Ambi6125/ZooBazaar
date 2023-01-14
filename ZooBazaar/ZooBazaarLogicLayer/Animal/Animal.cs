@@ -24,6 +24,8 @@ namespace ZooBazaarLogicLayer.Animals
 
         public string[] AvailableStatuses => allowedStatuses.Except(new string[] { this.Status }).ToArray();
 
+        public int? ID => id is not null ? id : throw new NullReferenceException();
+
         public string BirthDay => birthDate.ToString("dd/MM/yyyy");
         public int Age => (int)Math.Floor((DateTime.Today - birthDate.Date).Days / 365.25);
         public string Status => status;
