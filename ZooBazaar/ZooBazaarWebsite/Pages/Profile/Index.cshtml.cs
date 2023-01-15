@@ -24,7 +24,7 @@ namespace ZooBazaarWebsite.Pages.Profile
             employee.Address = e.Address;
             employee.Phone = e.PhoneNumber;
             employee.FullName = e.Name;
-            employee.id = Convert.ToInt32(a.id);
+            employee.id = Convert.ToInt32(a.ID);
             employee.username = a.Username;
 
         }
@@ -40,7 +40,7 @@ namespace ZooBazaarWebsite.Pages.Profile
         {
             EmployeeManager manager = EmployeeManager.CreateForDatabase();
             List<Employee> user = new List<Employee>() ;
-            int userid = Convert.ToInt32(GetAccount().id);
+            int userid = Convert.ToInt32(GetAccount().ID);
             foreach (var result in manager.GetEmployeesById(userid))
             {
                 user.Add(result);

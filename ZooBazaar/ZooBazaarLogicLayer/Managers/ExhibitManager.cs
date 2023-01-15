@@ -17,6 +17,9 @@ namespace ZooBazaarLogicLayer.Managers
         private readonly IDALExhibit dataSource;
         private readonly List<Exhibit> exhibits = new List<Exhibit>();
 
+        public IReadOnlyList<Exhibit> Exhibits => exhibits;
+
+
         private ExhibitManager(IDALExhibit source)
         {
             dataSource = source;
@@ -34,6 +37,10 @@ namespace ZooBazaarLogicLayer.Managers
 
         public IValidationResponse AddExhibit(Exhibit e)
         {
+            if (exhibits.Any(exhibit => exhibit.Id == e.Id))
+                throw new InvalidOperationException("Duplicate ID");
+
+
             var response = dataSource.AddEntry(e);
             if (response.Success)
             {
@@ -65,7 +72,7 @@ namespace ZooBazaarLogicLayer.Managers
                 }
                 else
                 {
-                    return new ValidationResponse(false, "No such entry can be updated");
+                    throw new InvalidOperationException("Does not contain the specified entry");
                 }
             }
             return response;
@@ -73,6 +80,16 @@ namespace ZooBazaarLogicLayer.Managers
 
         public Exhibit SearchById(int id)
         {
+
+            Exhibit? returnValue;
+
+            returnValue = exhibits.SingleOrDefault(ex => ex.Id == id);
+
+            if(returnValue is not null)
+            {
+                return returnValue;
+            }
+
             var result = dataSource.GetById(id);
 
             if(result is null)
@@ -86,13 +103,15 @@ namespace ZooBazaarLogicLayer.Managers
             int capacity = result.GetValueAs<int>("capacity");
 
 
-            return new Exhibit(exhibitId, name, zone, capacity, count);
+            returnValue = new Exhibit(exhibitId, name, zone, capacity, count);
+
+            return returnValue;
         }
 
         public IReadOnlyCollection<Exhibit> GetByName(string name)
         {
             var queryResult = dataSource.GetByName(name);
-            List<Exhibit> finalResult = new List<Exhibit>();
+            List<Exhibit> finalResult = exhibits.Where(ex => ex.Name.ToLower().Contains(name.ToLower())).ToList();
             foreach (var result in queryResult)
             {
                 int? exhibitId = result.GetValueAs<int?>("id");
@@ -101,7 +120,10 @@ namespace ZooBazaarLogicLayer.Managers
                 int count = result.GetValueAs<int>("count");
                 int capacity = result.GetValueAs<int>("capacity");
                 Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, capacity, count);
-                finalResult.Add(exhibit);
+                if (!finalResult.Any(e => e.Id == exhibitId))
+                {
+                    finalResult.Add(exhibit);
+                }
             }
             return finalResult;
         }
@@ -126,7 +148,7 @@ namespace ZooBazaarLogicLayer.Managers
         public IReadOnlyCollection<Exhibit> GetAll()
         {
             var queryResult = dataSource.GetAll();
-            List<Exhibit> finalResult = new List<Exhibit>();
+            List<Exhibit> finalResult = exhibits.ToList();
             foreach (var result in queryResult)
             {
                 int? exhibitId = result.GetValueAs<int?>("id");
@@ -135,8 +157,13 @@ namespace ZooBazaarLogicLayer.Managers
                 int count = result.GetValueAs<int>("count");
                 int capacity = result.GetValueAs<int>("capacity");
                 Exhibit exhibit = new Exhibit(exhibitId, resaultname, zone, capacity, count);
-                finalResult.Add(exhibit);
+                if (!finalResult.Any(x => x.Id == exhibitId.Value))
+                {
+                    finalResult.Add(exhibit);
+                    exhibits.Add(exhibit);
+                }
             }
+
             return finalResult;
         }
 

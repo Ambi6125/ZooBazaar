@@ -27,7 +27,7 @@ namespace ZooBazaarDataLayer.DALExhibit
 
         public IReadOnlyParameterValueCollection? GetById(int id)
         {
-            return new ParameterValueCollection();
+            return null;
         }
 
         public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByName(string name)

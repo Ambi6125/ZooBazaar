@@ -24,10 +24,28 @@ namespace ZooBazaarLogicLayer.Zones
         /// </summary>
         public Exhibit(string name, string zone, int capacity, int count)
         {
+            object[] parameters = { name, zone, capacity, count };
+            string[] stringParameters = { name, zone };
+            if(parameters.Any(obj => obj is null))
+            {
+                throw new ArgumentNullException();
+            }
+            else if(stringParameters.Any(str => string.IsNullOrWhiteSpace(str)))
+            {
+                throw new ArgumentException("Cannot be empty or whitespace");
+            }
+
             Name = name;
             Zone = zone;
             Capacity = capacity;
-            Count = count;
+            if(count > capacity)
+            {
+                throw new ArgumentOutOfRangeException("Too many animals");
+            }
+            else
+            {
+                Count = count;
+            }
         }
 
         /// <summary>
@@ -60,7 +78,11 @@ namespace ZooBazaarLogicLayer.Zones
         {
             if(count > Capacity)
             {
-                throw new ArgumentException("Over Capacity");
+                throw new ArgumentOutOfRangeException("Over Capacity");
+            }
+            else if(count < 0)
+            {
+                throw new ArgumentException("Cannot have a negative count");
             }
             else
             {
