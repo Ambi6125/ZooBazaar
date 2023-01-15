@@ -10,6 +10,8 @@ namespace ZooBazaarDataLayer.DALExhibit
 {
     public class MockDALExhibit : IDALExhibit
     {
+        public int Count => 0;
+
         public IValidationResponse AddEntry(IDataProvider exhibit)
         {
             return new ValidationResponse(true, string.Empty);

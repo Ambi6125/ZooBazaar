@@ -719,7 +719,7 @@ namespace ZooBazaarDesktop.Forms
         private void UpdateColours()
         {
             ExhibitManager manager = ExhibitManager.CreateForDatabase();
-            int exhibitcount = manager.GetAll().Count;
+            int exhibitcount = manager.NumberOfExhibits;
 
             int totalScheduled = lbMorning.Items.Count + lbAfternoon.Items.Count + lbEvening.Items.Count;
 

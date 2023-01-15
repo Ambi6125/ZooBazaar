@@ -2,6 +2,7 @@
 using EasyTools.MySqlDatabaseTools.Queries;
 using EasyTools.MySqlDatabaseTools.Tables;
 using EasyTools.Validation;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,33 @@ namespace ZooBazaarDataLayer.DALExhibit
     {
         private readonly IDatabaseCommunicator communicator = new MySqlCommunicator(Data.connectionString);
         private readonly MySqlTable table = new MySqlTable("zb_exhibits");
+
+        public int Count
+        {
+            get
+            {
+                string query = "SELECT count(*) as NumberOfEntries from zb_exhibits;";
+                using MySqlConnection conn = new MySqlConnection(Data.connectionString);
+                using MySqlCommand cmd = new MySqlCommand(query, conn);
+                try
+                {
+                    conn.Open();
+                    object response = cmd.ExecuteScalar();
+                    int castResponse = Convert.ToInt32(response);
+                    return castResponse;
+                }
+                catch (MySqlException)
+                {
+                    return 0;
+                }
+                finally
+                {
+                    if(conn.State != System.Data.ConnectionState.Closed)
+                        conn.Close();
+                }
+            }
+        }
+
         public IValidationResponse AddEntry(IDataProvider exhibit)
         {
             InsertQuery query = new InsertQuery(table, exhibit);

@@ -21,6 +21,9 @@ namespace ZooBazaarLogicLayer.People
         private int? accountId;
 
         public int? ID => _id;
+
+        public bool HasAccountAssigned => accountId is not null;
+
         public string Name
         {
             get => name;

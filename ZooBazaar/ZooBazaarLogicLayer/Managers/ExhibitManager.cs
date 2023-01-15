@@ -19,6 +19,22 @@ namespace ZooBazaarLogicLayer.Managers
 
         public IReadOnlyList<Exhibit> Exhibits => exhibits;
 
+        public int NumberOfExhibits
+        {
+            get
+            {
+                var dbResponse = dataSource.Count;
+                if(dbResponse <= 0)
+                {
+                    return exhibits.Count;
+                }
+                else
+                {
+                    return dbResponse;
+                }
+            }
+        }
+
 
         private ExhibitManager(IDALExhibit source)
         {
@@ -70,10 +86,6 @@ namespace ZooBazaarLogicLayer.Managers
                     int index = exhibits.FindIndex(exh => exh.Id == e.Id);
                     exhibits[index] = e;
                 }
-                else
-                {
-                    throw new InvalidOperationException("Does not contain the specified entry");
-                }
             }
             return response;
         }
@@ -104,7 +116,7 @@ namespace ZooBazaarLogicLayer.Managers
 
 
             returnValue = new Exhibit(exhibitId, name, zone, capacity, count);
-
+            exhibits.Add(returnValue);
             return returnValue;
         }
 
@@ -131,7 +143,7 @@ namespace ZooBazaarLogicLayer.Managers
         public IReadOnlyCollection<Exhibit> GetByZone(string zone)
         {
             var queryResult = dataSource.GetByZone(zone);
-            List<Exhibit> finalResult = new List<Exhibit>();
+            List<Exhibit> finalResult = exhibits.Where(x => x.Zone.ToLower().Contains(zone.ToLower())).ToList();
             foreach (var result in queryResult)
             {
                 int? exhibitId = result.GetValueAs<int?>("id");
@@ -140,7 +152,10 @@ namespace ZooBazaarLogicLayer.Managers
                 int count = result.GetValueAs<int>("count");
                 int capacity = result.GetValueAs<int>("capacity");
                 Exhibit exhibit = new Exhibit(exhibitId, name, resaultzone, capacity, count);
-                finalResult.Add(exhibit);
+                if(!finalResult.Any(x => x.Id == exhibitId))
+                {
+                    finalResult.Add(exhibit);
+                }
             }
             return finalResult;
         }

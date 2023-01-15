@@ -64,13 +64,15 @@ namespace UnitTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void CanNotUpdateBecauseNotRegistered()
+        
+        public void UpdatingUnregisteredExhibitReturnsFalseSuccessResponse()
         {
             Exhibit exhibit1 = new Exhibit(1, "Test", "Taiga", 5, 0);
             var manager = ExhibitManager.CreateForUnitTest();
 
-            manager.UpdateExhibit(exhibit1);
+            var managerResponse = manager.UpdateExhibit(exhibit1);
+
+            Assert.IsFalse(managerResponse.Success);
         }
 
         [TestMethod]

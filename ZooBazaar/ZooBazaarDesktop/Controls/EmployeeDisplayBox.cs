@@ -29,6 +29,10 @@ namespace ZooBazaarDesktop.Controls
         {
             lblName.Text = employee.Name;
             lblAge.Text = employee.Age + " year(s) old";
+            if (employee.HasAccountAssigned)
+            {
+                btnAssign.Enabled = false;
+            }
         }
 
         private void btnDetailsClick(object sender, EventArgs e)

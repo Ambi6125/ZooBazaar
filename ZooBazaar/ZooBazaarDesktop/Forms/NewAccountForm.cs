@@ -122,27 +122,29 @@ namespace ZooBazaarDesktop.Forms
                 MessageBox.Show("Could not succesfully register the account.");
                 return;
             }
+            #region Mail code commented
+            //MailWriter mailWriter = new MailWriter("noreplyzoobazaar@gmail.com");
+            //mailWriter.Configure(new AccountCreationPreset(newAccount, password));
+            //mailWriter.Receiver = newAccount.Email;
+            //var mailResponse = mailWriter.Send();
+            //if (mailResponse.Success)
+            //{
+            //    MessageBox.Show("Succesfully created account.");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(mailResponse.Message);
+            //    DialogResult dr = MessageBox.Show("The account was saved, but could a mail could not be sent.\nDelete the account?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //    if(dr == DialogResult.Yes)
+            //    {
+            //        //TODO: implement delete
+            //        var response = am.DeleteAccount(newAccount);
 
-            MailWriter mailWriter = new MailWriter("noreplyzoobazaar@gmail.com");
-            mailWriter.Configure(new AccountCreationPreset(newAccount, password));
-            mailWriter.Receiver = newAccount.Email;
-            var mailResponse = mailWriter.Send();
-            if (mailResponse.Success)
-            {
-                MessageBox.Show("Succesfully created account.");
-            }
-            else
-            {
-                MessageBox.Show(mailResponse.Message);
-                DialogResult dr = MessageBox.Show("The account was saved, but could a mail could not be sent.\nDelete the account?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(dr == DialogResult.Yes)
-                {
-                    //TODO: implement delete
-                    var response = am.DeleteAccount(newAccount);
-
-                    MessageBox.Show(response.Message);
-                }
-            }
+            //        MessageBox.Show(response.Message);
+            //    }
+            //}
+            #endregion
+            MessageBox.Show("Succesfully made the account.\nClose this form now?", "Success", MessageBoxButtons.YesNo);
         }
     }
 }
