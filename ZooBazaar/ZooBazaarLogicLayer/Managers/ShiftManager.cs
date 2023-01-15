@@ -260,7 +260,7 @@ namespace ZooBazaarLogicLayer.Managers
             #endregion
         }
 
-        private DateTime GetMonday(DateTime date)
+        internal DateTime GetMonday(DateTime date)
         {
             int datessincemonday = (int)date.DayOfWeek - 1;
             if(datessincemonday == -1)

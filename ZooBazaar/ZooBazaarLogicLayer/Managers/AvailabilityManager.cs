@@ -20,6 +20,11 @@ namespace ZooBazaarLogicLayer.Managers
             this.repo = repo;
         }
 
+        public static AvailabilityManager CreateForDatabase()
+        {
+            return new AvailabilityManager(new DBAvailability());
+        }
+
         public IValidationResponse MarkUnavailable(UnavailabilityData data)
         {
             return repo.Insert(data);
