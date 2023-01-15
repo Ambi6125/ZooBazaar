@@ -14,6 +14,8 @@ using ZooBazaarLogicLayer.Managers;
 using ZooBazaarLogicLayer.Zones;
 using ZooBazaarLogicLayer.People;
 using ZooBazaarLogicLayer.Schedule.Shifts;
+using ZooBazaarLogicLayer.Schedule.Automatic;
+using Ubiety.Dns.Core;
 
 namespace ZooBazaarDesktop.Forms
 {
@@ -737,6 +739,32 @@ namespace ZooBazaarDesktop.Forms
                 foreach(ListBox lb in scheduleListBoxes)
                 {
                     lb.BackColor = Color.FromArgb(51, 204, 51);
+                }
+            }
+        }
+
+        private void GenerateSchedulebtn_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = startdtP.Value;
+            DateTime endDate = enddtP.Value;
+            ExhibitManager manager = ExhibitManager.CreateForDatabase();
+            EmployeeManager employeeManager = EmployeeManager.CreateForDatabase();
+            ShiftManager shiftManager= ShiftManager.CreateForDatabase();
+            int exhibitcount = manager.NumberOfExhibits;
+            double shiftcount = 3.0;
+            double division = exhibitcount / shiftcount;
+            int requiredamountofemployee = (int)Math.Ceiling(division);
+            List<Employee> employeeswithcontracts = employeeManager.GetEmployeesWithActiveContract(DateTime.Now).ToList();
+            List<Shift> shifts = Automatic2.GenerateSchedule(Automatic2.ConvertEmployee(employeeswithcontracts), requiredamountofemployee, startDate, endDate).ToList();
+            foreach (Shift shift in shifts)
+            {
+                Shift newShift = new Shift(shift.Date, shift.ShiftType);
+                shiftManager.AddShift(newShift);
+                int shiftid = shiftManager.GetRecentId();
+                foreach (Employee employee in shift.Employees)
+                {
+                    var relationship = new ZooBazaarDataLayer.DALScheduling.DALShift.ShiftEmployeeRelationShip(employee.ID.Value, shiftid);
+                    shiftManager.Register(relationship);
                 }
             }
         }

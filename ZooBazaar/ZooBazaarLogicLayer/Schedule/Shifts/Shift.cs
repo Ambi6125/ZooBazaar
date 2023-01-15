@@ -41,6 +41,14 @@ namespace ZooBazaarLogicLayer.Schedule.Shifts
             this.shiftType = shift;
         }
 
+        public Shift(ShiftType shift, DateTime dateTime, ICollection<Employee> employees)
+        {
+            date = dateTime.Date;
+            this.employees = new List<Employee>();
+            this.employees.AddRange(employees);
+            this.shiftType = shift;
+        }
+
         public IValidationResponse AddEmployee(Employee employee)
         {
             if (!employees.Contains(employee))

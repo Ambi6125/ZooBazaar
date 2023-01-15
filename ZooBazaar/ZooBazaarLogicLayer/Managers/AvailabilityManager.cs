@@ -74,5 +74,28 @@ namespace ZooBazaarLogicLayer.Managers
             }
             return data;
         }
+
+        public IReadOnlyCollection<UnavailabilityData> GetAllData()
+        {
+            List<UnavailabilityData> result = new List<UnavailabilityData>();
+            var repoResponse = repo.GetAllData();
+            foreach (var item in repoResponse)
+            {
+                int id = item.GetValueAs<int>("employeeId");
+                var dayOfWeek = Enum.Parse(typeof(DayOfWeek), item.GetValueAs<string>("day"), true);
+                var shiftType = item.GetValueAs<ShiftType>("shiftType");
+                string empName = item.GetValueAs<string>("name");
+                string address = item.GetValueAs<string>("address");
+                string phoneNumber = item.GetValueAs<string>("phoneNumber");
+                string email = item.GetValueAs<string>("email");
+                DateTime birthDate = item.GetValueAs<DateTime>("birthDate");
+                int accountId = item.GetValueAs<int>("accountId");
+
+                Employee emp = new Employee(id, empName, address, phoneNumber, email, birthDate);
+
+                result.Add(new UnavailabilityData(emp, (DayOfWeek)dayOfWeek, shiftType));
+            }
+            return result;
+        }
     }
 }

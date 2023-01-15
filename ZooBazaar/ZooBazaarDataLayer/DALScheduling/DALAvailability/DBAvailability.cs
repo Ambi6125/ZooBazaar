@@ -128,5 +128,41 @@ namespace ZooBazaarDataLayer.DALScheduling.DALAvailability
             }
             return resultData;
         }
+
+        public IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllData()
+        {
+            List<IReadOnlyParameterValueCollection> resultData = new List<IReadOnlyParameterValueCollection>();
+            string query = "SELECT * FROM zb_unavailability INNER JOIN zb_employees ON employeeId = id";
+            using MySqlConnection conn = new MySqlConnection(Data.connectionString);
+            using MySqlCommand cmd = new MySqlCommand(query, conn);
+            try
+            {
+                conn.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var dataRow = new ParameterValueCollection()
+                    {
+                        { "employeeId", reader.GetInt32("employeeId") },
+                        { "day", reader.GetString("day") },
+                        { "shiftType", reader.GetInt32("shiftType") },
+                        { "employeeName", reader.GetString("employeeName") },
+                        { "address", reader.GetString("address") },
+                        { "phoneNumber", reader.GetString("phoneNumber") },
+                        { "email", reader.GetString("email") },
+                        { "birthDate", reader.GetDateTime("birthDate") },
+                        { "accountId", reader.GetInt32("accountId") }
+                    };
+                    resultData.Add(dataRow);
+                }
+
+                return resultData;
+            }
+            finally
+            {
+                if (conn.State is not System.Data.ConnectionState.Closed)
+                    conn.Close();
+            }
+        }
     }
 }

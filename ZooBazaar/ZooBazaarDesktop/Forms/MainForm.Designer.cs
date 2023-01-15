@@ -101,15 +101,21 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.tpSchedule = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnSearchShifts = new System.Windows.Forms.Button();
             this.dtpShiftDateInput = new System.Windows.Forms.DateTimePicker();
             this.lbEvening = new System.Windows.Forms.ListBox();
             this.lbAfternoon = new System.Windows.Forms.ListBox();
             this.lbMorning = new System.Windows.Forms.ListBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.startdtP = new System.Windows.Forms.DateTimePicker();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.enddtP = new System.Windows.Forms.DateTimePicker();
+            this.GenerateSchedulebtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpSpecies.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -902,6 +908,12 @@
             // 
             // tpSchedule
             // 
+            this.tpSchedule.Controls.Add(this.GenerateSchedulebtn);
+            this.tpSchedule.Controls.Add(this.label17);
+            this.tpSchedule.Controls.Add(this.enddtP);
+            this.tpSchedule.Controls.Add(this.label16);
+            this.tpSchedule.Controls.Add(this.startdtP);
+            this.tpSchedule.Controls.Add(this.label15);
             this.tpSchedule.Controls.Add(this.label14);
             this.tpSchedule.Controls.Add(this.label13);
             this.tpSchedule.Controls.Add(this.label12);
@@ -919,9 +931,36 @@
             this.tpSchedule.Text = "Schedule";
             this.tpSchedule.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(550, 330);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(95, 20);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Evening Shift";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(553, 175);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(110, 20);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Afternoon Shift";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(551, 19);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 20);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "Morning Shift";
+            // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(87, 427);
+            this.btnNew.Location = new System.Drawing.Point(38, 428);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(106, 37);
             this.btnNew.TabIndex = 4;
@@ -973,32 +1012,56 @@
             this.lbMorning.Size = new System.Drawing.Size(322, 124);
             this.lbMorning.TabIndex = 1;
             // 
-            // label12
+            // label15
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(551, 19);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(99, 20);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "Morning Shift";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(38, 193);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(136, 20);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Generate Schedule:";
             // 
-            // label13
+            // startdtP
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(553, 175);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(110, 20);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "Afternoon Shift";
+            this.startdtP.Location = new System.Drawing.Point(107, 239);
+            this.startdtP.Name = "startdtP";
+            this.startdtP.Size = new System.Drawing.Size(250, 27);
+            this.startdtP.TabIndex = 9;
             // 
-            // label14
+            // label16
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(550, 330);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(95, 20);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Evening Shift";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(22, 239);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(79, 20);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Start Date:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 295);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(73, 20);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "End Date:";
+            // 
+            // enddtP
+            // 
+            this.enddtP.Location = new System.Drawing.Point(107, 295);
+            this.enddtP.Name = "enddtP";
+            this.enddtP.Size = new System.Drawing.Size(250, 27);
+            this.enddtP.TabIndex = 11;
+            // 
+            // GenerateSchedulebtn
+            // 
+            this.GenerateSchedulebtn.Location = new System.Drawing.Point(379, 253);
+            this.GenerateSchedulebtn.Name = "GenerateSchedulebtn";
+            this.GenerateSchedulebtn.Size = new System.Drawing.Size(94, 53);
+            this.GenerateSchedulebtn.TabIndex = 13;
+            this.GenerateSchedulebtn.Text = "Generate";
+            this.GenerateSchedulebtn.UseVisualStyleBackColor = true;
+            this.GenerateSchedulebtn.Click += new System.EventHandler(this.GenerateSchedulebtn_Click);
             // 
             // MainForm
             // 
@@ -1126,5 +1189,11 @@
         private Label label14;
         private Label label13;
         private Label label12;
+        private Label label17;
+        private DateTimePicker enddtP;
+        private Label label16;
+        private DateTimePicker startdtP;
+        private Label label15;
+        private Button GenerateSchedulebtn;
     }
 }

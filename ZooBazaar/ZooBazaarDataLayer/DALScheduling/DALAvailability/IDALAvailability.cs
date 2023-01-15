@@ -11,10 +11,13 @@ namespace ZooBazaarDataLayer.DALScheduling.DALAvailability
     public interface IDALAvailability
     {
         IValidationResponse Insert(IDataProvider data);
+
         IValidationResponse Remove(IDataProvider data);
 
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDay(DayOfWeek weekday);
 
         IReadOnlyCollection<IReadOnlyParameterValueCollection> GetByDayAndType(DayOfWeek dayType, int day);
+
+        IReadOnlyCollection<IReadOnlyParameterValueCollection> GetAllData();
     }
 }
