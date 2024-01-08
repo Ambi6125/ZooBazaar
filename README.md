@@ -1,6 +1,6 @@
 # ZooBazaar s2
 
-Restart because we are incompetent
+Restart because of issues in previous repo
 
 ## Getting started
 
